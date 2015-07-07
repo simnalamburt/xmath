@@ -4,6 +4,20 @@ use std::mem::zeroed;
 use std::ops::*;
 use glium::uniforms::*;
 
+pub trait Vector {
+    fn transform(self, matrix: &Matrix) -> Self;
+}
+
+impl Vector for (f32, f32) {
+    fn transform(self, matrix: &Matrix) -> Self {
+        let m = matrix.m;
+
+        let x = self.0*m[0][0] + self.1*m[1][0];
+        let y = self.0*m[0][1] + self.1*m[1][1];
+        (x, y)
+    }
+}
+
 #[derive(PartialEq, Clone, Debug)]
 pub struct Matrix { m: [[f32; 4]; 4] }
 
