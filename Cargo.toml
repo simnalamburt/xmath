@@ -3,5 +3,12 @@ name = "xmath"
 version = "0.1.0"
 authors = ["Hyeon Kim <simnalamburt@gmail.com>"]
 
+description   = "Rust port for DirectXMath"
+homepage      = "https://github.com/simnalamburt/xmath"
+repository    = "https://github.com/simnalamburt/xmath"
+readme        = "README.md"
+keywords      = ["math", "linear", "algebra", "matrix", "vector"]
+license       = "BSD-2-Clause"
+
 [dependencies]
 glium = { version = "*", default-features = false }
