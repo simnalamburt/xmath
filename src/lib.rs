@@ -9,6 +9,8 @@ pub trait Vector {
 }
 
 type Vector2 = (f32, f32);
+type Vector3 = (f32, f32, f32);
+type Vector4 = (f32, f32, f32, f32);
 
 impl Vector for Vector2 {
     fn transform(self, matrix: &Matrix) -> Self {
@@ -17,6 +19,29 @@ impl Vector for Vector2 {
         let x = self.0*m[0][0] + self.1*m[1][0];
         let y = self.0*m[0][1] + self.1*m[1][1];
         (x, y)
+    }
+}
+
+impl Vector for Vector3 {
+    fn transform(self, matrix: &Matrix) -> Self {
+        let m = matrix.m;
+
+        let x = self.0*m[0][0] + self.1*m[1][0] + self.2*m[2][0];
+        let y = self.0*m[0][1] + self.1*m[1][1] + self.2*m[2][1];
+        let z = self.0*m[0][2] + self.1*m[1][2] + self.2*m[2][2];
+        (x, y, z)
+    }
+}
+
+impl Vector for Vector4 {
+    fn transform(self, matrix: &Matrix) -> Self {
+        let m = matrix.m;
+
+        let x = self.0*m[0][0] + self.1*m[1][0] + self.2*m[2][0] + self.3*m[3][0];
+        let y = self.0*m[0][1] + self.1*m[1][1] + self.2*m[2][1] + self.3*m[3][1];
+        let z = self.0*m[0][2] + self.1*m[1][2] + self.2*m[2][2] + self.3*m[3][2];
+        let w = self.0*m[0][3] + self.1*m[1][3] + self.2*m[2][3] + self.3*m[3][3];
+        (x, y, z, w)
     }
 }
 
@@ -37,6 +62,47 @@ fn transform_vector2() {
 
     assert_eq!(transformed.0, 13.0);
     assert_eq!(transformed.1, 16.0);
+}
+
+#[test]
+fn transform_vector3() {
+    let matrix = Matrix {
+        m: [
+            [ 2.0, 3.0, 5.0, 7.0 ],
+            [ 11.0, 13.0, 17.0, 19.0 ],
+            [ 23.0, 29.0, 31.0, 37.0 ],
+            [ 41.0, 43.0, 47.0, 53.0 ],
+        ]
+    };
+
+    let origin = (1.0, 1.0, 1.0);
+
+    let transformed = origin.transform(&matrix);
+
+    assert_eq!(transformed.0, 36.0);
+    assert_eq!(transformed.1, 45.0);
+    assert_eq!(transformed.2, 53.0);
+}
+
+#[test]
+fn transform_vector4() {
+    let matrix = Matrix {
+        m: [
+            [ 2.0, 3.0, 5.0, 7.0 ],
+            [ 11.0, 13.0, 17.0, 19.0 ],
+            [ 23.0, 29.0, 31.0, 37.0 ],
+            [ 41.0, 43.0, 47.0, 53.0 ],
+        ]
+    };
+
+    let origin = (1.0, 1.0, 1.0, 1.0);
+
+    let transformed = origin.transform(&matrix);
+
+    assert_eq!(transformed.0, 77.0);
+    assert_eq!(transformed.1, 88.0);
+    assert_eq!(transformed.2, 100.0);
+    assert_eq!(transformed.3, 116.0);
 }
 
 #[derive(PartialEq, Clone, Debug)]
