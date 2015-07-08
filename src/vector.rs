@@ -15,10 +15,9 @@ type Vector4 = (f32, f32, f32, f32);
 
 impl Vector for Vector2 {
     fn transform(self, matrix: &Matrix) -> Self {
-        let m = matrix.m;
 
-        let x = self.0*m[0][0] + self.1*m[1][0];
-        let y = self.0*m[0][1] + self.1*m[1][1];
+        let x = self.0 * matrix[0][0] + self.1 * matrix[1][0];
+        let y = self.0 * matrix[0][1] + self.1 * matrix[1][1];
         (x, y)
     }
 
@@ -42,11 +41,9 @@ impl Vector for Vector2 {
 
 impl Vector for Vector3 {
     fn transform(self, matrix: &Matrix) -> Self {
-        let m = matrix.m;
-
-        let x = self.0*m[0][0] + self.1*m[1][0] + self.2*m[2][0];
-        let y = self.0*m[0][1] + self.1*m[1][1] + self.2*m[2][1];
-        let z = self.0*m[0][2] + self.1*m[1][2] + self.2*m[2][2];
+        let x = self.0 * matrix[0][0] + self.1 * matrix[1][0] + self.2 * matrix[2][0];
+        let y = self.0 * matrix[0][1] + self.1 * matrix[1][1] + self.2 * matrix[2][1];
+        let z = self.0 * matrix[0][2] + self.1 * matrix[1][2] + self.2 * matrix[2][2];
         (x, y, z)
     }
 
@@ -70,12 +67,10 @@ impl Vector for Vector3 {
 
 impl Vector for Vector4 {
     fn transform(self, matrix: &Matrix) -> Self {
-        let m = matrix.m;
-
-        let x = self.0*m[0][0] + self.1*m[1][0] + self.2*m[2][0] + self.3*m[3][0];
-        let y = self.0*m[0][1] + self.1*m[1][1] + self.2*m[2][1] + self.3*m[3][1];
-        let z = self.0*m[0][2] + self.1*m[1][2] + self.2*m[2][2] + self.3*m[3][2];
-        let w = self.0*m[0][3] + self.1*m[1][3] + self.2*m[2][3] + self.3*m[3][3];
+        let x = self.0 * matrix[0][0] + self.1 * matrix[1][0] + self.2 * matrix[2][0] + self.3 * matrix[3][0];
+        let y = self.0 * matrix[0][1] + self.1 * matrix[1][1] + self.2 * matrix[2][1] + self.3 * matrix[3][1];
+        let z = self.0 * matrix[0][2] + self.1 * matrix[1][2] + self.2 * matrix[2][2] + self.3 * matrix[3][2];
+        let w = self.0 * matrix[0][3] + self.1 * matrix[1][3] + self.2 * matrix[2][3] + self.3 * matrix[3][3];
         (x, y, z, w)
     }
 

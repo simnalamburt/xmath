@@ -214,3 +214,34 @@ impl AsUniformValue for Matrix {
         ty == &UniformType::FloatMat4
     }
 }
+
+impl Index<usize> for Matrix {
+    type Output = [f32;4];
+    fn index<'a>(&'a self, index: usize) -> &'a Self::Output {
+        &self.m[index]
+    }
+}
+
+#[test]
+fn indexing() {
+    let matrix = Matrix {
+        m: [
+            [ 2.0, 3.0, 5.0, 7.0 ],
+            [ 11.0, 13.0, 17.0, 19.0 ],
+            [ 23.0, 29.0, 31.0, 37.0 ],
+            [ 41.0, 43.0, 47.0, 53.0 ],
+        ]
+    };
+
+    let row0 = matrix[0];
+    assert_eq!(row0, [ 2.0, 3.0, 5.0, 7.0 ]);
+
+    let row1 = matrix[1];
+    assert_eq!(row1, [ 11.0, 13.0, 17.0, 19.0 ]);
+
+    let row2 = matrix[2];
+    assert_eq!(row2, [ 23.0, 29.0, 31.0, 37.0 ]);
+
+    let row3 = matrix[3];
+    assert_eq!(row3, [ 41.0, 43.0, 47.0, 53.0 ]);
+}
