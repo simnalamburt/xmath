@@ -175,3 +175,42 @@ fn splat_w_of_vector4() {
     assert_eq!(splatted.2, vector4.3);
     assert_eq!(splatted.3, vector4.3);
 }
+
+#[test]
+fn multiply_add_for_vector2() {
+    let v1 = (1.0, 2.0);
+    let v2 = (10.0, 11.0);
+    let v3 = (100.0, 200.0);
+
+    let v = v1.multiply_add(&v2, &v3);
+
+    assert_eq!(v.0, 110.0);
+    assert_eq!(v.1, 222.0);
+}
+
+#[test]
+fn multiply_add_for_vector3() {
+    let v1 = (1.0, 2.0, 3.0);
+    let v2 = (10.0, 11.0, 12.0);
+    let v3 = (100.0, 200.0, 300.0);
+
+    let v = v1.multiply_add(&v2, &v3);
+
+    assert_eq!(v.0, 110.0);
+    assert_eq!(v.1, 222.0);
+    assert_eq!(v.2, 336.0);
+}
+
+#[test]
+fn multiply_add_for_vector4() {
+    let v1 = (1.0, 2.0, 3.0, 4.0);
+    let v2 = (10.0, 11.0, 12.0, 13.0);
+    let v3 = (100.0, 200.0, 300.0, 400.0);
+
+    let v = v1.multiply_add(&v2, &v3);
+
+    assert_eq!(v.0, 110.0);
+    assert_eq!(v.1, 222.0);
+    assert_eq!(v.2, 336.0);
+    assert_eq!(v.3, 452.0);
+}

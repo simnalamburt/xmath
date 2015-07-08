@@ -3,6 +3,8 @@ use matrix::*;
 pub trait Vector {
     fn transform(self, matrix: &Matrix) -> Self;
 
+    fn multiply_add(self, mul: &Self, add: &Self) -> Self;
+
     fn splat_x(self) -> Self;
     fn splat_y(self) -> Self;
     fn splat_z(self) -> Self;
@@ -18,6 +20,12 @@ impl Vector for Vector2 {
 
         let x = self.0 * matrix[0][0] + self.1 * matrix[1][0] + matrix[3][0];
         let y = self.0 * matrix[0][1] + self.1 * matrix[1][1] + matrix[3][1];
+        (x, y)
+    }
+
+    fn multiply_add(self, mul: &Self, add: &Self) -> Self {
+        let x = self.0 * mul.0 + add.0;
+        let y = self.1 * mul.1 + add.1;
         (x, y)
     }
 
@@ -47,6 +55,13 @@ impl Vector for Vector3 {
         (x, y, z)
     }
 
+    fn multiply_add(self, mul: &Self, add: &Self) -> Self {
+        let x = self.0 * mul.0 + add.0;
+        let y = self.1 * mul.1 + add.1;
+        let z = self.2 * mul.2 + add.2;
+        (x, y, z)
+    }
+
     fn splat_x(self) -> Self {
         let x = self.0;
         (x, x, x)
@@ -71,6 +86,14 @@ impl Vector for Vector4 {
         let y = self.0 * matrix[0][1] + self.1 * matrix[1][1] + self.2 * matrix[2][1] + self.3 * matrix[3][1];
         let z = self.0 * matrix[0][2] + self.1 * matrix[1][2] + self.2 * matrix[2][2] + self.3 * matrix[3][2];
         let w = self.0 * matrix[0][3] + self.1 * matrix[1][3] + self.2 * matrix[2][3] + self.3 * matrix[3][3];
+        (x, y, z, w)
+    }
+
+    fn multiply_add(self, mul: &Self, add: &Self) -> Self {
+        let x = self.0 * mul.0 + add.0;
+        let y = self.1 * mul.1 + add.1;
+        let z = self.2 * mul.2 + add.2;
+        let w = self.3 * mul.3 + add.3;
         (x, y, z, w)
     }
 
