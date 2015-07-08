@@ -8,7 +8,9 @@ pub trait Vector {
     fn transform(self, matrix: &Matrix) -> Self;
 }
 
-impl Vector for (f32, f32) {
+type Vector2 = (f32, f32);
+
+impl Vector for Vector2 {
     fn transform(self, matrix: &Matrix) -> Self {
         let m = matrix.m;
 
