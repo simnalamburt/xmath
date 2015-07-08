@@ -10,6 +10,22 @@ pub struct Matrix { m: [[f32; 4]; 4] }
 impl Matrix {
     pub fn zero() -> Self { unsafe { zeroed() } }
 
+    pub fn new(
+        m00: f32, m01: f32, m02: f32, m03: f32,
+        m10: f32, m11: f32, m12: f32, m13: f32,
+        m20: f32, m21: f32, m22: f32, m23: f32,
+        m30: f32, m31: f32, m32: f32, m33: f32,
+    ) -> Self {
+        Matrix {
+            m: [
+                [ m00, m01, m02, m03 ],
+                [ m10, m11, m12, m13 ],
+                [ m20, m21, m22, m23 ],
+                [ m30, m31, m32, m33 ],
+            ]
+        }
+    }
+
     pub fn identity() -> Self {
         Matrix {
             m: [
@@ -165,6 +181,33 @@ fn create_zero_filled_matrix() {
     assert_eq!(m.m[3][1], 0.0);
     assert_eq!(m.m[3][2], 0.0);
     assert_eq!(m.m[3][3], 0.0);
+}
+
+#[test]
+fn new_matrix() {
+    let m = Matrix::new(
+        1.0, 2.0, 3.0, 4.0,
+        5.0, 6.0, 7.0, 8.0,
+        9.0, 10.0, 11.0, 12.0,
+        13.0, 14.0, 15.0, 16.0,
+    );
+
+    assert_eq!(m.m[0][0], 1.0);
+    assert_eq!(m.m[0][1], 2.0);
+    assert_eq!(m.m[0][2], 3.0);
+    assert_eq!(m.m[0][3], 4.0);
+    assert_eq!(m.m[1][0], 5.0);
+    assert_eq!(m.m[1][1], 6.0);
+    assert_eq!(m.m[1][2], 7.0);
+    assert_eq!(m.m[1][3], 8.0);
+    assert_eq!(m.m[2][0], 9.0);
+    assert_eq!(m.m[2][1], 10.0);
+    assert_eq!(m.m[2][2], 11.0);
+    assert_eq!(m.m[2][3], 12.0);
+    assert_eq!(m.m[3][0], 13.0);
+    assert_eq!(m.m[3][1], 14.0);
+    assert_eq!(m.m[3][2], 15.0);
+    assert_eq!(m.m[3][3], 16.0);
 }
 
 impl Mul for Matrix {
