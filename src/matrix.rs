@@ -8,7 +8,7 @@ use glium::uniforms::*;
 pub struct Matrix { m: [[f32; 4]; 4] }
 
 impl Matrix {
-    pub fn new() -> Self { unsafe { zeroed() } }
+    pub fn zero() -> Self { unsafe { zeroed() } }
 
     pub fn identity() -> Self {
         Matrix {
@@ -146,8 +146,8 @@ impl Matrix {
 }
 
 #[test]
-fn new_matrix_is_zeroed() {
-    let m = Matrix::new();
+fn create_zero_filled_matrix() {
+    let m = Matrix::zero();
 
     assert_eq!(m.m[0][0], 0.0);
     assert_eq!(m.m[0][1], 0.0);
