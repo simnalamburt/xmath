@@ -11,6 +11,7 @@ pub trait Vector {
     fn trunc(&self) -> Self;
     fn floor(&self) -> Self;
     fn ceil(&self) -> Self;
+    fn clamp(&self, min: &Self, max: &Self) -> Self;
 
     fn multiply_add(&self, mul: &Self, add: &Self) -> Self;
 
@@ -106,6 +107,11 @@ impl Vector for Vector2 {
             x: x,
             y: y,
         }
+    }
+    fn clamp(&self, min: &Self, max: &Self) -> Self {
+        assert!(min.x < max.x);
+        assert!(min.y < max.y);
+        self.max(min).min(max)
     }
 
     fn multiply_add(&self, mul: &Self, add: &Self) -> Self {
@@ -220,6 +226,12 @@ impl Vector for Vector3 {
             y: y,
             z: z,
         }
+    }
+    fn clamp(&self, min: &Self, max: &Self) -> Self {
+        assert!(min.x < max.x);
+        assert!(min.y < max.y);
+        assert!(min.z < max.z);
+        self.max(min).min(max)
     }
 
     fn multiply_add(&self, mul: &Self, add: &Self) -> Self {
@@ -353,6 +365,14 @@ impl Vector for Vector4 {
             w: w,
         }
     }
+    fn clamp(&self, min: &Self, max: &Self) -> Self {
+        assert!(min.x < max.x);
+        assert!(min.y < max.y);
+        assert!(min.z < max.z);
+        assert!(min.w < max.w);
+        self.max(min).min(max)
+    }
+
 
     fn multiply_add(&self, mul: &Self, add: &Self) -> Self {
         *self * *mul + *add

@@ -339,6 +339,76 @@ fn ceil_of_vector4() {
 }
 
 #[test]
+fn clamp_of_vector2() {
+    let v1 = Vector2 {
+        x: 1.9,
+        y: -41.5,
+    };
+    let v2 = Vector2 {
+        x: -41.9,
+        y: -4.5,
+    };
+    let v3 = Vector2 {
+        x: 1.9,
+        y: 4.5,
+    };
+    let v4 = v1.clamp(&v2, &v3);
+
+    assert_eq!(v4.x, 1.9);
+    assert_eq!(v4.y, -4.5);
+}
+#[test]
+fn clamp_of_vector3() {
+    let v1 = Vector3 {
+        x: 1.9,
+        y: 2.0,
+        z: -3.0,
+    };
+    let v2 = Vector3 {
+        x: -41.9,
+        y: -4.5,
+        z: -34.5,
+    };
+    let v3 = Vector3 {
+        x: 3.7,
+        y: 4.5,
+        z: 4.5,
+    };
+    let v4 = v1.clamp(&v2, &v3);
+
+    assert_eq!(v4.x, 1.9);
+    assert_eq!(v4.y, 2.0);
+    assert_eq!(v4.z, -3.0);
+}
+#[test]
+fn clamp_of_vector4() {
+    let v1 = Vector4 {
+        x: 1.9,
+        y: 2.3,
+        z: -3.1,
+        w: -16.7,
+    };
+    let v2 = Vector4 {
+        x: -41.9,
+        y: -4.5,
+        z: -34.5,
+        w: 4.5,
+    };
+    let v3 = Vector4 {
+        x: 3.7,
+        y: 4.5,
+        z: 44.0,
+        w: 54.0,
+    };
+    let v4 = v1.clamp(&v2, &v3);
+
+    assert_eq!(v4.x, 1.9);
+    assert_eq!(v4.y, 2.3);
+    assert_eq!(v4.z, -3.1);
+    assert_eq!(v4.w, 4.5);
+}
+
+#[test]
 fn splat_x_of_vector2() {
     let vector2 = Vector2 {
         x: 1.0,
