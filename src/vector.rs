@@ -4,6 +4,7 @@ use std::ops::*;
 pub trait Vector {
     fn transform(&self, matrix: &Matrix) -> Self;
 
+    fn round(&self) -> Self;
     fn trunc(&self) -> Self;
 
     fn multiply_add(&self, mul: &Self, add: &Self) -> Self;
@@ -46,6 +47,15 @@ impl Vector for Vector2 {
         }
     }
 
+    fn round(&self) -> Self {
+        let x = self.x.round();
+        let y = self.y.round();
+
+        Vector2 {
+            x: x,
+            y: y,
+        }
+    }
     fn trunc(&self) -> Self {
         let x = self.x.trunc();
         let y = self.y.trunc();
@@ -102,6 +112,17 @@ impl Vector for Vector3 {
         }
     }
 
+    fn round(&self) -> Self {
+        let x = self.x.round();
+        let y = self.y.round();
+        let z = self.z.round();
+
+        Vector3 {
+            x: x,
+            y: y,
+            z: z,
+        }
+    }
     fn trunc(&self) -> Self {
         let x = self.x.trunc();
         let y = self.y.trunc();
@@ -166,6 +187,19 @@ impl Vector for Vector4 {
         }
     }
 
+    fn round(&self) -> Self {
+        let x = self.x.round();
+        let y = self.y.round();
+        let z = self.z.round();
+        let w = self.w.round();
+
+        Vector4 {
+            x: x,
+            y: y,
+            z: z,
+            w: w,
+        }
+    }
     fn trunc(&self) -> Self {
         let x = self.x.trunc();
         let y = self.y.trunc();
