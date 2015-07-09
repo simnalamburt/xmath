@@ -206,6 +206,17 @@ impl Sub for Vector2 {
         }
     }
 }
+impl Div for Vector2 {
+    type Output = Vector2;
+    fn div(self, rhs: Vector2) -> Self::Output {
+        let x = self.x / rhs.x;
+        let y = self.y / rhs.y;
+        Vector2 {
+            x: x,
+            y: y,
+        }
+    }
+}
 impl Mul for Vector2 {
     type Output = Vector2;
     fn mul(self, rhs: Vector2) -> Self::Output {
@@ -238,6 +249,19 @@ impl Sub for Vector3 {
         let x = self.x - rhs.x;
         let y = self.y - rhs.y;
         let z = self.z - rhs.z;
+        Vector3 {
+            x: x,
+            y: y,
+            z: z,
+        }
+    }
+}
+impl Div for Vector3 {
+    type Output = Vector3;
+    fn div(self, rhs: Vector3) -> Self::Output {
+        let x = self.x / rhs.x;
+        let y = self.y / rhs.y;
+        let z = self.z / rhs.z;
         Vector3 {
             x: x,
             y: y,
@@ -296,6 +320,21 @@ impl Mul for Vector4 {
         let y = self.y * rhs.y;
         let z = self.z * rhs.z;
         let w = self.w * rhs.w;
+        Vector4 {
+            x: x,
+            y: y,
+            z: z,
+            w: w,
+        }
+    }
+}
+impl Div for Vector4 {
+    type Output = Vector4;
+    fn div(self, rhs: Vector4) -> Self::Output {
+        let x = self.x / rhs.x;
+        let y = self.y / rhs.y;
+        let z = self.z / rhs.z;
+        let w = self.w / rhs.w;
         Vector4 {
             x: x,
             y: y,

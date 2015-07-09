@@ -354,6 +354,64 @@ fn sub_for_vector4() {
 }
 
 #[test]
+fn div_for_vector2() {
+    let v1 = Vector2 {
+        x: 10.0,
+        y: 11.0,
+    };
+    let v2 = Vector2 {
+        x: 100.0,
+        y: 200.0,
+    };
+
+    let v = v1 / v2;
+
+    assert_eq!(v.x, v1.x / v2.x);
+    assert_eq!(v.y, v1.y / v2.y);
+}
+#[test]
+fn div_for_vector3() {
+    let v1 = Vector3 {
+        x: 10.0,
+        y: 11.0,
+        z: 12.0,
+    };
+    let v2 = Vector3 {
+        x: 100.0,
+        y: 200.0,
+        z: 300.0,
+    };
+
+    let v = v1 / v2;
+
+    assert_eq!(v.x, v1.x / v2.x);
+    assert_eq!(v.y, v1.y / v2.y);
+    assert_eq!(v.z, v1.z / v2.z);
+}
+#[test]
+fn div_for_vector4() {
+    let v1 = Vector4 {
+        x: 10.0,
+        y: 11.0,
+        z: 12.0,
+        w: 13.0,
+    };
+    let v2 = Vector4 {
+        x: 100.0,
+        y: 200.0,
+        z: 300.0,
+        w: 400.0,
+    };
+
+    let v = v1 / v2;
+
+    assert_eq!(v.x, v1.x / v2.x);
+    assert_eq!(v.y, v1.y / v2.y);
+    assert_eq!(v.z, v1.z / v2.z);
+    assert_eq!(v.w, v1.w / v2.w);
+}
+
+#[test]
 fn mul_for_vector2() {
     let v1 = Vector2 {
         x: 10.0,
