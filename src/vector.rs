@@ -195,6 +195,17 @@ impl Add for Vector2 {
         }
     }
 }
+impl Sub for Vector2 {
+    type Output = Vector2;
+    fn sub(self, rhs: Vector2) -> Self::Output {
+        let x = self.x - rhs.x;
+        let y = self.y - rhs.y;
+        Vector2 {
+            x: x,
+            y: y,
+        }
+    }
+}
 impl Mul for Vector2 {
     type Output = Vector2;
     fn mul(self, rhs: Vector2) -> Self::Output {
@@ -214,6 +225,19 @@ impl Add for Vector3 {
         let x = self.x + rhs.x;
         let y = self.y + rhs.y;
         let z = self.z + rhs.z;
+        Vector3 {
+            x: x,
+            y: y,
+            z: z,
+        }
+    }
+}
+impl Sub for Vector3 {
+    type Output = Vector3;
+    fn sub(self, rhs: Vector3) -> Self::Output {
+        let x = self.x - rhs.x;
+        let y = self.y - rhs.y;
+        let z = self.z - rhs.z;
         Vector3 {
             x: x,
             y: y,
@@ -242,6 +266,21 @@ impl Add for Vector4 {
         let y = self.y + rhs.y;
         let z = self.z + rhs.z;
         let w = self.w + rhs.w;
+        Vector4 {
+            x: x,
+            y: y,
+            z: z,
+            w: w,
+        }
+    }
+}
+impl Sub for Vector4 {
+    type Output = Vector4;
+    fn sub(self, rhs: Vector4) -> Self::Output {
+        let x = self.x - rhs.x;
+        let y = self.y - rhs.y;
+        let z = self.z - rhs.z;
+        let w = self.w - rhs.w;
         Vector4 {
             x: x,
             y: y,
