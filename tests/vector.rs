@@ -11,12 +11,12 @@ fn transform_vector2() {
         41.0, 43.0, 47.0, 53.0,
     );
 
-    let origin = (1.0, 1.0);
+    let origin = (100.0, 10000.0);
 
     let transformed = origin.transform(&matrix);
 
-    assert_eq!(transformed.0, 13.0);
-    assert_eq!(transformed.1, 16.0);
+    assert_eq!(transformed.0, 110241.0);
+    assert_eq!(transformed.1, 130343.0);
 }
 
 #[test]
@@ -28,13 +28,13 @@ fn transform_vector3() {
         41.0, 43.0, 47.0, 53.0,
     );
 
-    let origin = (1.0, 1.0, 1.0);
+    let origin = (100.0, 10000.0, 1000000.0);
 
     let transformed = origin.transform(&matrix);
 
-    assert_eq!(transformed.0, 36.0);
-    assert_eq!(transformed.1, 45.0);
-    assert_eq!(transformed.2, 53.0);
+    assert_eq!(transformed.0, 23110241.0);
+    assert_eq!(transformed.1, 29130343.0);
+    assert_eq!(transformed.2, 31170547.0);
 }
 
 #[test]
@@ -46,14 +46,14 @@ fn transform_vector4() {
         41.0, 43.0, 47.0, 53.0,
     );
 
-    let origin = (1.0, 1.0, 1.0, 1.0);
+    let origin = (1.0, 100.0, 10000.0, 1000000.0);
 
     let transformed = origin.transform(&matrix);
 
-    assert_eq!(transformed.0, 77.0);
-    assert_eq!(transformed.1, 88.0);
-    assert_eq!(transformed.2, 100.0);
-    assert_eq!(transformed.3, 116.0);
+    assert_eq!(transformed.0, 41231102.0);
+    assert_eq!(transformed.1, 43291303.0);
+    assert_eq!(transformed.2, 47311705.0);
+    assert_eq!(transformed.3, 53371907.0);
 }
 
 #[test]
