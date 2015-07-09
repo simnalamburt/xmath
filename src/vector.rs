@@ -6,6 +6,7 @@ pub trait Vector {
 
     fn round(&self) -> Self;
     fn trunc(&self) -> Self;
+    fn floor(&self) -> Self;
 
     fn multiply_add(&self, mul: &Self, add: &Self) -> Self;
 
@@ -59,6 +60,15 @@ impl Vector for Vector2 {
     fn trunc(&self) -> Self {
         let x = self.x.trunc();
         let y = self.y.trunc();
+
+        Vector2 {
+            x: x,
+            y: y,
+        }
+    }
+    fn floor(&self) -> Self {
+        let x = self.x.floor();
+        let y = self.y.floor();
 
         Vector2 {
             x: x,
@@ -127,6 +137,17 @@ impl Vector for Vector3 {
         let x = self.x.trunc();
         let y = self.y.trunc();
         let z = self.z.trunc();
+
+        Vector3 {
+            x: x,
+            y: y,
+            z: z,
+        }
+    }
+    fn floor(&self) -> Self {
+        let x = self.x.floor();
+        let y = self.y.floor();
+        let z = self.z.floor();
 
         Vector3 {
             x: x,
@@ -205,6 +226,19 @@ impl Vector for Vector4 {
         let y = self.y.trunc();
         let z = self.z.trunc();
         let w = self.w.trunc();
+
+        Vector4 {
+            x: x,
+            y: y,
+            z: z,
+            w: w,
+        }
+    }
+    fn floor(&self) -> Self {
+        let x = self.x.floor();
+        let y = self.y.floor();
+        let z = self.z.floor();
+        let w = self.w.floor();
 
         Vector4 {
             x: x,

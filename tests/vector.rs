@@ -149,6 +149,46 @@ fn trunc_of_vector4() {
 }
 
 #[test]
+fn floor_of_vector2() {
+    let v1 = Vector2 {
+        x: 1.9,
+        y: -41.5,
+    };
+    let v2 = v1.floor();
+
+    assert_eq!(v1.x.floor(), v2.x);
+    assert_eq!(v1.y.floor(), v2.y);
+}
+#[test]
+fn floor_of_vector3() {
+    let v1 = Vector3 {
+        x: 1.9,
+        y: 2.0,
+        z: -3.0,
+    };
+    let v2 = v1.floor();
+
+    assert_eq!(v1.x.floor(), v2.x);
+    assert_eq!(v1.y.floor(), v2.y);
+    assert_eq!(v1.z.floor(), v2.z);
+}
+#[test]
+fn floor_of_vector4() {
+    let v1 = Vector4 {
+        x: 1.9,
+        y: 2.3,
+        z: -3.1,
+        w: -16.7,
+    };
+    let v2 = v1.floor();
+
+    assert_eq!(v1.x.floor(), v2.x);
+    assert_eq!(v1.y.floor(), v2.y);
+    assert_eq!(v1.z.floor(), v2.z);
+    assert_eq!(v1.w.floor(), v2.w);
+}
+
+#[test]
 fn splat_x_of_vector2() {
     let vector2 = Vector2 {
         x: 1.0,
