@@ -4,6 +4,8 @@ use std::ops::*;
 pub trait Vector {
     fn transform(&self, matrix: &Matrix) -> Self;
 
+    fn min(&self, other: &Self) -> Self;
+
     fn round(&self) -> Self;
     fn trunc(&self) -> Self;
     fn floor(&self) -> Self;
@@ -43,6 +45,16 @@ impl Vector for Vector2 {
 
         let x = self.x * matrix[0][0] + self.y * matrix[1][0] + matrix[3][0];
         let y = self.x * matrix[0][1] + self.y * matrix[1][1] + matrix[3][1];
+        Vector2 {
+            x: x,
+            y: y,
+        }
+    }
+
+    fn min(&self, other: &Self) -> Self {
+        let x = self.x.min(other.x);
+        let y = self.y.min(other.y);
+
         Vector2 {
             x: x,
             y: y,
@@ -125,6 +137,18 @@ impl Vector for Vector3 {
         let x = self.x * matrix[0][0] + self.y * matrix[1][0] + self.z * matrix[2][0] + matrix[3][0];
         let y = self.x * matrix[0][1] + self.y * matrix[1][1] + self.z * matrix[2][1] + matrix[3][1];
         let z = self.x * matrix[0][2] + self.y * matrix[1][2] + self.z * matrix[2][2] + matrix[3][2];
+        Vector3 {
+            x: x,
+            y: y,
+            z: z,
+        }
+    }
+
+    fn min(&self, other: &Self) -> Self {
+        let x = self.x.min(other.x);
+        let y = self.y.min(other.y);
+        let z = self.z.min(other.z);
+
         Vector3 {
             x: x,
             y: y,
@@ -221,6 +245,20 @@ impl Vector for Vector4 {
         let y = self.x * matrix[0][1] + self.y * matrix[1][1] + self.z * matrix[2][1] + self.w * matrix[3][1];
         let z = self.x * matrix[0][2] + self.y * matrix[1][2] + self.z * matrix[2][2] + self.w * matrix[3][2];
         let w = self.x * matrix[0][3] + self.y * matrix[1][3] + self.z * matrix[2][3] + self.w * matrix[3][3];
+        Vector4 {
+            x: x,
+            y: y,
+            z: z,
+            w: w,
+        }
+    }
+
+    fn min(&self, other: &Self) -> Self {
+        let x = self.x.min(other.x);
+        let y = self.y.min(other.y);
+        let z = self.z.min(other.z);
+        let w = self.w.min(other.w);
+
         Vector4 {
             x: x,
             y: y,

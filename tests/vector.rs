@@ -69,6 +69,61 @@ fn transform_vector4() {
 }
 
 #[test]
+fn min_of_vector2() {
+    let v1 = Vector2 {
+        x: 1.9,
+        y: -41.5,
+    };
+    let v2 = Vector2 {
+        x: 14.9,
+        y: 1.3,
+    };
+    let v3 = v1.min(&v2);
+
+    assert_eq!(v1.x.min(v2.x), v3.x);
+    assert_eq!(v1.y.min(v2.y), v3.y);
+}
+#[test]
+fn min_of_vector3() {
+    let v1 = Vector3 {
+        x: 1.9,
+        y: 2.0,
+        z: -3.0,
+    };
+    let v2 = Vector3 {
+        x: 1.9,
+        y: -45.5,
+        z: 43.43,
+    };
+    let v3 = v1.min(&v2);
+
+    assert_eq!(v1.x.min(v2.x), v3.x);
+    assert_eq!(v1.y.min(v2.y), v3.y);
+    assert_eq!(v1.z.min(v2.z), v3.z);
+}
+#[test]
+fn min_of_vector4() {
+    let v1 = Vector4 {
+        x: 1.9,
+        y: 2.3,
+        z: -3.1,
+        w: -16.7,
+    };
+    let v2 = Vector4 {
+        x: 1.9,
+        y: -45.5,
+        z: 43.43,
+        w: -43.43,
+    };
+    let v3 = v1.min(&v2);
+
+    assert_eq!(v1.x.min(v2.x), v3.x);
+    assert_eq!(v1.y.min(v2.y), v3.y);
+    assert_eq!(v1.z.min(v2.z), v3.z);
+    assert_eq!(v1.w.min(v2.w), v3.w);
+}
+
+#[test]
 fn round_of_vector2() {
     let v1 = Vector2 {
         x: 1.9,
