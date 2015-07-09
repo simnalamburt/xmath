@@ -1,4 +1,7 @@
 extern crate glium;
 
-pub mod matrix;
-pub mod vector;
+mod matrix;
+mod vector;
+
+pub use matrix::Matrix;
+pub use vector::Vector;

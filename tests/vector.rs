@@ -1,7 +1,6 @@
 extern crate xmath;
 
-use xmath::vector::Vector;
-use xmath::matrix::Matrix;
+use xmath::{Vector, Matrix};
 
 #[test]
 fn transform_vector2() {
