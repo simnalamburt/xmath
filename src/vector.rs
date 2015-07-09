@@ -205,6 +205,17 @@ impl Vector for Vector4 {
     }
 }
 
+impl Add for Vector2 {
+    type Output = Vector2;
+    fn add(self, rhs: Vector2) -> Self::Output {
+        let x = self.x + rhs.x;
+        let y = self.y + rhs.y;
+        Vector2 {
+            x: x,
+            y: y,
+        }
+    }
+}
 impl Mul for Vector2 {
     type Output = Vector2;
     fn mul(self, rhs: Vector2) -> Self::Output {
@@ -217,6 +228,20 @@ impl Mul for Vector2 {
     }
 }
 
+
+impl Add for Vector3 {
+    type Output = Vector3;
+    fn add(self, rhs: Vector3) -> Self::Output {
+        let x = self.x + rhs.x;
+        let y = self.y + rhs.y;
+        let z = self.z + rhs.z;
+        Vector3 {
+            x: x,
+            y: y,
+            z: z,
+        }
+    }
+}
 impl Mul for Vector3 {
     type Output = Vector3;
     fn mul(self, rhs: Vector3) -> Self::Output {
@@ -231,6 +256,21 @@ impl Mul for Vector3 {
     }
 }
 
+impl Add for Vector4 {
+    type Output = Vector4;
+    fn add(self, rhs: Vector4) -> Self::Output {
+        let x = self.x + rhs.x;
+        let y = self.y + rhs.y;
+        let z = self.z + rhs.z;
+        let w = self.w + rhs.w;
+        Vector4 {
+            x: x,
+            y: y,
+            z: z,
+            w: w,
+        }
+    }
+}
 impl Mul for Vector4 {
     type Output = Vector4;
     fn mul(self, rhs: Vector4) -> Self::Output {
