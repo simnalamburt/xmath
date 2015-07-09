@@ -53,6 +53,34 @@ fn one_of_vector4() {
 }
 
 #[test]
+fn replicate_of_vector2() {
+    let value = 3.5;
+    let v = Vector2::replicate(value);
+
+    assert_eq!(v.x, value);
+    assert_eq!(v.y, value);
+}
+#[test]
+fn replicate_of_vector3() {
+    let value = 3.5;
+    let v = Vector3::replicate(value);
+
+    assert_eq!(v.x, value);
+    assert_eq!(v.y, value);
+    assert_eq!(v.z, value);
+}
+#[test]
+fn replicate_of_vector4() {
+    let value = 3.5;
+    let v = Vector4::replicate(value);
+
+    assert_eq!(v.x, value);
+    assert_eq!(v.y, value);
+    assert_eq!(v.z, value);
+    assert_eq!(v.w, value);
+}
+
+#[test]
 fn transform_vector2() {
     let matrix = Matrix::new(
         2.0, 3.0, 5.0, 7.0,

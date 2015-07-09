@@ -4,6 +4,7 @@ use std::ops::*;
 pub trait Vector {
     fn zero() -> Self;
     fn one() -> Self;
+    fn replicate(value: f32) -> Self;
 
     fn transform(&self, matrix: &Matrix) -> Self;
 
@@ -57,6 +58,13 @@ impl Vector for Vector2 {
         Vector2 {
             x: 1.0,
             y: 1.0,
+        }
+    }
+
+    fn replicate(value: f32) -> Self {
+        Vector2 {
+            x: value,
+            y: value,
         }
     }
 
@@ -178,6 +186,14 @@ impl Vector for Vector3 {
             x: 1.0,
             y: 1.0,
             z: 1.0,
+        }
+    }
+
+    fn replicate(value: f32) -> Self {
+        Vector3 {
+            x: value,
+            y: value,
+            z: value,
         }
     }
 
@@ -319,6 +335,15 @@ impl Vector for Vector4 {
             y: 1.0,
             z: 1.0,
             w: 1.0,
+        }
+    }
+
+    fn replicate(value: f32) -> Self {
+        Vector4 {
+            x: value,
+            y: value,
+            z: value,
+            w: value,
         }
     }
 
