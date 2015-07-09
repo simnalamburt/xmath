@@ -189,6 +189,46 @@ fn floor_of_vector4() {
 }
 
 #[test]
+fn ceil_of_vector2() {
+    let v1 = Vector2 {
+        x: 1.9,
+        y: -41.5,
+    };
+    let v2 = v1.ceil();
+
+    assert_eq!(v1.x.ceil(), v2.x);
+    assert_eq!(v1.y.ceil(), v2.y);
+}
+#[test]
+fn ceil_of_vector3() {
+    let v1 = Vector3 {
+        x: 1.9,
+        y: 2.0,
+        z: -3.0,
+    };
+    let v2 = v1.ceil();
+
+    assert_eq!(v1.x.ceil(), v2.x);
+    assert_eq!(v1.y.ceil(), v2.y);
+    assert_eq!(v1.z.ceil(), v2.z);
+}
+#[test]
+fn ceil_of_vector4() {
+    let v1 = Vector4 {
+        x: 1.9,
+        y: 2.3,
+        z: -3.1,
+        w: -16.7,
+    };
+    let v2 = v1.ceil();
+
+    assert_eq!(v1.x.ceil(), v2.x);
+    assert_eq!(v1.y.ceil(), v2.y);
+    assert_eq!(v1.z.ceil(), v2.z);
+    assert_eq!(v1.w.ceil(), v2.w);
+}
+
+#[test]
 fn splat_x_of_vector2() {
     let vector2 = Vector2 {
         x: 1.0,
