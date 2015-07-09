@@ -370,8 +370,8 @@ fn multiply_add_for_vector2() {
 
     let v = v1.multiply_add(&v2, &v3);
 
-    assert_eq!(v.x, 110.0);
-    assert_eq!(v.y, 222.0);
+    assert_eq!(v.x, v1.x * v2.x + v3.x);
+    assert_eq!(v.y, v1.y * v2.y + v3.y);
 }
 
 #[test]
@@ -394,9 +394,9 @@ fn multiply_add_for_vector3() {
 
     let v = v1.multiply_add(&v2, &v3);
 
-    assert_eq!(v.x, 110.0);
-    assert_eq!(v.y, 222.0);
-    assert_eq!(v.z, 336.0);
+    assert_eq!(v.x, v1.x * v2.x + v3.x);
+    assert_eq!(v.y, v1.y * v2.y + v3.y);
+    assert_eq!(v.z, v1.z * v2.z + v3.z);
 }
 
 #[test]
@@ -422,8 +422,8 @@ fn multiply_add_for_vector4() {
 
     let v = v1.multiply_add(&v2, &v3);
 
-    assert_eq!(v.x, 110.0);
-    assert_eq!(v.y, 222.0);
-    assert_eq!(v.z, 336.0);
-    assert_eq!(v.w, 452.0);
+    assert_eq!(v.x, v1.x * v2.x + v3.x);
+    assert_eq!(v.y, v1.y * v2.y + v3.y);
+    assert_eq!(v.z, v1.z * v2.z + v3.z);
+    assert_eq!(v.w, v1.w * v2.w + v3.w);
 }

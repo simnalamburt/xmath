@@ -45,12 +45,7 @@ impl Vector for Vector2 {
     }
 
     fn multiply_add(&self, mul: &Self, add: &Self) -> Self {
-        let x = self.x * mul.x + add.x;
-        let y = self.y * mul.y + add.y;
-        Vector2 {
-            x: x,
-            y: y,
-        }
+        *self * *mul + *add
     }
 
     fn splat_x(&self) -> Self {
@@ -96,14 +91,7 @@ impl Vector for Vector3 {
     }
 
     fn multiply_add(&self, mul: &Self, add: &Self) -> Self {
-        let x = self.x * mul.x + add.x;
-        let y = self.y * mul.y + add.y;
-        let z = self.z * mul.z + add.z;
-        Vector3 {
-            x: x,
-            y: y,
-            z: z,
-        }
+        *self * *mul + *add
     }
 
     fn splat_x(&self) -> Self {
@@ -155,16 +143,7 @@ impl Vector for Vector4 {
     }
 
     fn multiply_add(&self, mul: &Self, add: &Self) -> Self {
-        let x = self.x * mul.x + add.x;
-        let y = self.y * mul.y + add.y;
-        let z = self.z * mul.z + add.z;
-        let w = self.w * mul.w + add.w;
-        Vector4 {
-            x: x,
-            y: y,
-            z: z,
-            w: w,
-        }
+        *self * *mul + *add
     }
 
     fn splat_x(&self) -> Self {
