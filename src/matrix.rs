@@ -252,10 +252,6 @@ impl AsUniformValue for Matrix {
     fn as_uniform_value(&self) -> UniformValue<'static> {
         UniformValue::Mat4(self.m)
     }
-
-    fn matches(ty: &UniformType) -> bool {
-        ty == &UniformType::FloatMat4
-    }
 }
 
 impl Index<usize> for Matrix {
