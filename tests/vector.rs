@@ -78,6 +78,31 @@ fn infinity_of_vector4() {
 }
 
 #[test]
+fn nan_of_vector2() {
+    let v = Vector2::nan();
+
+    assert!(v.x.is_nan());
+    assert!(v.y.is_nan());
+}
+#[test]
+fn nan_of_vector3() {
+    let v = Vector3::nan();
+
+    assert!(v.x.is_nan());
+    assert!(v.y.is_nan());
+    assert!(v.z.is_nan());
+}
+#[test]
+fn nan_of_vector4() {
+    let v = Vector4::nan();
+
+    assert!(v.x.is_nan());
+    assert!(v.y.is_nan());
+    assert!(v.z.is_nan());
+    assert!(v.w.is_nan());
+}
+
+#[test]
 fn replicate_of_vector2() {
     let value = 3.5;
     let v = Vector2::replicate(value);

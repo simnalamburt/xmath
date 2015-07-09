@@ -6,6 +6,7 @@ pub trait Vector {
     fn zero() -> Self;
     fn one() -> Self;
     fn infinity() -> Self;
+    fn nan() -> Self;
     fn replicate(value: f32) -> Self;
 
     fn transform(&self, matrix: &Matrix) -> Self;
@@ -67,6 +68,13 @@ impl Vector for Vector2 {
         Vector2 {
             x: f32::INFINITY,
             y: f32::INFINITY,
+        }
+    }
+
+    fn nan() -> Self {
+        Vector2 {
+            x: f32::NAN,
+            y: f32::NAN,
         }
     }
 
@@ -203,6 +211,14 @@ impl Vector for Vector3 {
             x: f32::INFINITY,
             y: f32::INFINITY,
             z: f32::INFINITY,
+        }
+    }
+
+    fn nan() -> Self {
+        Vector3 {
+            x: f32::NAN,
+            y: f32::NAN,
+            z: f32::NAN,
         }
     }
 
@@ -361,6 +377,15 @@ impl Vector for Vector4 {
             y: f32::INFINITY,
             z: f32::INFINITY,
             w: f32::INFINITY,
+        }
+    }
+
+    fn nan() -> Self {
+        Vector4 {
+            x: f32::NAN,
+            y: f32::NAN,
+            z: f32::NAN,
+            w: f32::NAN,
         }
     }
 
