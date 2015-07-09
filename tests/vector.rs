@@ -53,6 +53,31 @@ fn one_of_vector4() {
 }
 
 #[test]
+fn infinity_of_vector2() {
+    let v = Vector2::infinity();
+
+    assert!(v.x.is_infinite());
+    assert!(v.y.is_infinite());
+}
+#[test]
+fn infinity_of_vector3() {
+    let v = Vector3::infinity();
+
+    assert!(v.x.is_infinite());
+    assert!(v.y.is_infinite());
+    assert!(v.z.is_infinite());
+}
+#[test]
+fn infinity_of_vector4() {
+    let v = Vector4::infinity();
+
+    assert!(v.x.is_infinite());
+    assert!(v.y.is_infinite());
+    assert!(v.z.is_infinite());
+    assert!(v.w.is_infinite());
+}
+
+#[test]
 fn replicate_of_vector2() {
     let value = 3.5;
     let v = Vector2::replicate(value);

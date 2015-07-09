@@ -1,9 +1,11 @@
 use matrix::*;
+use std::f32;
 use std::ops::*;
 
 pub trait Vector {
     fn zero() -> Self;
     fn one() -> Self;
+    fn infinity() -> Self;
     fn replicate(value: f32) -> Self;
 
     fn transform(&self, matrix: &Matrix) -> Self;
@@ -58,6 +60,13 @@ impl Vector for Vector2 {
         Vector2 {
             x: 1.0,
             y: 1.0,
+        }
+    }
+
+    fn infinity() -> Self {
+        Vector2 {
+            x: f32::INFINITY,
+            y: f32::INFINITY,
         }
     }
 
@@ -186,6 +195,14 @@ impl Vector for Vector3 {
             x: 1.0,
             y: 1.0,
             z: 1.0,
+        }
+    }
+
+    fn infinity() -> Self {
+        Vector3 {
+            x: f32::INFINITY,
+            y: f32::INFINITY,
+            z: f32::INFINITY,
         }
     }
 
@@ -335,6 +352,15 @@ impl Vector for Vector4 {
             y: 1.0,
             z: 1.0,
             w: 1.0,
+        }
+    }
+
+    fn infinity() -> Self {
+        Vector4 {
+            x: f32::INFINITY,
+            y: f32::INFINITY,
+            z: f32::INFINITY,
+            w: f32::INFINITY,
         }
     }
 
