@@ -383,3 +383,43 @@ impl Mul<f32> for Vector4 {
         }
     }
 }
+
+impl Neg for Vector2 {
+    type Output = Vector2;
+    fn neg(self) -> Self::Output {
+        let x = -self.x;
+        let y = -self.y;
+        Vector2 {
+            x: x,
+            y: y,
+        }
+    }
+}
+impl Neg for Vector3 {
+    type Output = Vector3;
+    fn neg(self) -> Self::Output {
+        let x = -self.x;
+        let y = -self.y;
+        let z = -self.z;
+        Vector3 {
+            x: x,
+            y: y,
+            z: z,
+        }
+    }
+}
+impl Neg for Vector4 {
+    type Output = Vector4;
+    fn neg(self) -> Self::Output {
+        let x = -self.x;
+        let y = -self.y;
+        let z = -self.z;
+        let w = -self.w;
+        Vector4 {
+            x: x,
+            y: y,
+            z: z,
+            w: w,
+        }
+    }
+}

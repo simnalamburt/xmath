@@ -238,6 +238,49 @@ fn splat_w_of_vector4() {
 
 
 #[test]
+fn neg_for_vector2() {
+    let v1 = Vector2 {
+        x: 10.0,
+        y: 11.0,
+    };
+
+    let v = -v1;
+
+    assert_eq!(v.x, -v1.x);
+    assert_eq!(v.y, -v1.y);
+}
+#[test]
+fn neg_for_vector3() {
+    let v1 = Vector3 {
+        x: 10.0,
+        y: 11.0,
+        z: 12.0,
+    };
+
+    let v = -v1;
+
+    assert_eq!(v.x, -v1.x);
+    assert_eq!(v.y, -v1.y);
+    assert_eq!(v.z, -v1.z);
+}
+#[test]
+fn neg_for_vector4() {
+    let v1 = Vector4 {
+        x: 10.0,
+        y: 11.0,
+        z: 12.0,
+        w: 13.0,
+    };
+
+    let v = -v1;
+
+    assert_eq!(v.x, -v1.x);
+    assert_eq!(v.y, -v1.y);
+    assert_eq!(v.z, -v1.z);
+    assert_eq!(v.w, -v1.w);
+}
+
+#[test]
 fn add_for_vector2() {
     let v1 = Vector2 {
         x: 10.0,
