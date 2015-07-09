@@ -1,6 +1,6 @@
 extern crate xmath;
 
-use xmath::{Vector, Matrix};
+use xmath::{Vector, Vector2, Vector3, Vector4, Matrix};
 
 #[test]
 fn transform_vector2() {
@@ -11,12 +11,15 @@ fn transform_vector2() {
         41.0, 43.0, 47.0, 53.0,
     );
 
-    let origin = (100.0, 10000.0);
+    let origin = Vector2 {
+        x: 100.0,
+        y: 10000.0,
+    };
 
     let transformed = origin.transform(&matrix);
 
-    assert_eq!(transformed.0, 110241.0);
-    assert_eq!(transformed.1, 130343.0);
+    assert_eq!(transformed.x, 110241.0);
+    assert_eq!(transformed.y, 130343.0);
 }
 
 #[test]
@@ -28,13 +31,17 @@ fn transform_vector3() {
         41.0, 43.0, 47.0, 53.0,
     );
 
-    let origin = (100.0, 10000.0, 1000000.0);
+    let origin = Vector3 {
+        x: 100.0,
+        y: 10000.0,
+        z: 1000000.0,
+    };
 
     let transformed = origin.transform(&matrix);
 
-    assert_eq!(transformed.0, 23110241.0);
-    assert_eq!(transformed.1, 29130343.0);
-    assert_eq!(transformed.2, 31170547.0);
+    assert_eq!(transformed.x, 23110241.0);
+    assert_eq!(transformed.y, 29130343.0);
+    assert_eq!(transformed.z, 31170547.0);
 }
 
 #[test]
@@ -46,171 +53,260 @@ fn transform_vector4() {
         41.0, 43.0, 47.0, 53.0,
     );
 
-    let origin = (1.0, 100.0, 10000.0, 1000000.0);
+    let origin = Vector4 {
+        x: 1.0,
+        y: 100.0,
+        z: 10000.0,
+        w: 1000000.0,
+    };
 
     let transformed = origin.transform(&matrix);
 
-    assert_eq!(transformed.0, 41231102.0);
-    assert_eq!(transformed.1, 43291303.0);
-    assert_eq!(transformed.2, 47311705.0);
-    assert_eq!(transformed.3, 53371907.0);
+    assert_eq!(transformed.x, 41231102.0);
+    assert_eq!(transformed.y, 43291303.0);
+    assert_eq!(transformed.z, 47311705.0);
+    assert_eq!(transformed.w, 53371907.0);
 }
 
 #[test]
 fn splat_x_of_vector2() {
-    let vector2 = (1.0, 2.0);
+    let vector2 = Vector2 {
+        x: 1.0,
+        y: 2.0,
+    };
     let splatted = vector2.splat_x();
 
-    assert_eq!(splatted.0, vector2.0);
-    assert_eq!(splatted.1, vector2.0);
+    assert_eq!(splatted.x, vector2.x);
+    assert_eq!(splatted.y, vector2.x);
 }
 
 #[test]
 fn splat_y_of_vector2() {
-    let vector2 = (1.0, 2.0);
+    let vector2 = Vector2 {
+        x: 1.0,
+        y: 2.0,
+    };
     let splatted = vector2.splat_y();
 
-    assert_eq!(splatted.0, vector2.1);
-    assert_eq!(splatted.1, vector2.1);
+    assert_eq!(splatted.x, vector2.y);
+    assert_eq!(splatted.y, vector2.y);
 }
 
 #[test]
 fn splat_z_of_vector2_fills_zero() {
-    let vector2 = (1.0, 2.0);
+    let vector2 = Vector2 {
+        x: 1.0,
+        y: 2.0,
+    };
     let splatted = vector2.splat_z();
 
-    assert_eq!(splatted.0, 0.0);
-    assert_eq!(splatted.1, 0.0);
+    assert_eq!(splatted.x, 0.0);
+    assert_eq!(splatted.y, 0.0);
 }
 
 #[test]
 fn splat_w_of_vector2_fills_zero() {
-    let vector2 = (1.0, 2.0);
+    let vector2 = Vector2 {
+        x: 1.0,
+        y: 2.0,
+    };
     let splatted = vector2.splat_w();
 
-    assert_eq!(splatted.0, 0.0);
-    assert_eq!(splatted.1, 0.0);
+    assert_eq!(splatted.x, 0.0);
+    assert_eq!(splatted.y, 0.0);
 }
 
 #[test]
 fn splat_x_of_vector3() {
-    let vector3 = (1.0, 2.0, 3.0);
+    let vector3 = Vector3 {
+        x: 1.0,
+        y: 2.0,
+        z: 3.0,
+    };
     let splatted = vector3.splat_x();
 
-    assert_eq!(splatted.0, vector3.0);
-    assert_eq!(splatted.1, vector3.0);
-    assert_eq!(splatted.2, vector3.0);
+    assert_eq!(splatted.x, vector3.x);
+    assert_eq!(splatted.y, vector3.x);
+    assert_eq!(splatted.z, vector3.x);
 }
 
 #[test]
 fn splat_y_of_vector3() {
-    let vector3 = (1.0, 2.0, 3.0);
+    let vector3 = Vector3 {
+        x: 1.0,
+        y: 2.0,
+        z: 3.0,
+    };
     let splatted = vector3.splat_y();
 
-    assert_eq!(splatted.0, vector3.1);
-    assert_eq!(splatted.1, vector3.1);
-    assert_eq!(splatted.2, vector3.1);
+    assert_eq!(splatted.x, vector3.y);
+    assert_eq!(splatted.y, vector3.y);
+    assert_eq!(splatted.z, vector3.y);
 }
 
 #[test]
 fn splat_z_of_vector3() {
-    let vector3 = (1.0, 2.0, 3.0);
+    let vector3 = Vector3 {
+        x: 1.0,
+        y: 2.0,
+        z: 3.0,
+    };
     let splatted = vector3.splat_z();
 
-    assert_eq!(splatted.0, vector3.2);
-    assert_eq!(splatted.1, vector3.2);
-    assert_eq!(splatted.2, vector3.2);
+    assert_eq!(splatted.x, vector3.z);
+    assert_eq!(splatted.y, vector3.z);
+    assert_eq!(splatted.z, vector3.z);
 }
 
 #[test]
 fn splat_w_of_vector3_fills_zero() {
-    let vector3 = (1.0, 2.0, 3.0);
+    let vector3 = Vector3 {
+        x: 1.0,
+        y: 2.0,
+        z: 3.0,
+    };
     let splatted = vector3.splat_w();
 
-    assert_eq!(splatted.0, 0.0);
-    assert_eq!(splatted.1, 0.0);
-    assert_eq!(splatted.2, 0.0);
+    assert_eq!(splatted.x, 0.0);
+    assert_eq!(splatted.y, 0.0);
+    assert_eq!(splatted.z, 0.0);
 }
 
 #[test]
 fn splat_x_of_vector4() {
-    let vector4 = (1.0, 2.0, 3.0, 4.0);
+    let vector4 = Vector4 {
+        x: 1.0,
+        y: 2.0,
+        z: 3.0,
+        w: 4.0,
+    };
     let splatted = vector4.splat_x();
 
-    assert_eq!(splatted.0, vector4.0);
-    assert_eq!(splatted.1, vector4.0);
-    assert_eq!(splatted.2, vector4.0);
-    assert_eq!(splatted.3, vector4.0);
+    assert_eq!(splatted.x, vector4.x);
+    assert_eq!(splatted.y, vector4.x);
+    assert_eq!(splatted.z, vector4.x);
+    assert_eq!(splatted.w, vector4.x);
 }
 
 #[test]
 fn splat_y_of_vector4() {
-    let vector4 = (1.0, 2.0, 3.0, 4.0);
+    let vector4 = Vector4 {
+        x: 1.0,
+        y: 2.0,
+        z: 3.0,
+        w: 4.0,
+    };
     let splatted = vector4.splat_y();
 
-    assert_eq!(splatted.0, vector4.1);
-    assert_eq!(splatted.1, vector4.1);
-    assert_eq!(splatted.2, vector4.1);
-    assert_eq!(splatted.3, vector4.1);
+    assert_eq!(splatted.x, vector4.y);
+    assert_eq!(splatted.y, vector4.y);
+    assert_eq!(splatted.z, vector4.y);
+    assert_eq!(splatted.w, vector4.y);
 }
 
 #[test]
 fn splat_z_of_vector4() {
-    let vector4 = (1.0, 2.0, 3.0, 4.0);
+    let vector4 = Vector4 {
+        x: 1.0,
+        y: 2.0,
+        z: 3.0,
+        w: 4.0,
+    };
     let splatted = vector4.splat_z();
 
-    assert_eq!(splatted.0, vector4.2);
-    assert_eq!(splatted.1, vector4.2);
-    assert_eq!(splatted.2, vector4.2);
-    assert_eq!(splatted.3, vector4.2);
+    assert_eq!(splatted.x, vector4.z);
+    assert_eq!(splatted.y, vector4.z);
+    assert_eq!(splatted.z, vector4.z);
+    assert_eq!(splatted.w, vector4.z);
 }
 
 #[test]
 fn splat_w_of_vector4() {
-    let vector4 = (1.0, 2.0, 3.0, 4.0);
+    let vector4 = Vector4 {
+        x: 1.0,
+        y: 2.0,
+        z: 3.0,
+        w: 4.0,
+    };
     let splatted = vector4.splat_w();
 
-    assert_eq!(splatted.0, vector4.3);
-    assert_eq!(splatted.1, vector4.3);
-    assert_eq!(splatted.2, vector4.3);
-    assert_eq!(splatted.3, vector4.3);
+    assert_eq!(splatted.x, vector4.w);
+    assert_eq!(splatted.y, vector4.w);
+    assert_eq!(splatted.z, vector4.w);
+    assert_eq!(splatted.w, vector4.w);
 }
 
 #[test]
 fn multiply_add_for_vector2() {
-    let v1 = (1.0, 2.0);
-    let v2 = (10.0, 11.0);
-    let v3 = (100.0, 200.0);
+    let v1 = Vector2 {
+        x: 1.0,
+        y: 2.0,
+    };
+    let v2 = Vector2 {
+        x: 10.0,
+        y: 11.0,
+    };
+    let v3 = Vector2 {
+        x: 100.0,
+        y: 200.0,
+    };
 
     let v = v1.multiply_add(&v2, &v3);
 
-    assert_eq!(v.0, 110.0);
-    assert_eq!(v.1, 222.0);
+    assert_eq!(v.x, 110.0);
+    assert_eq!(v.y, 222.0);
 }
 
 #[test]
 fn multiply_add_for_vector3() {
-    let v1 = (1.0, 2.0, 3.0);
-    let v2 = (10.0, 11.0, 12.0);
-    let v3 = (100.0, 200.0, 300.0);
+    let v1 = Vector3 {
+        x: 1.0,
+        y: 2.0,
+        z: 3.0,
+    };
+    let v2 = Vector3 {
+        x: 10.0,
+        y: 11.0,
+        z: 12.0,
+    };
+    let v3 = Vector3 {
+        x: 100.0,
+        y: 200.0,
+        z: 300.0,
+    };
 
     let v = v1.multiply_add(&v2, &v3);
 
-    assert_eq!(v.0, 110.0);
-    assert_eq!(v.1, 222.0);
-    assert_eq!(v.2, 336.0);
+    assert_eq!(v.x, 110.0);
+    assert_eq!(v.y, 222.0);
+    assert_eq!(v.z, 336.0);
 }
 
 #[test]
 fn multiply_add_for_vector4() {
-    let v1 = (1.0, 2.0, 3.0, 4.0);
-    let v2 = (10.0, 11.0, 12.0, 13.0);
-    let v3 = (100.0, 200.0, 300.0, 400.0);
+    let v1 = Vector4 {
+        x: 1.0,
+        y: 2.0,
+        z: 3.0,
+        w: 4.0,
+    };
+    let v2 = Vector4 {
+        x: 10.0,
+        y: 11.0,
+        z: 12.0,
+        w: 13.0,
+    };
+    let v3 = Vector4 {
+        x: 100.0,
+        y: 200.0,
+        z: 300.0,
+        w: 400.0,
+    };
 
     let v = v1.multiply_add(&v2, &v3);
 
-    assert_eq!(v.0, 110.0);
-    assert_eq!(v.1, 222.0);
-    assert_eq!(v.2, 336.0);
-    assert_eq!(v.3, 452.0);
+    assert_eq!(v.x, 110.0);
+    assert_eq!(v.y, 222.0);
+    assert_eq!(v.z, 336.0);
+    assert_eq!(v.w, 452.0);
 }

@@ -1,116 +1,205 @@
 use matrix::*;
 
 pub trait Vector {
-    fn transform(self, matrix: &Matrix) -> Self;
+    fn transform(&self, matrix: &Matrix) -> Self;
 
-    fn multiply_add(self, mul: &Self, add: &Self) -> Self;
+    fn multiply_add(&self, mul: &Self, add: &Self) -> Self;
 
-    fn splat_x(self) -> Self;
-    fn splat_y(self) -> Self;
-    fn splat_z(self) -> Self;
-    fn splat_w(self) -> Self;
+    fn splat_x(&self) -> Self;
+    fn splat_y(&self) -> Self;
+    fn splat_z(&self) -> Self;
+    fn splat_w(&self) -> Self;
 }
 
-type Vector2 = (f32, f32);
-type Vector3 = (f32, f32, f32);
-type Vector4 = (f32, f32, f32, f32);
+#[derive(Clone, Copy, PartialEq, Debug)]
+pub struct Vector2 {
+    pub x: f32,
+    pub y: f32,
+}
+
+#[derive(Clone, Copy, PartialEq, Debug)]
+pub struct Vector3 {
+    pub x: f32,
+    pub y: f32,
+    pub z: f32,
+}
+
+#[derive(Clone, Copy, PartialEq, Debug)]
+pub struct Vector4 {
+    pub x: f32,
+    pub y: f32,
+    pub z: f32,
+    pub w: f32,
+}
 
 impl Vector for Vector2 {
-    fn transform(self, matrix: &Matrix) -> Self {
+    fn transform(&self, matrix: &Matrix) -> Self {
 
-        let x = self.0 * matrix[0][0] + self.1 * matrix[1][0] + matrix[3][0];
-        let y = self.0 * matrix[0][1] + self.1 * matrix[1][1] + matrix[3][1];
-        (x, y)
-    }
-
-    fn multiply_add(self, mul: &Self, add: &Self) -> Self {
-        let x = self.0 * mul.0 + add.0;
-        let y = self.1 * mul.1 + add.1;
-        (x, y)
+        let x = self.x * matrix[0][0] + self.y * matrix[1][0] + matrix[3][0];
+        let y = self.x * matrix[0][1] + self.y * matrix[1][1] + matrix[3][1];
+        Vector2 {
+            x: x,
+            y: y,
+        }
     }
 
-    fn splat_x(self) -> Self {
-        let x = self.0;
-        (x, x)
+    fn multiply_add(&self, mul: &Self, add: &Self) -> Self {
+        let x = self.x * mul.x + add.x;
+        let y = self.y * mul.y + add.y;
+        Vector2 {
+            x: x,
+            y: y,
+        }
     }
-    fn splat_y(self) -> Self {
-        let y = self.1;
-        (y, y)
+
+    fn splat_x(&self) -> Self {
+        let x = self.x;
+        Vector2 {
+            x: x,
+            y: x,
+        }
     }
-    fn splat_z(self) -> Self {
+    fn splat_y(&self) -> Self {
+        let y = self.y;
+        Vector2 {
+            x: y,
+            y: y,
+        }
+    }
+    fn splat_z(&self) -> Self {
         let z = 0.0;
-        (z, z)
+        Vector2 {
+            x: z,
+            y: z,
+        }
     }
-    fn splat_w(self) -> Self {
+    fn splat_w(&self) -> Self {
         let w = 0.0;
-        (w, w)
+        Vector2 {
+            x: w,
+            y: w,
+        }
     }
 }
 
 impl Vector for Vector3 {
-    fn transform(self, matrix: &Matrix) -> Self {
-        let x = self.0 * matrix[0][0] + self.1 * matrix[1][0] + self.2 * matrix[2][0] + matrix[3][0];
-        let y = self.0 * matrix[0][1] + self.1 * matrix[1][1] + self.2 * matrix[2][1] + matrix[3][1];
-        let z = self.0 * matrix[0][2] + self.1 * matrix[1][2] + self.2 * matrix[2][2] + matrix[3][2];
-        (x, y, z)
+    fn transform(&self, matrix: &Matrix) -> Self {
+        let x = self.x * matrix[0][0] + self.y * matrix[1][0] + self.z * matrix[2][0] + matrix[3][0];
+        let y = self.x * matrix[0][1] + self.y * matrix[1][1] + self.z * matrix[2][1] + matrix[3][1];
+        let z = self.x * matrix[0][2] + self.y * matrix[1][2] + self.z * matrix[2][2] + matrix[3][2];
+        Vector3 {
+            x: x,
+            y: y,
+            z: z,
+        }
     }
 
-    fn multiply_add(self, mul: &Self, add: &Self) -> Self {
-        let x = self.0 * mul.0 + add.0;
-        let y = self.1 * mul.1 + add.1;
-        let z = self.2 * mul.2 + add.2;
-        (x, y, z)
+    fn multiply_add(&self, mul: &Self, add: &Self) -> Self {
+        let x = self.x * mul.x + add.x;
+        let y = self.y * mul.y + add.y;
+        let z = self.z * mul.z + add.z;
+        Vector3 {
+            x: x,
+            y: y,
+            z: z,
+        }
     }
 
-    fn splat_x(self) -> Self {
-        let x = self.0;
-        (x, x, x)
+    fn splat_x(&self) -> Self {
+        let x = self.x;
+        Vector3 {
+            x: x,
+            y: x,
+            z: x,
+        }
     }
-    fn splat_y(self) -> Self {
-        let y = self.1;
-        (y, y, y)
+    fn splat_y(&self) -> Self {
+        let y = self.y;
+        Vector3 {
+            x: y,
+            y: y,
+            z: y,
+        }
     }
-    fn splat_z(self) -> Self {
-        let z = self.2;
-        (z, z, z)
+    fn splat_z(&self) -> Self {
+        let z = self.z;
+        Vector3 {
+            x: z,
+            y: z,
+            z: z,
+        }
     }
-    fn splat_w(self) -> Self {
+    fn splat_w(&self) -> Self {
         let w = 0.0;
-        (w, w, w)
+        Vector3 {
+            x: w,
+            y: w,
+            z: w,
+        }
     }
 }
 
 impl Vector for Vector4 {
-    fn transform(self, matrix: &Matrix) -> Self {
-        let x = self.0 * matrix[0][0] + self.1 * matrix[1][0] + self.2 * matrix[2][0] + self.3 * matrix[3][0];
-        let y = self.0 * matrix[0][1] + self.1 * matrix[1][1] + self.2 * matrix[2][1] + self.3 * matrix[3][1];
-        let z = self.0 * matrix[0][2] + self.1 * matrix[1][2] + self.2 * matrix[2][2] + self.3 * matrix[3][2];
-        let w = self.0 * matrix[0][3] + self.1 * matrix[1][3] + self.2 * matrix[2][3] + self.3 * matrix[3][3];
-        (x, y, z, w)
+    fn transform(&self, matrix: &Matrix) -> Self {
+        let x = self.x * matrix[0][0] + self.y * matrix[1][0] + self.z * matrix[2][0] + self.w * matrix[3][0];
+        let y = self.x * matrix[0][1] + self.y * matrix[1][1] + self.z * matrix[2][1] + self.w * matrix[3][1];
+        let z = self.x * matrix[0][2] + self.y * matrix[1][2] + self.z * matrix[2][2] + self.w * matrix[3][2];
+        let w = self.x * matrix[0][3] + self.y * matrix[1][3] + self.z * matrix[2][3] + self.w * matrix[3][3];
+        Vector4 {
+            x: x,
+            y: y,
+            z: z,
+            w: w,
+        }
     }
 
-    fn multiply_add(self, mul: &Self, add: &Self) -> Self {
-        let x = self.0 * mul.0 + add.0;
-        let y = self.1 * mul.1 + add.1;
-        let z = self.2 * mul.2 + add.2;
-        let w = self.3 * mul.3 + add.3;
-        (x, y, z, w)
+    fn multiply_add(&self, mul: &Self, add: &Self) -> Self {
+        let x = self.x * mul.x + add.x;
+        let y = self.y * mul.y + add.y;
+        let z = self.z * mul.z + add.z;
+        let w = self.w * mul.w + add.w;
+        Vector4 {
+            x: x,
+            y: y,
+            z: z,
+            w: w,
+        }
     }
 
-    fn splat_x(self) -> Self {
-        let x = self.0;
-        (x, x, x, x)
+    fn splat_x(&self) -> Self {
+        let x = self.x;
+        Vector4 {
+            x: x,
+            y: x,
+            z: x,
+            w: x,
+        }
     }
-    fn splat_y(self) -> Self {
-        let y = self.1;
-        (y, y, y, y)
+    fn splat_y(&self) -> Self {
+        let y = self.y;
+        Vector4 {
+            x: y,
+            y: y,
+            z: y,
+            w: y,
+        }
     }
-    fn splat_z(self) -> Self {
-        let z = self.2;
-        (z, z, z, z)
+    fn splat_z(&self) -> Self {
+        let z = self.z;
+        Vector4 {
+            x: z,
+            y: z,
+            z: z,
+            w: z,
+        }
     }
-    fn splat_w(self) -> Self {
-        let w = self.3;
-        (w, w, w, w)
+    fn splat_w(&self) -> Self {
+        let w = self.w;
+        Vector4 {
+            x: w,
+            y: w,
+            z: w,
+            w: w,
+        }
     }
 }
