@@ -343,3 +343,43 @@ impl Div for Vector4 {
         }
     }
 }
+
+impl Mul<f32> for Vector2 {
+    type Output = Vector2;
+    fn mul(self, rhs: f32) -> Self::Output {
+        let x = self.x * rhs;
+        let y = self.y * rhs;
+        Vector2 {
+            x: x,
+            y: y,
+        }
+    }
+}
+impl Mul<f32> for Vector3 {
+    type Output = Vector3;
+    fn mul(self, rhs: f32) -> Self::Output {
+        let x = self.x * rhs;
+        let y = self.y * rhs;
+        let z = self.z * rhs;
+        Vector3 {
+            x: x,
+            y: y,
+            z: z,
+        }
+    }
+}
+impl Mul<f32> for Vector4 {
+    type Output = Vector4;
+    fn mul(self, rhs: f32) -> Self::Output {
+        let x = self.x * rhs;
+        let y = self.y * rhs;
+        let z = self.z * rhs;
+        let w = self.w * rhs;
+        Vector4 {
+            x: x,
+            y: y,
+            z: z,
+            w: w,
+        }
+    }
+}
