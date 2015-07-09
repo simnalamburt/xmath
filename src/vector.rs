@@ -5,6 +5,7 @@ pub trait Vector {
     fn transform(&self, matrix: &Matrix) -> Self;
 
     fn min(&self, other: &Self) -> Self;
+    fn max(&self, other: &Self) -> Self;
 
     fn round(&self) -> Self;
     fn trunc(&self) -> Self;
@@ -54,6 +55,15 @@ impl Vector for Vector2 {
     fn min(&self, other: &Self) -> Self {
         let x = self.x.min(other.x);
         let y = self.y.min(other.y);
+
+        Vector2 {
+            x: x,
+            y: y,
+        }
+    }
+    fn max(&self, other: &Self) -> Self {
+        let x = self.x.max(other.x);
+        let y = self.y.max(other.y);
 
         Vector2 {
             x: x,
@@ -148,6 +158,17 @@ impl Vector for Vector3 {
         let x = self.x.min(other.x);
         let y = self.y.min(other.y);
         let z = self.z.min(other.z);
+
+        Vector3 {
+            x: x,
+            y: y,
+            z: z,
+        }
+    }
+    fn max(&self, other: &Self) -> Self {
+        let x = self.x.max(other.x);
+        let y = self.y.max(other.y);
+        let z = self.z.max(other.z);
 
         Vector3 {
             x: x,
@@ -258,6 +279,19 @@ impl Vector for Vector4 {
         let y = self.y.min(other.y);
         let z = self.z.min(other.z);
         let w = self.w.min(other.w);
+
+        Vector4 {
+            x: x,
+            y: y,
+            z: z,
+            w: w,
+        }
+    }
+    fn max(&self, other: &Self) -> Self {
+        let x = self.x.max(other.x);
+        let y = self.y.max(other.y);
+        let z = self.z.max(other.z);
+        let w = self.w.max(other.w);
 
         Vector4 {
             x: x,
