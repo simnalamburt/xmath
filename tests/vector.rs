@@ -1,5 +1,6 @@
 extern crate xmath;
 
+use std::f32;
 use xmath::{Vector, Vector2, Vector3, Vector4, Matrix};
 
 #[test]
@@ -100,6 +101,31 @@ fn nan_of_vector4() {
     assert!(v.y.is_nan());
     assert!(v.z.is_nan());
     assert!(v.w.is_nan());
+}
+
+#[test]
+fn epsilon_of_vector2() {
+    let v = Vector2::epsilon();
+
+    assert_eq!(v.x, f32::EPSILON);
+    assert_eq!(v.y, f32::EPSILON);
+}
+#[test]
+fn epsilon_of_vector3() {
+    let v = Vector3::epsilon();
+
+    assert_eq!(v.x, f32::EPSILON);
+    assert_eq!(v.y, f32::EPSILON);
+    assert_eq!(v.z, f32::EPSILON);
+}
+#[test]
+fn epsilon_of_vector4() {
+    let v = Vector4::epsilon();
+
+    assert_eq!(v.x, f32::EPSILON);
+    assert_eq!(v.y, f32::EPSILON);
+    assert_eq!(v.z, f32::EPSILON);
+    assert_eq!(v.w, f32::EPSILON);
 }
 
 #[test]
