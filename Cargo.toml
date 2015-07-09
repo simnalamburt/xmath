@@ -11,4 +11,4 @@ keywords      = ["math", "linear", "algebra", "matrix", "vector"]
 license       = "BSD-2-Clause"
 
 [dependencies]
-glium = { version = "*", default-features = false }
+glium = { version = "0.7", default-features = false }
