@@ -3,6 +3,31 @@ extern crate xmath;
 use xmath::{Vector, Vector2, Vector3, Vector4, Matrix};
 
 #[test]
+fn one_of_vector2() {
+    let v = Vector2::one();
+
+    assert_eq!(v.x, 1.0);
+    assert_eq!(v.y, 1.0);
+}
+#[test]
+fn one_of_vector3() {
+    let v = Vector3::one();
+
+    assert_eq!(v.x, 1.0);
+    assert_eq!(v.y, 1.0);
+    assert_eq!(v.z, 1.0);
+}
+#[test]
+fn one_of_vector4() {
+    let v = Vector4::one();
+
+    assert_eq!(v.x, 1.0);
+    assert_eq!(v.y, 1.0);
+    assert_eq!(v.z, 1.0);
+    assert_eq!(v.w, 1.0);
+}
+
+#[test]
 fn transform_vector2() {
     let matrix = Matrix::new(
         2.0, 3.0, 5.0, 7.0,

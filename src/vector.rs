@@ -2,6 +2,8 @@ use matrix::*;
 use std::ops::*;
 
 pub trait Vector {
+    fn one() -> Self;
+
     fn transform(&self, matrix: &Matrix) -> Self;
 
     fn min(&self, other: &Self) -> Self;
@@ -43,6 +45,13 @@ pub struct Vector4 {
 }
 
 impl Vector for Vector2 {
+    fn one() -> Self {
+        Vector2 {
+            x: 1.0,
+            y: 1.0,
+        }
+    }
+
     fn transform(&self, matrix: &Matrix) -> Self {
 
         let x = self.x * matrix[0][0] + self.y * matrix[1][0] + matrix[3][0];
@@ -149,6 +158,14 @@ impl Vector for Vector2 {
 }
 
 impl Vector for Vector3 {
+    fn one() -> Self {
+        Vector3 {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0,
+        }
+    }
+
     fn transform(&self, matrix: &Matrix) -> Self {
         let x = self.x * matrix[0][0] + self.y * matrix[1][0] + self.z * matrix[2][0] + matrix[3][0];
         let y = self.x * matrix[0][1] + self.y * matrix[1][1] + self.z * matrix[2][1] + matrix[3][1];
@@ -273,6 +290,15 @@ impl Vector for Vector3 {
 }
 
 impl Vector for Vector4 {
+    fn one() -> Self {
+        Vector4 {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0,
+            w: 1.0,
+        }
+    }
+
     fn transform(&self, matrix: &Matrix) -> Self {
         let x = self.x * matrix[0][0] + self.y * matrix[1][0] + self.z * matrix[2][0] + self.w * matrix[3][0];
         let y = self.x * matrix[0][1] + self.y * matrix[1][1] + self.z * matrix[2][1] + self.w * matrix[3][1];
