@@ -2,6 +2,7 @@ use matrix::*;
 use std::ops::*;
 
 pub trait Vector {
+    fn zero() -> Self;
     fn one() -> Self;
 
     fn transform(&self, matrix: &Matrix) -> Self;
@@ -45,6 +46,13 @@ pub struct Vector4 {
 }
 
 impl Vector for Vector2 {
+    fn zero() -> Self {
+        Vector2 {
+            x: 0.0,
+            y: 0.0,
+        }
+    }
+
     fn one() -> Self {
         Vector2 {
             x: 1.0,
@@ -158,6 +166,13 @@ impl Vector for Vector2 {
 }
 
 impl Vector for Vector3 {
+    fn zero() -> Self {
+        Vector3 {
+            x: 0.0,
+            y: 0.0,
+            z: 0.0,
+        }
+    }
     fn one() -> Self {
         Vector3 {
             x: 1.0,
@@ -290,6 +305,14 @@ impl Vector for Vector3 {
 }
 
 impl Vector for Vector4 {
+    fn zero() -> Self {
+        Vector4 {
+            x: 0.0,
+            y: 0.0,
+            z: 0.0,
+            w: 0.0,
+        }
+    }
     fn one() -> Self {
         Vector4 {
             x: 1.0,

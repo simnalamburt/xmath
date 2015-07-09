@@ -3,6 +3,31 @@ extern crate xmath;
 use xmath::{Vector, Vector2, Vector3, Vector4, Matrix};
 
 #[test]
+fn zero_of_vector2() {
+    let v = Vector2::zero();
+
+    assert_eq!(v.x, 0.0);
+    assert_eq!(v.y, 0.0);
+}
+#[test]
+fn zero_of_vector3() {
+    let v = Vector3::zero();
+
+    assert_eq!(v.x, 0.0);
+    assert_eq!(v.y, 0.0);
+    assert_eq!(v.z, 0.0);
+}
+#[test]
+fn zero_of_vector4() {
+    let v = Vector4::zero();
+
+    assert_eq!(v.x, 0.0);
+    assert_eq!(v.y, 0.0);
+    assert_eq!(v.z, 0.0);
+    assert_eq!(v.w, 0.0);
+}
+
+#[test]
 fn one_of_vector2() {
     let v = Vector2::one();
 
