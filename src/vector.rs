@@ -11,6 +11,7 @@ pub trait Vector {
     fn replicate(value: f32) -> Self;
 
     fn swizzle(&self, e0: usize, e1: usize, e2: usize, e3: usize) -> Self;
+    fn permute(&self, other: &Self, permute_x: usize, permute_y: usize, permute_w: usize, permute_z: usize) -> Self;
 
     fn transform(&self, matrix: &Matrix) -> Self;
 
@@ -101,6 +102,15 @@ impl Vector for Vector2 {
         Vector2 {
             x: self[e0],
             y: self[e1],
+        }
+    }
+
+    fn permute(&self, other: &Self, permute_x: usize, permute_y: usize, _permute_z: usize, _permute_w: usize) -> Self {
+        assert!(permute_x < 8);
+        assert!(permute_y < 8);
+        Vector2 {
+            x: if permute_x < 4 { self[permute_x] } else { other[permute_x - 4] },
+            y: if permute_y < 4 { self[permute_y] } else { other[permute_y - 4] },
         }
     }
 
@@ -265,6 +275,17 @@ impl Vector for Vector3 {
             x: self[e0],
             y: self[e1],
             z: self[e2],
+        }
+    }
+
+    fn permute(&self, other: &Self, permute_x: usize, permute_y: usize, permute_z: usize, _permute_w: usize) -> Self {
+        assert!(permute_x < 8);
+        assert!(permute_y < 8);
+        assert!(permute_z < 8);
+        Vector3 {
+            x: if permute_x < 4 { self[permute_x] } else { other[permute_x - 4] },
+            y: if permute_y < 4 { self[permute_y] } else { other[permute_y - 4] },
+            z: if permute_z < 4 { self[permute_z] } else { other[permute_z - 4] },
         }
     }
 
@@ -455,6 +476,19 @@ impl Vector for Vector4 {
             y: self[e1],
             z: self[e2],
             w: self[e3],
+        }
+    }
+
+    fn permute(&self, other: &Self, permute_x: usize, permute_y: usize, permute_z: usize, permute_w: usize) -> Self {
+        assert!(permute_x < 8);
+        assert!(permute_y < 8);
+        assert!(permute_z < 8);
+        assert!(permute_w < 8);
+        Vector4 {
+            x: if permute_x < 4 { self[permute_x] } else { other[permute_x - 4] },
+            y: if permute_y < 4 { self[permute_y] } else { other[permute_y - 4] },
+            z: if permute_z < 4 { self[permute_z] } else { other[permute_z - 4] },
+            w: if permute_w < 4 { self[permute_w] } else { other[permute_w - 4] },
         }
     }
 
