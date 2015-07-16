@@ -10,6 +10,8 @@ pub trait Vector {
     fn epsilon() -> Self;
     fn replicate(value: f32) -> Self;
 
+    fn swizzle(&self, e0: usize, e1: usize, e2: usize, e3: usize) -> Self;
+
     fn transform(&self, matrix: &Matrix) -> Self;
 
     fn min(&self, other: &Self) -> Self;
@@ -90,6 +92,15 @@ impl Vector for Vector2 {
         Vector2 {
             x: value,
             y: value,
+        }
+    }
+
+    fn swizzle(&self, e0: usize, e1: usize, _e2: usize, _e3: usize) -> Self {
+        assert!(e0 < 4);
+        assert!(e1 < 4);
+        Vector2 {
+            x: self[e0],
+            y: self[e1],
         }
     }
 
@@ -243,6 +254,17 @@ impl Vector for Vector3 {
             x: value,
             y: value,
             z: value,
+        }
+    }
+
+    fn swizzle(&self, e0: usize, e1: usize, e2: usize, _e3: usize) -> Self {
+        assert!(e0 < 4);
+        assert!(e1 < 4);
+        assert!(e2 < 4);
+        Vector3 {
+            x: self[e0],
+            y: self[e1],
+            z: self[e2],
         }
     }
 
@@ -420,6 +442,19 @@ impl Vector for Vector4 {
             y: value,
             z: value,
             w: value,
+        }
+    }
+
+    fn swizzle(&self, e0: usize, e1: usize, e2: usize, e3: usize) -> Self {
+        assert!(e0 < 4);
+        assert!(e1 < 4);
+        assert!(e2 < 4);
+        assert!(e3 < 4);
+        Vector4 {
+            x: self[e0],
+            y: self[e1],
+            z: self[e2],
+            w: self[e3],
         }
     }
 

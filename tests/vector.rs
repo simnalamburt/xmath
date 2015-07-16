@@ -1282,3 +1282,67 @@ fn index_4_for_vector4_should_fail() {
     };
     let _ = v[4];
 }
+
+#[test]
+fn swizzle_of_vector4() {
+    let v1 = Vector4 {
+        x: 1.32,
+        y: 23.3,
+        z: -45.4,
+        w: -53.4,
+    };
+    let v2 = v1.swizzle(1, 3, 0, 2);
+
+    assert_eq!(v2[0], v1[1]);
+    assert_eq!(v2[1], v1[3]);
+    assert_eq!(v2[2], v1[0]);
+    assert_eq!(v2[3], v1[2]);
+}
+
+#[test]
+#[should_panic]
+fn swizzle_of_vector4_should_fail_when_e0_is_more_than_3() {
+    let v1 = Vector4 {
+        x: 1.32,
+        y: 23.3,
+        z: -45.4,
+        w: -53.4,
+    };
+    let _ = v1.swizzle(4, 3, 0, 2);
+}
+
+#[test]
+#[should_panic]
+fn swizzle_of_vector4_should_fail_when_e1_is_more_than_3() {
+    let v1 = Vector4 {
+        x: 1.32,
+        y: 23.3,
+        z: -45.4,
+        w: -53.4,
+    };
+    let _ = v1.swizzle(1, 4, 0, 2);
+}
+
+#[test]
+#[should_panic]
+fn swizzle_of_vector4_should_fail_when_e2_is_more_than_3() {
+    let v1 = Vector4 {
+        x: 1.32,
+        y: 23.3,
+        z: -45.4,
+        w: -53.4,
+    };
+    let _ = v1.swizzle(1, 3, 4, 2);
+}
+
+#[test]
+#[should_panic]
+fn swizzle_of_vector4_should_fail_when_e3_is_more_than_3() {
+    let v1 = Vector4 {
+        x: 1.32,
+        y: 23.3,
+        z: -45.4,
+        w: -53.4,
+    };
+    let _ = v1.swizzle(1, 3, 0, 4);
+}
