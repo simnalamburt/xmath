@@ -805,3 +805,42 @@ impl Neg for Vector4 {
         }
     }
 }
+
+const ZERO: &'static f32 = &0.0;
+
+impl Index<usize> for Vector2 {
+    type Output = f32;
+    fn index<'a>(&'a self, index: usize) -> &'a Self::Output {
+        match index {
+            0 => &self.x,
+            1 => &self.y,
+            2 => ZERO,
+            3 => ZERO,
+            _ => panic!("index must be between 0~3, but {}", index),
+        }
+    }
+}
+impl Index<usize> for Vector3 {
+    type Output = f32;
+    fn index<'a>(&'a self, index: usize) -> &'a Self::Output {
+        match index {
+            0 => &self.x,
+            1 => &self.y,
+            2 => &self.z,
+            3 => ZERO,
+            _ => panic!("index must be between 0~3, but {}", index),
+        }
+    }
+}
+impl Index<usize> for Vector4 {
+    type Output = f32;
+    fn index<'a>(&'a self, index: usize) -> &'a Self::Output {
+        match index {
+            0 => &self.x,
+            1 => &self.y,
+            2 => &self.z,
+            3 => &self.w,
+            _ => panic!("index must be between 0~3, but {}", index),
+        }
+    }
+}

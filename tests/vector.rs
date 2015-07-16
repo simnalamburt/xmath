@@ -1129,3 +1129,156 @@ fn multiply_add_for_vector4() {
     assert_eq!(v.z, v1.z * v2.z + v3.z);
     assert_eq!(v.w, v1.w * v2.w + v3.w);
 }
+
+#[test]
+fn index_0_for_vector2_is_x() {
+    let v = Vector2 {
+        x: 1.32,
+        y: 23.3,
+    };
+    assert_eq!(v.x, v[0]);
+}
+
+#[test]
+fn index_1_for_vector2_is_y() {
+    let v = Vector2 {
+        x: 1.32,
+        y: 23.3,
+    };
+    assert_eq!(v.y, v[1]);
+}
+
+#[test]
+fn index_2_for_vector2_is_0() {
+    let v = Vector2 {
+        x: 1.32,
+        y: 23.3,
+    };
+    assert_eq!(0.0, v[2]);
+}
+
+#[test]
+fn index_3_for_vector2_is_0() {
+    let v = Vector2 {
+        x: 1.32,
+        y: 23.3,
+    };
+    assert_eq!(0.0, v[3]);
+}
+
+#[test]
+#[should_panic]
+fn index_4_for_vector2_should_fail() {
+    let v = Vector2 {
+        x: 1.32,
+        y: 23.3,
+    };
+    let _ = v[4];
+}
+
+#[test]
+fn index_0_for_vector3_is_x() {
+    let v = Vector3 {
+        x: 1.32,
+        y: 23.3,
+        z: -45.4,
+    };
+    assert_eq!(v.x, v[0]);
+}
+
+#[test]
+fn index_1_for_vector3_is_y() {
+    let v = Vector3 {
+        x: 1.32,
+        y: 23.3,
+        z: -45.4,
+    };
+    assert_eq!(v.y, v[1]);
+}
+
+#[test]
+fn index_2_for_vector3_is_z() {
+    let v = Vector3 {
+        x: 1.32,
+        y: 23.3,
+        z: -45.4,
+    };
+    assert_eq!(v.z, v[2]);
+}
+
+#[test]
+fn index_3_for_vector3_is_0() {
+    let v = Vector3 {
+        x: 1.32,
+        y: 23.3,
+        z: -45.4,
+    };
+    assert_eq!(0.0, v[3]);
+}
+
+#[test]
+#[should_panic]
+fn index_4_for_vector3_should_fail() {
+    let v = Vector3 {
+        x: 1.32,
+        y: 23.3,
+        z: -45.4,
+    };
+    let _ = v[4];
+}
+
+#[test]
+fn index_0_for_vector4_is_x() {
+    let v = Vector4 {
+        x: 1.32,
+        y: 23.3,
+        z: -45.4,
+        w: -53.4,
+    };
+    assert_eq!(v.x, v[0]);
+}
+
+#[test]
+fn index_1_for_vector4_is_y() {
+    let v = Vector4 {
+        x: 1.32,
+        y: 23.3,
+        z: -45.4,
+        w: -53.4,
+    };
+    assert_eq!(v.y, v[1]);
+}
+
+#[test]
+fn index_2_for_vector4_is_z() {
+    let v = Vector4 {
+        x: 1.32,
+        y: 23.3,
+        z: -45.4,
+        w: -53.4,
+    };
+    assert_eq!(v.z, v[2]);
+}
+
+#[test]
+fn index_3_for_vector4_is_w() {
+    let v = Vector4 {
+        x: 1.32,
+        y: 23.3,
+        z: -45.4,
+        w: -53.4,
+    };
+    assert_eq!(v.w, v[3]);
+}
+
+#[test]
+#[should_panic]
+fn index_4_for_vector4_should_fail() {
+    let v = Vector4 {
+        x: 1.32,
+        y: 23.3,
+        z: -45.4,
+        w: -53.4,
+    };
+    let _ = v[4];
+}
