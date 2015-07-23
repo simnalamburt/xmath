@@ -4,6 +4,43 @@ use std::f32;
 use xmath::{Vector, Vector2, Vector3, Vector4, Matrix};
 
 #[test]
+fn new_vector2() {
+    let x = 1.2;
+    let y = 3.4;
+    let v = Vector2::new(x, y);
+
+    assert_eq!(v.x, x);
+    assert_eq!(v.y, y);
+}
+
+#[test]
+fn new_vector3() {
+    let x = 1.2;
+    let y = 3.4;
+    let z = 5.6;
+    let v = Vector3::new(x, y, z);
+
+    assert_eq!(v.x, x);
+    assert_eq!(v.y, y);
+    assert_eq!(v.z, z);
+}
+
+#[test]
+fn new_vector4() {
+    let x = 1.2;
+    let y = 3.4;
+    let z = 4.6;
+    let w = 7.8;
+    let v = Vector4::new(x, y, z, w);
+
+    assert_eq!(v.x, x);
+    assert_eq!(v.y, y);
+    assert_eq!(v.z, z);
+    assert_eq!(v.w, w);
+}
+
+
+#[test]
 fn zero_of_vector2() {
     let v = Vector2::zero();
 

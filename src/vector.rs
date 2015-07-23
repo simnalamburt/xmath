@@ -53,6 +53,36 @@ pub struct Vector4 {
     pub w: f32,
 }
 
+impl Vector2 {
+    pub fn new(x: f32, y: f32) -> Self {
+        Vector2 {
+            x: x,
+            y: y,
+        }
+    }
+}
+
+impl Vector3 {
+    pub fn new(x: f32, y: f32, z: f32) -> Self {
+        Vector3 {
+            x: x,
+            y: y,
+            z: z,
+        }
+    }
+}
+
+impl Vector4 {
+    pub fn new(x: f32, y: f32, z: f32, w: f32) -> Self {
+        Vector4 {
+            x: x,
+            y: y,
+            z: z,
+            w: w,
+        }
+    }
+}
+
 impl Vector for Vector2 {
     fn zero() -> Self {
         Self::replicate(0.0)
