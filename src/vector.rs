@@ -578,6 +578,34 @@ impl Mul<f32> for Vector4 {
     }
 }
 
+impl Mul<Vector2> for f32 {
+    type Output = Vector2;
+    fn mul(self, rhs: Vector2) -> Self::Output {
+        let x = self * rhs.x;
+        let y = self * rhs.y;
+        Self::Output::new(x, y)
+    }
+}
+impl Mul<Vector3> for f32 {
+    type Output = Vector3;
+    fn mul(self, rhs: Vector3) -> Self::Output {
+        let x = self * rhs.x;
+        let y = self * rhs.y;
+        let z = self * rhs.z;
+        Self::Output::new(x, y, z)
+    }
+}
+impl Mul<Vector4> for f32 {
+    type Output = Vector4;
+    fn mul(self, rhs: Vector4) -> Self::Output {
+        let x = self * rhs.x;
+        let y = self * rhs.y;
+        let z = self * rhs.z;
+        let w = self * rhs.w;
+        Self::Output::new(x, y, z, w)
+    }
+}
+
 impl Neg for Vector2 {
     type Output = Vector2;
     fn neg(self) -> Self::Output {

@@ -848,6 +848,43 @@ fn scale_for_vector4() {
 }
 
 #[test]
+fn another_scale_for_vector2() {
+    let v1 = Vector2::new(10.0, 11.0);
+
+    let scale_factor = 5.3;
+
+    let v = scale_factor * v1;
+
+    assert_eq!(v.x, v1.x * scale_factor);
+    assert_eq!(v.y, v1.y * scale_factor);
+}
+#[test]
+fn another_scale_for_vector3() {
+    let v1 = Vector3::new(10.0, 11.0, 12.0);
+
+    let scale_factor = 5.3;
+
+    let v = scale_factor * v1;
+
+    assert_eq!(v.x, v1.x * scale_factor);
+    assert_eq!(v.y, v1.y * scale_factor);
+    assert_eq!(v.z, v1.z * scale_factor);
+}
+#[test]
+fn another_scale_for_vector4() {
+    let v1 = Vector4::new(10.0, 11.0, 12.0, 13.0);
+
+    let scale_factor = 5.3;
+
+    let v = scale_factor * v1;
+
+    assert_eq!(v.x, v1.x * scale_factor);
+    assert_eq!(v.y, v1.y * scale_factor);
+    assert_eq!(v.z, v1.z * scale_factor);
+    assert_eq!(v.w, v1.w * scale_factor);
+}
+
+#[test]
 fn mul_for_vector2() {
     let v1 = Vector2::new(10.0, 11.0);
     let v2 = Vector2::new(100.0, 200.0);
