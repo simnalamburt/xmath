@@ -913,3 +913,34 @@ impl Index<usize> for Vector4 {
         }
     }
 }
+
+
+impl From<Row> for Vector2 {
+    fn from(row: Row) -> Self {
+        Vector2 {
+            x: row[0],
+            y: row[1],
+        }
+    }
+}
+
+impl From<Row> for Vector3 {
+    fn from(row: Row) -> Self {
+        Vector3 {
+            x: row[0],
+            y: row[1],
+            z: row[2],
+        }
+    }
+}
+
+impl From<Row> for Vector4 {
+    fn from(row: Row) -> Self {
+        Vector4 {
+            x: row[0],
+            y: row[1],
+            z: row[2],
+            w: row[3],
+        }
+    }
+}

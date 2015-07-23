@@ -157,6 +157,108 @@ fn replicate_of_vector4() {
 }
 
 #[test]
+fn from_matrix_to_vector2() {
+    let matrix = Matrix::new(
+        2.0, 3.0, 5.0, 7.0,
+        11.0, 13.0, 17.0, 19.0,
+        23.0, 29.0, 31.0, 37.0,
+        41.0, 43.0, 47.0, 53.0,
+    );
+
+    let row0 = matrix[0];
+    let v0 = Vector2::from(row0);
+    assert_eq!(v0.x, matrix[0][0]);
+    assert_eq!(v0.y, matrix[0][1]);
+
+    let row1 = matrix[1];
+    let v1 = Vector2::from(row1);
+    assert_eq!(v1.x, matrix[1][0]);
+    assert_eq!(v1.y, matrix[1][1]);
+
+    let row2 = matrix[2];
+    let v2 = Vector2::from(row2);
+    assert_eq!(v2.x, matrix[2][0]);
+    assert_eq!(v2.y, matrix[2][1]);
+
+    let row3 = matrix[3];
+    let v3 = Vector2::from(row3);
+    assert_eq!(v3.x, matrix[3][0]);
+    assert_eq!(v3.y, matrix[3][1]);
+}
+
+#[test]
+fn from_matrix_to_vector3() {
+    let matrix = Matrix::new(
+        2.0, 3.0, 5.0, 7.0,
+        11.0, 13.0, 17.0, 19.0,
+        23.0, 29.0, 31.0, 37.0,
+        41.0, 43.0, 47.0, 53.0,
+    );
+
+    let row0 = matrix[0];
+    let v0 = Vector3::from(row0);
+    assert_eq!(v0.x, matrix[0][0]);
+    assert_eq!(v0.y, matrix[0][1]);
+    assert_eq!(v0.z, matrix[0][2]);
+
+    let row1 = matrix[1];
+    let v1 = Vector3::from(row1);
+    assert_eq!(v1.x, matrix[1][0]);
+    assert_eq!(v1.y, matrix[1][1]);
+    assert_eq!(v1.z, matrix[1][2]);
+
+    let row2 = matrix[2];
+    let v2 = Vector3::from(row2);
+    assert_eq!(v2.x, matrix[2][0]);
+    assert_eq!(v2.y, matrix[2][1]);
+    assert_eq!(v2.z, matrix[2][2]);
+
+    let row3 = matrix[3];
+    let v3 = Vector3::from(row3);
+    assert_eq!(v3.x, matrix[3][0]);
+    assert_eq!(v3.y, matrix[3][1]);
+    assert_eq!(v3.z, matrix[3][2]);
+}
+
+#[test]
+fn from_matrix_to_vector4() {
+    let matrix = Matrix::new(
+        2.0, 3.0, 5.0, 7.0,
+        11.0, 13.0, 17.0, 19.0,
+        23.0, 29.0, 31.0, 37.0,
+        41.0, 43.0, 47.0, 53.0,
+    );
+
+    let row0 = matrix[0];
+    let v0 = Vector4::from(row0);
+    assert_eq!(v0.x, matrix[0][0]);
+    assert_eq!(v0.y, matrix[0][1]);
+    assert_eq!(v0.z, matrix[0][2]);
+    assert_eq!(v0.w, matrix[0][3]);
+
+    let row1 = matrix[1];
+    let v1 = Vector4::from(row1);
+    assert_eq!(v1.x, matrix[1][0]);
+    assert_eq!(v1.y, matrix[1][1]);
+    assert_eq!(v1.z, matrix[1][2]);
+    assert_eq!(v1.w, matrix[1][3]);
+
+    let row2 = matrix[2];
+    let v2 = Vector4::from(row2);
+    assert_eq!(v2.x, matrix[2][0]);
+    assert_eq!(v2.y, matrix[2][1]);
+    assert_eq!(v2.z, matrix[2][2]);
+    assert_eq!(v2.w, matrix[2][3]);
+
+    let row3 = matrix[3];
+    let v3 = Vector4::from(row3);
+    assert_eq!(v3.x, matrix[3][0]);
+    assert_eq!(v3.y, matrix[3][1]);
+    assert_eq!(v3.z, matrix[3][2]);
+    assert_eq!(v3.w, matrix[3][3]);
+}
+
+#[test]
 fn transform_vector2() {
     let matrix = Matrix::new(
         2.0, 3.0, 5.0, 7.0,
