@@ -36,6 +36,8 @@ pub trait Vector {
 pub struct Vector2 {
     pub x: f32,
     pub y: f32,
+    z: f32,
+    w: f32,
 }
 
 #[derive(Clone, Copy, PartialEq, Debug)]
@@ -43,6 +45,7 @@ pub struct Vector3 {
     pub x: f32,
     pub y: f32,
     pub z: f32,
+    w: f32,
 }
 
 #[derive(Clone, Copy, PartialEq, Debug)]
@@ -58,6 +61,8 @@ impl Vector2 {
         Vector2 {
             x: x,
             y: y,
+            z: 0.0,
+            w: 0.0,
         }
     }
 }
@@ -68,6 +73,7 @@ impl Vector3 {
             x: x,
             y: y,
             z: z,
+            w: 0.0,
         }
     }
 }
