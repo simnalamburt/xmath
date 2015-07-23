@@ -115,13 +115,14 @@ impl Vector for Vector2 {
     }
 
     fn transform(&self, matrix: &Matrix) -> Self {
+        let x = self.splat_x();
+        let y = self.splat_y();
 
-        let x = self.x * matrix[0][0] + self.y * matrix[1][0] + matrix[3][0];
-        let y = self.x * matrix[0][1] + self.y * matrix[1][1] + matrix[3][1];
-        Vector2 {
-            x: x,
-            y: y,
-        }
+        let m0 = Self::from(matrix[0]);
+        let m1 = Self::from(matrix[1]);
+        let m3 = Self::from(matrix[3]);
+
+        x * m0 + y * m1 + m3
     }
 
     fn min(&self, other: &Self) -> Self {
@@ -290,14 +291,16 @@ impl Vector for Vector3 {
     }
 
     fn transform(&self, matrix: &Matrix) -> Self {
-        let x = self.x * matrix[0][0] + self.y * matrix[1][0] + self.z * matrix[2][0] + matrix[3][0];
-        let y = self.x * matrix[0][1] + self.y * matrix[1][1] + self.z * matrix[2][1] + matrix[3][1];
-        let z = self.x * matrix[0][2] + self.y * matrix[1][2] + self.z * matrix[2][2] + matrix[3][2];
-        Vector3 {
-            x: x,
-            y: y,
-            z: z,
-        }
+        let x = self.splat_x();
+        let y = self.splat_y();
+        let z = self.splat_z();
+
+        let m0 = Self::from(matrix[0]);
+        let m1 = Self::from(matrix[1]);
+        let m2 = Self::from(matrix[2]);
+        let m3 = Self::from(matrix[3]);
+
+        x * m0 + y * m1 + z * m2 + m3
     }
 
     fn min(&self, other: &Self) -> Self {
@@ -493,16 +496,17 @@ impl Vector for Vector4 {
     }
 
     fn transform(&self, matrix: &Matrix) -> Self {
-        let x = self.x * matrix[0][0] + self.y * matrix[1][0] + self.z * matrix[2][0] + self.w * matrix[3][0];
-        let y = self.x * matrix[0][1] + self.y * matrix[1][1] + self.z * matrix[2][1] + self.w * matrix[3][1];
-        let z = self.x * matrix[0][2] + self.y * matrix[1][2] + self.z * matrix[2][2] + self.w * matrix[3][2];
-        let w = self.x * matrix[0][3] + self.y * matrix[1][3] + self.z * matrix[2][3] + self.w * matrix[3][3];
-        Vector4 {
-            x: x,
-            y: y,
-            z: z,
-            w: w,
-        }
+        let x = self.splat_x();
+        let y = self.splat_y();
+        let z = self.splat_z();
+        let w = self.splat_w();
+
+        let m0 = Self::from(matrix[0]);
+        let m1 = Self::from(matrix[1]);
+        let m2 = Self::from(matrix[2]);
+        let m3 = Self::from(matrix[3]);
+
+        x * m0 + y * m1 + z * m2 + w * m3
     }
 
     fn min(&self, other: &Self) -> Self {
