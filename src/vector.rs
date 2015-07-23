@@ -55,38 +55,23 @@ pub struct Vector4 {
 
 impl Vector for Vector2 {
     fn zero() -> Self {
-        Vector2 {
-            x: 0.0,
-            y: 0.0,
-        }
+        Self::replicate(0.0)
     }
 
     fn one() -> Self {
-        Vector2 {
-            x: 1.0,
-            y: 1.0,
-        }
+        Self::replicate(1.0)
     }
 
     fn infinity() -> Self {
-        Vector2 {
-            x: f32::INFINITY,
-            y: f32::INFINITY,
-        }
+        Self::replicate(f32::INFINITY)
     }
 
     fn nan() -> Self {
-        Vector2 {
-            x: f32::NAN,
-            y: f32::NAN,
-        }
+        Self::replicate(f32::NAN)
     }
 
     fn epsilon() -> Self {
-        Vector2 {
-            x: f32::EPSILON,
-            y: f32::EPSILON,
-        }
+        Self::replicate(f32::EPSILON)
     }
 
     fn replicate(value: f32) -> Self {
@@ -191,73 +176,37 @@ impl Vector for Vector2 {
     }
 
     fn splat_x(&self) -> Self {
-        let x = self.x;
-        Vector2 {
-            x: x,
-            y: x,
-        }
+        Self::replicate(self.x)
     }
     fn splat_y(&self) -> Self {
-        let y = self.y;
-        Vector2 {
-            x: y,
-            y: y,
-        }
+        Self::replicate(self.y)
     }
     fn splat_z(&self) -> Self {
-        let z = 0.0;
-        Vector2 {
-            x: z,
-            y: z,
-        }
+        Self::replicate(0.0)
     }
     fn splat_w(&self) -> Self {
-        let w = 0.0;
-        Vector2 {
-            x: w,
-            y: w,
-        }
+        Self::replicate(0.0)
     }
 }
 
 impl Vector for Vector3 {
     fn zero() -> Self {
-        Vector3 {
-            x: 0.0,
-            y: 0.0,
-            z: 0.0,
-        }
+        Self::replicate(0.0)
     }
     fn one() -> Self {
-        Vector3 {
-            x: 1.0,
-            y: 1.0,
-            z: 1.0,
-        }
+        Self::replicate(1.0)
     }
 
     fn infinity() -> Self {
-        Vector3 {
-            x: f32::INFINITY,
-            y: f32::INFINITY,
-            z: f32::INFINITY,
-        }
+        Self::replicate(f32::INFINITY)
     }
 
     fn nan() -> Self {
-        Vector3 {
-            x: f32::NAN,
-            y: f32::NAN,
-            z: f32::NAN,
-        }
+        Self::replicate(f32::NAN)
     }
 
     fn epsilon() -> Self {
-        Vector3 {
-            x: f32::EPSILON,
-            y: f32::EPSILON,
-            z: f32::EPSILON,
-        }
+        Self::replicate(f32::EPSILON)
     }
 
     fn replicate(value: f32) -> Self {
@@ -382,82 +331,37 @@ impl Vector for Vector3 {
     }
 
     fn splat_x(&self) -> Self {
-        let x = self.x;
-        Vector3 {
-            x: x,
-            y: x,
-            z: x,
-        }
+        Self::replicate(self.x)
     }
     fn splat_y(&self) -> Self {
-        let y = self.y;
-        Vector3 {
-            x: y,
-            y: y,
-            z: y,
-        }
+        Self::replicate(self.y)
     }
     fn splat_z(&self) -> Self {
-        let z = self.z;
-        Vector3 {
-            x: z,
-            y: z,
-            z: z,
-        }
+        Self::replicate(self.z)
     }
     fn splat_w(&self) -> Self {
-        let w = 0.0;
-        Vector3 {
-            x: w,
-            y: w,
-            z: w,
-        }
+        Self::replicate(0.0)
     }
 }
 
 impl Vector for Vector4 {
     fn zero() -> Self {
-        Vector4 {
-            x: 0.0,
-            y: 0.0,
-            z: 0.0,
-            w: 0.0,
-        }
+        Self::replicate(0.0)
     }
     fn one() -> Self {
-        Vector4 {
-            x: 1.0,
-            y: 1.0,
-            z: 1.0,
-            w: 1.0,
-        }
+        Self::replicate(1.0)
     }
 
     fn infinity() -> Self {
-        Vector4 {
-            x: f32::INFINITY,
-            y: f32::INFINITY,
-            z: f32::INFINITY,
-            w: f32::INFINITY,
-        }
+        Self::replicate(f32::INFINITY)
     }
 
     fn nan() -> Self {
-        Vector4 {
-            x: f32::NAN,
-            y: f32::NAN,
-            z: f32::NAN,
-            w: f32::NAN,
-        }
+        Self::replicate(f32::NAN)
     }
 
     fn epsilon() -> Self {
-        Vector4 {
-            x: f32::EPSILON,
-            y: f32::EPSILON,
-            z: f32::EPSILON,
-            w: f32::EPSILON,
-        }
+        Self::replicate(f32::EPSILON)
     }
 
     fn replicate(value: f32) -> Self {
@@ -602,40 +506,16 @@ impl Vector for Vector4 {
     }
 
     fn splat_x(&self) -> Self {
-        let x = self.x;
-        Vector4 {
-            x: x,
-            y: x,
-            z: x,
-            w: x,
-        }
+        Self::replicate(self.x)
     }
     fn splat_y(&self) -> Self {
-        let y = self.y;
-        Vector4 {
-            x: y,
-            y: y,
-            z: y,
-            w: y,
-        }
+        Self::replicate(self.y)
     }
     fn splat_z(&self) -> Self {
-        let z = self.z;
-        Vector4 {
-            x: z,
-            y: z,
-            z: z,
-            w: z,
-        }
+        Self::replicate(self.z)
     }
     fn splat_w(&self) -> Self {
-        let w = self.w;
-        Vector4 {
-            x: w,
-            y: w,
-            z: w,
-            w: w,
-        }
+        Self::replicate(self.w)
     }
 }
 
