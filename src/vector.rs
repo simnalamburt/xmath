@@ -36,6 +36,8 @@ pub trait Vector {
 pub struct Vector2 {
     pub x: f32,
     pub y: f32,
+    z: f32,
+    w: f32,
 }
 
 #[derive(Clone, Copy, PartialEq, Debug)]
@@ -43,6 +45,7 @@ pub struct Vector3 {
     pub x: f32,
     pub y: f32,
     pub z: f32,
+    w: f32,
 }
 
 #[derive(Clone, Copy, PartialEq, Debug)]
@@ -53,131 +56,119 @@ pub struct Vector4 {
     pub w: f32,
 }
 
+impl Vector2 {
+    pub fn new(x: f32, y: f32) -> Self {
+        Vector2 {
+            x: x,
+            y: y,
+            z: 0.0,
+            w: 0.0,
+        }
+    }
+}
+
+impl Vector3 {
+    pub fn new(x: f32, y: f32, z: f32) -> Self {
+        Vector3 {
+            x: x,
+            y: y,
+            z: z,
+            w: 0.0,
+        }
+    }
+}
+
+impl Vector4 {
+    pub fn new(x: f32, y: f32, z: f32, w: f32) -> Self {
+        Vector4 {
+            x: x,
+            y: y,
+            z: z,
+            w: w,
+        }
+    }
+}
+
 impl Vector for Vector2 {
     fn zero() -> Self {
-        Vector2 {
-            x: 0.0,
-            y: 0.0,
-        }
+        Self::replicate(0.0)
     }
 
     fn one() -> Self {
-        Vector2 {
-            x: 1.0,
-            y: 1.0,
-        }
+        Self::replicate(1.0)
     }
 
     fn infinity() -> Self {
-        Vector2 {
-            x: f32::INFINITY,
-            y: f32::INFINITY,
-        }
+        Self::replicate(f32::INFINITY)
     }
 
     fn nan() -> Self {
-        Vector2 {
-            x: f32::NAN,
-            y: f32::NAN,
-        }
+        Self::replicate(f32::NAN)
     }
 
     fn epsilon() -> Self {
-        Vector2 {
-            x: f32::EPSILON,
-            y: f32::EPSILON,
-        }
+        Self::replicate(f32::EPSILON)
     }
 
     fn replicate(value: f32) -> Self {
-        Vector2 {
-            x: value,
-            y: value,
-        }
+        Self::new(value, value)
     }
 
     fn swizzle(&self, e0: usize, e1: usize, _e2: usize, _e3: usize) -> Self {
         assert!(e0 < 4);
         assert!(e1 < 4);
-        Vector2 {
-            x: self[e0],
-            y: self[e1],
-        }
+        Self::new(self[e0], self[e1])
     }
 
     fn permute(&self, other: &Self, permute_x: usize, permute_y: usize, _permute_z: usize, _permute_w: usize) -> Self {
         assert!(permute_x < 8);
         assert!(permute_y < 8);
-        Vector2 {
-            x: if permute_x < 4 { self[permute_x] } else { other[permute_x - 4] },
-            y: if permute_y < 4 { self[permute_y] } else { other[permute_y - 4] },
-        }
+        let x = if permute_x < 4 { self[permute_x] } else { other[permute_x - 4] };
+        let y = if permute_y < 4 { self[permute_y] } else { other[permute_y - 4] };
+        Self::new(x, y)
     }
 
     fn transform(&self, matrix: &Matrix) -> Self {
+        let x = self.splat_x();
+        let y = self.splat_y();
 
-        let x = self.x * matrix[0][0] + self.y * matrix[1][0] + matrix[3][0];
-        let y = self.x * matrix[0][1] + self.y * matrix[1][1] + matrix[3][1];
-        Vector2 {
-            x: x,
-            y: y,
-        }
+        let m0 = Self::from(matrix[0]);
+        let m1 = Self::from(matrix[1]);
+        let m3 = Self::from(matrix[3]);
+
+        x * m0 + y * m1 + m3
     }
 
     fn min(&self, other: &Self) -> Self {
         let x = self.x.min(other.x);
         let y = self.y.min(other.y);
-
-        Vector2 {
-            x: x,
-            y: y,
-        }
+        Self::new(x, y)
     }
     fn max(&self, other: &Self) -> Self {
         let x = self.x.max(other.x);
         let y = self.y.max(other.y);
-
-        Vector2 {
-            x: x,
-            y: y,
-        }
+        Self::new(x, y)
     }
 
     fn round(&self) -> Self {
         let x = self.x.round();
         let y = self.y.round();
-
-        Vector2 {
-            x: x,
-            y: y,
-        }
+        Self::new(x, y)
     }
     fn trunc(&self) -> Self {
         let x = self.x.trunc();
         let y = self.y.trunc();
-
-        Vector2 {
-            x: x,
-            y: y,
-        }
+        Self::new(x, y)
     }
     fn floor(&self) -> Self {
         let x = self.x.floor();
         let y = self.y.floor();
-
-        Vector2 {
-            x: x,
-            y: y,
-        }
+        Self::new(x, y)
     }
     fn ceil(&self) -> Self {
         let x = self.x.ceil();
         let y = self.y.ceil();
-
-        Vector2 {
-            x: x,
-            y: y,
-        }
+        Self::new(x, y)
     }
     fn clamp(&self, min: &Self, max: &Self) -> Self {
         assert!(min.x < max.x);
@@ -190,182 +181,109 @@ impl Vector for Vector2 {
     }
 
     fn splat_x(&self) -> Self {
-        let x = self.x;
-        Vector2 {
-            x: x,
-            y: x,
-        }
+        Self::replicate(self.x)
     }
     fn splat_y(&self) -> Self {
-        let y = self.y;
-        Vector2 {
-            x: y,
-            y: y,
-        }
+        Self::replicate(self.y)
     }
     fn splat_z(&self) -> Self {
-        let z = 0.0;
-        Vector2 {
-            x: z,
-            y: z,
-        }
+        Self::replicate(0.0)
     }
     fn splat_w(&self) -> Self {
-        let w = 0.0;
-        Vector2 {
-            x: w,
-            y: w,
-        }
+        Self::replicate(0.0)
     }
 }
 
 impl Vector for Vector3 {
     fn zero() -> Self {
-        Vector3 {
-            x: 0.0,
-            y: 0.0,
-            z: 0.0,
-        }
+        Self::replicate(0.0)
     }
     fn one() -> Self {
-        Vector3 {
-            x: 1.0,
-            y: 1.0,
-            z: 1.0,
-        }
+        Self::replicate(1.0)
     }
 
     fn infinity() -> Self {
-        Vector3 {
-            x: f32::INFINITY,
-            y: f32::INFINITY,
-            z: f32::INFINITY,
-        }
+        Self::replicate(f32::INFINITY)
     }
 
     fn nan() -> Self {
-        Vector3 {
-            x: f32::NAN,
-            y: f32::NAN,
-            z: f32::NAN,
-        }
+        Self::replicate(f32::NAN)
     }
 
     fn epsilon() -> Self {
-        Vector3 {
-            x: f32::EPSILON,
-            y: f32::EPSILON,
-            z: f32::EPSILON,
-        }
+        Self::replicate(f32::EPSILON)
     }
 
     fn replicate(value: f32) -> Self {
-        Vector3 {
-            x: value,
-            y: value,
-            z: value,
-        }
+        Self::new(value, value, value)
     }
 
     fn swizzle(&self, e0: usize, e1: usize, e2: usize, _e3: usize) -> Self {
         assert!(e0 < 4);
         assert!(e1 < 4);
         assert!(e2 < 4);
-        Vector3 {
-            x: self[e0],
-            y: self[e1],
-            z: self[e2],
-        }
+        Self::new(self[e0], self[e1], self[e2])
     }
 
     fn permute(&self, other: &Self, permute_x: usize, permute_y: usize, permute_z: usize, _permute_w: usize) -> Self {
         assert!(permute_x < 8);
         assert!(permute_y < 8);
         assert!(permute_z < 8);
-        Vector3 {
-            x: if permute_x < 4 { self[permute_x] } else { other[permute_x - 4] },
-            y: if permute_y < 4 { self[permute_y] } else { other[permute_y - 4] },
-            z: if permute_z < 4 { self[permute_z] } else { other[permute_z - 4] },
-        }
+        let x = if permute_x < 4 { self[permute_x] } else { other[permute_x - 4] };
+        let y = if permute_y < 4 { self[permute_y] } else { other[permute_y - 4] };
+        let z = if permute_z < 4 { self[permute_z] } else { other[permute_z - 4] };
+        Self::new(x, y, z)
     }
 
     fn transform(&self, matrix: &Matrix) -> Self {
-        let x = self.x * matrix[0][0] + self.y * matrix[1][0] + self.z * matrix[2][0] + matrix[3][0];
-        let y = self.x * matrix[0][1] + self.y * matrix[1][1] + self.z * matrix[2][1] + matrix[3][1];
-        let z = self.x * matrix[0][2] + self.y * matrix[1][2] + self.z * matrix[2][2] + matrix[3][2];
-        Vector3 {
-            x: x,
-            y: y,
-            z: z,
-        }
+        let x = self.splat_x();
+        let y = self.splat_y();
+        let z = self.splat_z();
+
+        let m0 = Self::from(matrix[0]);
+        let m1 = Self::from(matrix[1]);
+        let m2 = Self::from(matrix[2]);
+        let m3 = Self::from(matrix[3]);
+
+        x * m0 + y * m1 + z * m2 + m3
     }
 
     fn min(&self, other: &Self) -> Self {
         let x = self.x.min(other.x);
         let y = self.y.min(other.y);
         let z = self.z.min(other.z);
-
-        Vector3 {
-            x: x,
-            y: y,
-            z: z,
-        }
+        Self::new(x, y, z)
     }
     fn max(&self, other: &Self) -> Self {
         let x = self.x.max(other.x);
         let y = self.y.max(other.y);
         let z = self.z.max(other.z);
-
-        Vector3 {
-            x: x,
-            y: y,
-            z: z,
-        }
+        Self::new(x, y, z)
     }
 
     fn round(&self) -> Self {
         let x = self.x.round();
         let y = self.y.round();
         let z = self.z.round();
-
-        Vector3 {
-            x: x,
-            y: y,
-            z: z,
-        }
+        Self::new(x, y, z)
     }
     fn trunc(&self) -> Self {
         let x = self.x.trunc();
         let y = self.y.trunc();
         let z = self.z.trunc();
-
-        Vector3 {
-            x: x,
-            y: y,
-            z: z,
-        }
+        Self::new(x, y, z)
     }
     fn floor(&self) -> Self {
         let x = self.x.floor();
         let y = self.y.floor();
         let z = self.z.floor();
-
-        Vector3 {
-            x: x,
-            y: y,
-            z: z,
-        }
+        Self::new(x, y, z)
     }
     fn ceil(&self) -> Self {
         let x = self.x.ceil();
         let y = self.y.ceil();
         let z = self.z.ceil();
-
-        Vector3 {
-            x: x,
-            y: y,
-            z: z,
-        }
+        Self::new(x, y, z)
     }
     fn clamp(&self, min: &Self, max: &Self) -> Self {
         assert!(min.x < max.x);
@@ -379,91 +297,41 @@ impl Vector for Vector3 {
     }
 
     fn splat_x(&self) -> Self {
-        let x = self.x;
-        Vector3 {
-            x: x,
-            y: x,
-            z: x,
-        }
+        Self::replicate(self.x)
     }
     fn splat_y(&self) -> Self {
-        let y = self.y;
-        Vector3 {
-            x: y,
-            y: y,
-            z: y,
-        }
+        Self::replicate(self.y)
     }
     fn splat_z(&self) -> Self {
-        let z = self.z;
-        Vector3 {
-            x: z,
-            y: z,
-            z: z,
-        }
+        Self::replicate(self.z)
     }
     fn splat_w(&self) -> Self {
-        let w = 0.0;
-        Vector3 {
-            x: w,
-            y: w,
-            z: w,
-        }
+        Self::replicate(0.0)
     }
 }
 
 impl Vector for Vector4 {
     fn zero() -> Self {
-        Vector4 {
-            x: 0.0,
-            y: 0.0,
-            z: 0.0,
-            w: 0.0,
-        }
+        Self::replicate(0.0)
     }
     fn one() -> Self {
-        Vector4 {
-            x: 1.0,
-            y: 1.0,
-            z: 1.0,
-            w: 1.0,
-        }
+        Self::replicate(1.0)
     }
 
     fn infinity() -> Self {
-        Vector4 {
-            x: f32::INFINITY,
-            y: f32::INFINITY,
-            z: f32::INFINITY,
-            w: f32::INFINITY,
-        }
+        Self::replicate(f32::INFINITY)
     }
 
     fn nan() -> Self {
-        Vector4 {
-            x: f32::NAN,
-            y: f32::NAN,
-            z: f32::NAN,
-            w: f32::NAN,
-        }
+        Self::replicate(f32::NAN)
     }
 
     fn epsilon() -> Self {
-        Vector4 {
-            x: f32::EPSILON,
-            y: f32::EPSILON,
-            z: f32::EPSILON,
-            w: f32::EPSILON,
-        }
+        Self::replicate(f32::EPSILON)
     }
 
     fn replicate(value: f32) -> Self {
-        Vector4 {
-            x: value,
-            y: value,
-            z: value,
-            w: value,
-        }
+        Self::new(value, value, value, value)
     }
 
     fn swizzle(&self, e0: usize, e1: usize, e2: usize, e3: usize) -> Self {
@@ -471,12 +339,7 @@ impl Vector for Vector4 {
         assert!(e1 < 4);
         assert!(e2 < 4);
         assert!(e3 < 4);
-        Vector4 {
-            x: self[e0],
-            y: self[e1],
-            z: self[e2],
-            w: self[e3],
-        }
+        Self::new(self[e0], self[e1], self[e2], self[e3])
     }
 
     fn permute(&self, other: &Self, permute_x: usize, permute_y: usize, permute_z: usize, permute_w: usize) -> Self {
@@ -484,25 +347,25 @@ impl Vector for Vector4 {
         assert!(permute_y < 8);
         assert!(permute_z < 8);
         assert!(permute_w < 8);
-        Vector4 {
-            x: if permute_x < 4 { self[permute_x] } else { other[permute_x - 4] },
-            y: if permute_y < 4 { self[permute_y] } else { other[permute_y - 4] },
-            z: if permute_z < 4 { self[permute_z] } else { other[permute_z - 4] },
-            w: if permute_w < 4 { self[permute_w] } else { other[permute_w - 4] },
-        }
+        let x = if permute_x < 4 { self[permute_x] } else { other[permute_x - 4] };
+        let y = if permute_y < 4 { self[permute_y] } else { other[permute_y - 4] };
+        let z = if permute_z < 4 { self[permute_z] } else { other[permute_z - 4] };
+        let w = if permute_w < 4 { self[permute_w] } else { other[permute_w - 4] };
+        Self::new(x, y, z, w)
     }
 
     fn transform(&self, matrix: &Matrix) -> Self {
-        let x = self.x * matrix[0][0] + self.y * matrix[1][0] + self.z * matrix[2][0] + self.w * matrix[3][0];
-        let y = self.x * matrix[0][1] + self.y * matrix[1][1] + self.z * matrix[2][1] + self.w * matrix[3][1];
-        let z = self.x * matrix[0][2] + self.y * matrix[1][2] + self.z * matrix[2][2] + self.w * matrix[3][2];
-        let w = self.x * matrix[0][3] + self.y * matrix[1][3] + self.z * matrix[2][3] + self.w * matrix[3][3];
-        Vector4 {
-            x: x,
-            y: y,
-            z: z,
-            w: w,
-        }
+        let x = self.splat_x();
+        let y = self.splat_y();
+        let z = self.splat_z();
+        let w = self.splat_w();
+
+        let m0 = Self::from(matrix[0]);
+        let m1 = Self::from(matrix[1]);
+        let m2 = Self::from(matrix[2]);
+        let m3 = Self::from(matrix[3]);
+
+        x * m0 + y * m1 + z * m2 + w * m3
     }
 
     fn min(&self, other: &Self) -> Self {
@@ -510,26 +373,14 @@ impl Vector for Vector4 {
         let y = self.y.min(other.y);
         let z = self.z.min(other.z);
         let w = self.w.min(other.w);
-
-        Vector4 {
-            x: x,
-            y: y,
-            z: z,
-            w: w,
-        }
+        Self::new(x, y, z, w)
     }
     fn max(&self, other: &Self) -> Self {
         let x = self.x.max(other.x);
         let y = self.y.max(other.y);
         let z = self.z.max(other.z);
         let w = self.w.max(other.w);
-
-        Vector4 {
-            x: x,
-            y: y,
-            z: z,
-            w: w,
-        }
+        Self::new(x, y, z, w)
     }
 
     fn round(&self) -> Self {
@@ -537,52 +388,28 @@ impl Vector for Vector4 {
         let y = self.y.round();
         let z = self.z.round();
         let w = self.w.round();
-
-        Vector4 {
-            x: x,
-            y: y,
-            z: z,
-            w: w,
-        }
+        Self::new(x, y, z, w)
     }
     fn trunc(&self) -> Self {
         let x = self.x.trunc();
         let y = self.y.trunc();
         let z = self.z.trunc();
         let w = self.w.trunc();
-
-        Vector4 {
-            x: x,
-            y: y,
-            z: z,
-            w: w,
-        }
+        Self::new(x, y, z, w)
     }
     fn floor(&self) -> Self {
         let x = self.x.floor();
         let y = self.y.floor();
         let z = self.z.floor();
         let w = self.w.floor();
-
-        Vector4 {
-            x: x,
-            y: y,
-            z: z,
-            w: w,
-        }
+        Self::new(x, y, z, w)
     }
     fn ceil(&self) -> Self {
         let x = self.x.ceil();
         let y = self.y.ceil();
         let z = self.z.ceil();
         let w = self.w.ceil();
-
-        Vector4 {
-            x: x,
-            y: y,
-            z: z,
-            w: w,
-        }
+        Self::new(x, y, z, w)
     }
     fn clamp(&self, min: &Self, max: &Self) -> Self {
         assert!(min.x < max.x);
@@ -598,40 +425,16 @@ impl Vector for Vector4 {
     }
 
     fn splat_x(&self) -> Self {
-        let x = self.x;
-        Vector4 {
-            x: x,
-            y: x,
-            z: x,
-            w: x,
-        }
+        Self::replicate(self.x)
     }
     fn splat_y(&self) -> Self {
-        let y = self.y;
-        Vector4 {
-            x: y,
-            y: y,
-            z: y,
-            w: y,
-        }
+        Self::replicate(self.y)
     }
     fn splat_z(&self) -> Self {
-        let z = self.z;
-        Vector4 {
-            x: z,
-            y: z,
-            z: z,
-            w: z,
-        }
+        Self::replicate(self.z)
     }
     fn splat_w(&self) -> Self {
-        let w = self.w;
-        Vector4 {
-            x: w,
-            y: w,
-            z: w,
-            w: w,
-        }
+        Self::replicate(self.w)
     }
 }
 
@@ -640,10 +443,7 @@ impl Add for Vector2 {
     fn add(self, rhs: Vector2) -> Self::Output {
         let x = self.x + rhs.x;
         let y = self.y + rhs.y;
-        Vector2 {
-            x: x,
-            y: y,
-        }
+        Self::new(x, y)
     }
 }
 impl Sub for Vector2 {
@@ -651,10 +451,7 @@ impl Sub for Vector2 {
     fn sub(self, rhs: Vector2) -> Self::Output {
         let x = self.x - rhs.x;
         let y = self.y - rhs.y;
-        Vector2 {
-            x: x,
-            y: y,
-        }
+        Self::new(x, y)
     }
 }
 impl Div for Vector2 {
@@ -662,10 +459,7 @@ impl Div for Vector2 {
     fn div(self, rhs: Vector2) -> Self::Output {
         let x = self.x / rhs.x;
         let y = self.y / rhs.y;
-        Vector2 {
-            x: x,
-            y: y,
-        }
+        Self::new(x, y)
     }
 }
 impl Mul for Vector2 {
@@ -673,10 +467,7 @@ impl Mul for Vector2 {
     fn mul(self, rhs: Vector2) -> Self::Output {
         let x = self.x * rhs.x;
         let y = self.y * rhs.y;
-        Vector2 {
-            x: x,
-            y: y,
-        }
+        Self::new(x, y)
     }
 }
 
@@ -687,11 +478,7 @@ impl Add for Vector3 {
         let x = self.x + rhs.x;
         let y = self.y + rhs.y;
         let z = self.z + rhs.z;
-        Vector3 {
-            x: x,
-            y: y,
-            z: z,
-        }
+        Self::new(x, y, z)
     }
 }
 impl Sub for Vector3 {
@@ -700,11 +487,7 @@ impl Sub for Vector3 {
         let x = self.x - rhs.x;
         let y = self.y - rhs.y;
         let z = self.z - rhs.z;
-        Vector3 {
-            x: x,
-            y: y,
-            z: z,
-        }
+        Self::new(x, y, z)
     }
 }
 impl Div for Vector3 {
@@ -713,11 +496,7 @@ impl Div for Vector3 {
         let x = self.x / rhs.x;
         let y = self.y / rhs.y;
         let z = self.z / rhs.z;
-        Vector3 {
-            x: x,
-            y: y,
-            z: z,
-        }
+        Self::new(x, y, z)
     }
 }
 impl Mul for Vector3 {
@@ -726,11 +505,7 @@ impl Mul for Vector3 {
         let x = self.x * rhs.x;
         let y = self.y * rhs.y;
         let z = self.z * rhs.z;
-        Vector3 {
-            x: x,
-            y: y,
-            z: z,
-        }
+        Self::new(x, y, z)
     }
 }
 
@@ -741,12 +516,7 @@ impl Add for Vector4 {
         let y = self.y + rhs.y;
         let z = self.z + rhs.z;
         let w = self.w + rhs.w;
-        Vector4 {
-            x: x,
-            y: y,
-            z: z,
-            w: w,
-        }
+        Self::new(x, y, z, w)
     }
 }
 impl Sub for Vector4 {
@@ -756,12 +526,7 @@ impl Sub for Vector4 {
         let y = self.y - rhs.y;
         let z = self.z - rhs.z;
         let w = self.w - rhs.w;
-        Vector4 {
-            x: x,
-            y: y,
-            z: z,
-            w: w,
-        }
+        Self::new(x, y, z, w)
     }
 }
 impl Mul for Vector4 {
@@ -771,12 +536,7 @@ impl Mul for Vector4 {
         let y = self.y * rhs.y;
         let z = self.z * rhs.z;
         let w = self.w * rhs.w;
-        Vector4 {
-            x: x,
-            y: y,
-            z: z,
-            w: w,
-        }
+        Self::new(x, y, z, w)
     }
 }
 impl Div for Vector4 {
@@ -786,12 +546,7 @@ impl Div for Vector4 {
         let y = self.y / rhs.y;
         let z = self.z / rhs.z;
         let w = self.w / rhs.w;
-        Vector4 {
-            x: x,
-            y: y,
-            z: z,
-            w: w,
-        }
+        Self::new(x, y, z, w)
     }
 }
 
@@ -800,10 +555,7 @@ impl Mul<f32> for Vector2 {
     fn mul(self, rhs: f32) -> Self::Output {
         let x = self.x * rhs;
         let y = self.y * rhs;
-        Vector2 {
-            x: x,
-            y: y,
-        }
+        Self::new(x, y)
     }
 }
 impl Mul<f32> for Vector3 {
@@ -812,11 +564,7 @@ impl Mul<f32> for Vector3 {
         let x = self.x * rhs;
         let y = self.y * rhs;
         let z = self.z * rhs;
-        Vector3 {
-            x: x,
-            y: y,
-            z: z,
-        }
+        Self::new(x, y, z)
     }
 }
 impl Mul<f32> for Vector4 {
@@ -826,12 +574,7 @@ impl Mul<f32> for Vector4 {
         let y = self.y * rhs;
         let z = self.z * rhs;
         let w = self.w * rhs;
-        Vector4 {
-            x: x,
-            y: y,
-            z: z,
-            w: w,
-        }
+        Self::new(x, y, z, w)
     }
 }
 
@@ -840,10 +583,7 @@ impl Neg for Vector2 {
     fn neg(self) -> Self::Output {
         let x = -self.x;
         let y = -self.y;
-        Vector2 {
-            x: x,
-            y: y,
-        }
+        Self::new(x, y)
     }
 }
 impl Neg for Vector3 {
@@ -852,11 +592,7 @@ impl Neg for Vector3 {
         let x = -self.x;
         let y = -self.y;
         let z = -self.z;
-        Vector3 {
-            x: x,
-            y: y,
-            z: z,
-        }
+        Self::new(x, y, z)
     }
 }
 impl Neg for Vector4 {
@@ -866,12 +602,7 @@ impl Neg for Vector4 {
         let y = -self.y;
         let z = -self.z;
         let w = -self.w;
-        Vector4 {
-            x: x,
-            y: y,
-            z: z,
-            w: w,
-        }
+        Self::new(x, y, z, w)
     }
 }
 
@@ -911,5 +642,24 @@ impl Index<usize> for Vector4 {
             3 => &self.w,
             _ => panic!("index must be between 0~3, but {}", index),
         }
+    }
+}
+
+
+impl From<Row> for Vector2 {
+    fn from(row: Row) -> Self {
+        Self::new(row[0], row[1])
+    }
+}
+
+impl From<Row> for Vector3 {
+    fn from(row: Row) -> Self {
+        Self::new(row[0], row[1], row[2])
+    }
+}
+
+impl From<Row> for Vector4 {
+    fn from(row: Row) -> Self {
+        Self::new(row[0], row[1], row[2], row[3])
     }
 }

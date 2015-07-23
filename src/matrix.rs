@@ -4,8 +4,10 @@ use std::mem::zeroed;
 use std::ops::*;
 use glium::uniforms::*;
 
+pub type Row = [f32; 4];
+
 #[derive(PartialEq, Clone, Debug)]
-pub struct Matrix { m: [[f32; 4]; 4] }
+pub struct Matrix { m: [Row; 4] }
 
 impl Matrix {
     pub fn zero() -> Self { unsafe { zeroed() } }

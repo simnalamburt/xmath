@@ -4,6 +4,43 @@ use std::f32;
 use xmath::{Vector, Vector2, Vector3, Vector4, Matrix};
 
 #[test]
+fn new_vector2() {
+    let x = 1.2;
+    let y = 3.4;
+    let v = Vector2::new(x, y);
+
+    assert_eq!(v.x, x);
+    assert_eq!(v.y, y);
+}
+
+#[test]
+fn new_vector3() {
+    let x = 1.2;
+    let y = 3.4;
+    let z = 5.6;
+    let v = Vector3::new(x, y, z);
+
+    assert_eq!(v.x, x);
+    assert_eq!(v.y, y);
+    assert_eq!(v.z, z);
+}
+
+#[test]
+fn new_vector4() {
+    let x = 1.2;
+    let y = 3.4;
+    let z = 4.6;
+    let w = 7.8;
+    let v = Vector4::new(x, y, z, w);
+
+    assert_eq!(v.x, x);
+    assert_eq!(v.y, y);
+    assert_eq!(v.z, z);
+    assert_eq!(v.w, w);
+}
+
+
+#[test]
 fn zero_of_vector2() {
     let v = Vector2::zero();
 
@@ -157,6 +194,108 @@ fn replicate_of_vector4() {
 }
 
 #[test]
+fn from_matrix_to_vector2() {
+    let matrix = Matrix::new(
+        2.0, 3.0, 5.0, 7.0,
+        11.0, 13.0, 17.0, 19.0,
+        23.0, 29.0, 31.0, 37.0,
+        41.0, 43.0, 47.0, 53.0,
+    );
+
+    let row0 = matrix[0];
+    let v0 = Vector2::from(row0);
+    assert_eq!(v0.x, matrix[0][0]);
+    assert_eq!(v0.y, matrix[0][1]);
+
+    let row1 = matrix[1];
+    let v1 = Vector2::from(row1);
+    assert_eq!(v1.x, matrix[1][0]);
+    assert_eq!(v1.y, matrix[1][1]);
+
+    let row2 = matrix[2];
+    let v2 = Vector2::from(row2);
+    assert_eq!(v2.x, matrix[2][0]);
+    assert_eq!(v2.y, matrix[2][1]);
+
+    let row3 = matrix[3];
+    let v3 = Vector2::from(row3);
+    assert_eq!(v3.x, matrix[3][0]);
+    assert_eq!(v3.y, matrix[3][1]);
+}
+
+#[test]
+fn from_matrix_to_vector3() {
+    let matrix = Matrix::new(
+        2.0, 3.0, 5.0, 7.0,
+        11.0, 13.0, 17.0, 19.0,
+        23.0, 29.0, 31.0, 37.0,
+        41.0, 43.0, 47.0, 53.0,
+    );
+
+    let row0 = matrix[0];
+    let v0 = Vector3::from(row0);
+    assert_eq!(v0.x, matrix[0][0]);
+    assert_eq!(v0.y, matrix[0][1]);
+    assert_eq!(v0.z, matrix[0][2]);
+
+    let row1 = matrix[1];
+    let v1 = Vector3::from(row1);
+    assert_eq!(v1.x, matrix[1][0]);
+    assert_eq!(v1.y, matrix[1][1]);
+    assert_eq!(v1.z, matrix[1][2]);
+
+    let row2 = matrix[2];
+    let v2 = Vector3::from(row2);
+    assert_eq!(v2.x, matrix[2][0]);
+    assert_eq!(v2.y, matrix[2][1]);
+    assert_eq!(v2.z, matrix[2][2]);
+
+    let row3 = matrix[3];
+    let v3 = Vector3::from(row3);
+    assert_eq!(v3.x, matrix[3][0]);
+    assert_eq!(v3.y, matrix[3][1]);
+    assert_eq!(v3.z, matrix[3][2]);
+}
+
+#[test]
+fn from_matrix_to_vector4() {
+    let matrix = Matrix::new(
+        2.0, 3.0, 5.0, 7.0,
+        11.0, 13.0, 17.0, 19.0,
+        23.0, 29.0, 31.0, 37.0,
+        41.0, 43.0, 47.0, 53.0,
+    );
+
+    let row0 = matrix[0];
+    let v0 = Vector4::from(row0);
+    assert_eq!(v0.x, matrix[0][0]);
+    assert_eq!(v0.y, matrix[0][1]);
+    assert_eq!(v0.z, matrix[0][2]);
+    assert_eq!(v0.w, matrix[0][3]);
+
+    let row1 = matrix[1];
+    let v1 = Vector4::from(row1);
+    assert_eq!(v1.x, matrix[1][0]);
+    assert_eq!(v1.y, matrix[1][1]);
+    assert_eq!(v1.z, matrix[1][2]);
+    assert_eq!(v1.w, matrix[1][3]);
+
+    let row2 = matrix[2];
+    let v2 = Vector4::from(row2);
+    assert_eq!(v2.x, matrix[2][0]);
+    assert_eq!(v2.y, matrix[2][1]);
+    assert_eq!(v2.z, matrix[2][2]);
+    assert_eq!(v2.w, matrix[2][3]);
+
+    let row3 = matrix[3];
+    let v3 = Vector4::from(row3);
+    assert_eq!(v3.x, matrix[3][0]);
+    assert_eq!(v3.y, matrix[3][1]);
+    assert_eq!(v3.z, matrix[3][2]);
+    assert_eq!(v3.w, matrix[3][3]);
+}
+
+#[test]
 fn transform_vector2() {
     let matrix = Matrix::new(
         2.0, 3.0, 5.0, 7.0,
@@ -165,10 +304,7 @@ fn transform_vector2() {
         41.0, 43.0, 47.0, 53.0,
     );
 
-    let origin = Vector2 {
-        x: 100.0,
-        y: 10000.0,
-    };
+    let origin = Vector2::new(100.0, 10000.0);
 
     let transformed = origin.transform(&matrix);
 
@@ -185,11 +321,7 @@ fn transform_vector3() {
         41.0, 43.0, 47.0, 53.0,
     );
 
-    let origin = Vector3 {
-        x: 100.0,
-        y: 10000.0,
-        z: 1000000.0,
-    };
+    let origin = Vector3::new(100.0, 10000.0, 1000000.0);
 
     let transformed = origin.transform(&matrix);
 
@@ -207,12 +339,7 @@ fn transform_vector4() {
         41.0, 43.0, 47.0, 53.0,
     );
 
-    let origin = Vector4 {
-        x: 1.0,
-        y: 100.0,
-        z: 10000.0,
-        w: 1000000.0,
-    };
+    let origin = Vector4::new(1.0, 100.0, 10000.0, 1000000.0);
 
     let transformed = origin.transform(&matrix);
 
@@ -224,14 +351,8 @@ fn transform_vector4() {
 
 #[test]
 fn min_of_vector2() {
-    let v1 = Vector2 {
-        x: 1.9,
-        y: -41.5,
-    };
-    let v2 = Vector2 {
-        x: 14.9,
-        y: 1.3,
-    };
+    let v1 = Vector2::new(1.9, -41.5);
+    let v2 = Vector2::new(14.9, 1.3);
     let v3 = v1.min(&v2);
 
     assert_eq!(v1.x.min(v2.x), v3.x);
@@ -239,16 +360,8 @@ fn min_of_vector2() {
 }
 #[test]
 fn min_of_vector3() {
-    let v1 = Vector3 {
-        x: 1.9,
-        y: 2.0,
-        z: -3.0,
-    };
-    let v2 = Vector3 {
-        x: 1.9,
-        y: -45.5,
-        z: 43.43,
-    };
+    let v1 = Vector3::new(1.9, 2.0, -3.0);
+    let v2 = Vector3::new(1.9, -45.5, 43.43);
     let v3 = v1.min(&v2);
 
     assert_eq!(v1.x.min(v2.x), v3.x);
@@ -257,18 +370,8 @@ fn min_of_vector3() {
 }
 #[test]
 fn min_of_vector4() {
-    let v1 = Vector4 {
-        x: 1.9,
-        y: 2.3,
-        z: -3.1,
-        w: -16.7,
-    };
-    let v2 = Vector4 {
-        x: 1.9,
-        y: -45.5,
-        z: 43.43,
-        w: -43.43,
-    };
+    let v1 = Vector4::new(1.9, 2.3, -3.1, -16.7);
+    let v2 = Vector4::new(1.9, -45.5, 43.43, -43.43);
     let v3 = v1.min(&v2);
 
     assert_eq!(v1.x.min(v2.x), v3.x);
@@ -279,14 +382,8 @@ fn min_of_vector4() {
 
 #[test]
 fn max_of_vector2() {
-    let v1 = Vector2 {
-        x: 1.9,
-        y: -41.5,
-    };
-    let v2 = Vector2 {
-        x: 14.9,
-        y: 1.3,
-    };
+    let v1 = Vector2::new(1.9, -41.5);
+    let v2 = Vector2::new(14.9, 1.3);
     let v3 = v1.max(&v2);
 
     assert_eq!(v1.x.max(v2.x), v3.x);
@@ -294,16 +391,8 @@ fn max_of_vector2() {
 }
 #[test]
 fn max_of_vector3() {
-    let v1 = Vector3 {
-        x: 1.9,
-        y: 2.0,
-        z: -3.0,
-    };
-    let v2 = Vector3 {
-        x: 1.9,
-        y: -45.5,
-        z: 43.43,
-    };
+    let v1 = Vector3::new(1.9, 2.0, -3.0);
+    let v2 = Vector3::new(1.9, -45.5, 43.43);
     let v3 = v1.max(&v2);
 
     assert_eq!(v1.x.max(v2.x), v3.x);
@@ -312,18 +401,8 @@ fn max_of_vector3() {
 }
 #[test]
 fn max_of_vector4() {
-    let v1 = Vector4 {
-        x: 1.9,
-        y: 2.3,
-        z: -3.1,
-        w: -16.7,
-    };
-    let v2 = Vector4 {
-        x: 1.9,
-        y: -45.5,
-        z: 43.43,
-        w: -43.43,
-    };
+    let v1 = Vector4::new(1.9, 2.3, -3.1, -16.7);
+    let v2 = Vector4::new(1.9, -45.5, 43.43, -43.43);
     let v3 = v1.max(&v2);
 
     assert_eq!(v1.x.max(v2.x), v3.x);
@@ -334,10 +413,7 @@ fn max_of_vector4() {
 
 #[test]
 fn round_of_vector2() {
-    let v1 = Vector2 {
-        x: 1.9,
-        y: -41.5,
-    };
+    let v1 = Vector2::new(1.9, -41.5);
     let v2 = v1.round();
 
     assert_eq!(v1.x.round(), v2.x);
@@ -345,11 +421,7 @@ fn round_of_vector2() {
 }
 #[test]
 fn round_of_vector3() {
-    let v1 = Vector3 {
-        x: 1.9,
-        y: 2.0,
-        z: -3.0,
-    };
+    let v1 = Vector3::new(1.9, 2.0, -3.0);
     let v2 = v1.round();
 
     assert_eq!(v1.x.round(), v2.x);
@@ -358,12 +430,7 @@ fn round_of_vector3() {
 }
 #[test]
 fn round_of_vector4() {
-    let v1 = Vector4 {
-        x: 1.9,
-        y: 2.3,
-        z: -3.1,
-        w: -16.7,
-    };
+    let v1 = Vector4::new(1.9, 2.3, -3.1, -16.7);
     let v2 = v1.round();
 
     assert_eq!(v1.x.round(), v2.x);
@@ -374,10 +441,7 @@ fn round_of_vector4() {
 
 #[test]
 fn trunc_of_vector2() {
-    let v1 = Vector2 {
-        x: 1.9,
-        y: -41.5,
-    };
+    let v1 = Vector2::new(1.9, -41.5);
     let v2 = v1.trunc();
 
     assert_eq!(v1.x.trunc(), v2.x);
@@ -385,11 +449,7 @@ fn trunc_of_vector2() {
 }
 #[test]
 fn trunc_of_vector3() {
-    let v1 = Vector3 {
-        x: 1.9,
-        y: 2.0,
-        z: -3.0,
-    };
+    let v1 = Vector3::new(1.9, 2.0, -3.0);
     let v2 = v1.trunc();
 
     assert_eq!(v1.x.trunc(), v2.x);
@@ -398,12 +458,7 @@ fn trunc_of_vector3() {
 }
 #[test]
 fn trunc_of_vector4() {
-    let v1 = Vector4 {
-        x: 1.9,
-        y: 2.3,
-        z: -3.1,
-        w: -16.7,
-    };
+    let v1 = Vector4::new(1.9, 2.3, -3.1, -16.7);
     let v2 = v1.trunc();
 
     assert_eq!(v1.x.trunc(), v2.x);
@@ -414,10 +469,7 @@ fn trunc_of_vector4() {
 
 #[test]
 fn floor_of_vector2() {
-    let v1 = Vector2 {
-        x: 1.9,
-        y: -41.5,
-    };
+    let v1 = Vector2::new(1.9, -41.5);
     let v2 = v1.floor();
 
     assert_eq!(v1.x.floor(), v2.x);
@@ -425,11 +477,7 @@ fn floor_of_vector2() {
 }
 #[test]
 fn floor_of_vector3() {
-    let v1 = Vector3 {
-        x: 1.9,
-        y: 2.0,
-        z: -3.0,
-    };
+    let v1 = Vector3::new(1.9, 2.0, -3.0);
     let v2 = v1.floor();
 
     assert_eq!(v1.x.floor(), v2.x);
@@ -438,12 +486,7 @@ fn floor_of_vector3() {
 }
 #[test]
 fn floor_of_vector4() {
-    let v1 = Vector4 {
-        x: 1.9,
-        y: 2.3,
-        z: -3.1,
-        w: -16.7,
-    };
+    let v1 = Vector4::new(1.9, 2.3, -3.1, -16.7);
     let v2 = v1.floor();
 
     assert_eq!(v1.x.floor(), v2.x);
@@ -454,10 +497,7 @@ fn floor_of_vector4() {
 
 #[test]
 fn ceil_of_vector2() {
-    let v1 = Vector2 {
-        x: 1.9,
-        y: -41.5,
-    };
+    let v1 = Vector2::new(1.9, -41.5);
     let v2 = v1.ceil();
 
     assert_eq!(v1.x.ceil(), v2.x);
@@ -465,11 +505,7 @@ fn ceil_of_vector2() {
 }
 #[test]
 fn ceil_of_vector3() {
-    let v1 = Vector3 {
-        x: 1.9,
-        y: 2.0,
-        z: -3.0,
-    };
+    let v1 = Vector3::new(1.9, 2.0, -3.0);
     let v2 = v1.ceil();
 
     assert_eq!(v1.x.ceil(), v2.x);
@@ -478,12 +514,7 @@ fn ceil_of_vector3() {
 }
 #[test]
 fn ceil_of_vector4() {
-    let v1 = Vector4 {
-        x: 1.9,
-        y: 2.3,
-        z: -3.1,
-        w: -16.7,
-    };
+    let v1 = Vector4::new(1.9, 2.3, -3.1, -16.7);
     let v2 = v1.ceil();
 
     assert_eq!(v1.x.ceil(), v2.x);
@@ -494,18 +525,9 @@ fn ceil_of_vector4() {
 
 #[test]
 fn clamp_of_vector2() {
-    let v1 = Vector2 {
-        x: 1.9,
-        y: -41.5,
-    };
-    let v2 = Vector2 {
-        x: -41.9,
-        y: -4.5,
-    };
-    let v3 = Vector2 {
-        x: 1.9,
-        y: 4.5,
-    };
+    let v1 = Vector2::new(1.9, -41.5);
+    let v2 = Vector2::new(-41.9, -4.5);
+    let v3 = Vector2::new(1.9, 4.5);
     let v4 = v1.clamp(&v2, &v3);
 
     assert_eq!(v4.x, 1.9);
@@ -513,21 +535,9 @@ fn clamp_of_vector2() {
 }
 #[test]
 fn clamp_of_vector3() {
-    let v1 = Vector3 {
-        x: 1.9,
-        y: 2.0,
-        z: -3.0,
-    };
-    let v2 = Vector3 {
-        x: -41.9,
-        y: -4.5,
-        z: -34.5,
-    };
-    let v3 = Vector3 {
-        x: 3.7,
-        y: 4.5,
-        z: 4.5,
-    };
+    let v1 = Vector3::new(1.9, 2.0, -3.0);
+    let v2 = Vector3::new(-41.9, -4.5, -34.5);
+    let v3 = Vector3::new(3.7, 4.5, 4.5);
     let v4 = v1.clamp(&v2, &v3);
 
     assert_eq!(v4.x, 1.9);
@@ -536,24 +546,9 @@ fn clamp_of_vector3() {
 }
 #[test]
 fn clamp_of_vector4() {
-    let v1 = Vector4 {
-        x: 1.9,
-        y: 2.3,
-        z: -3.1,
-        w: -16.7,
-    };
-    let v2 = Vector4 {
-        x: -41.9,
-        y: -4.5,
-        z: -34.5,
-        w: 4.5,
-    };
-    let v3 = Vector4 {
-        x: 3.7,
-        y: 4.5,
-        z: 44.0,
-        w: 54.0,
-    };
+    let v1 = Vector4::new(1.9, 2.3, -3.1, -16.7);
+    let v2 = Vector4::new(-41.9, -4.5, -34.5, 4.5);
+    let v3 = Vector4::new(3.7, 4.5, 44.0, 54.0);
     let v4 = v1.clamp(&v2, &v3);
 
     assert_eq!(v4.x, 1.9);
@@ -564,10 +559,7 @@ fn clamp_of_vector4() {
 
 #[test]
 fn splat_x_of_vector2() {
-    let vector2 = Vector2 {
-        x: 1.0,
-        y: 2.0,
-    };
+    let vector2 = Vector2::new(1.0, 2.0);
     let splatted = vector2.splat_x();
 
     assert_eq!(splatted.x, vector2.x);
@@ -576,10 +568,7 @@ fn splat_x_of_vector2() {
 
 #[test]
 fn splat_y_of_vector2() {
-    let vector2 = Vector2 {
-        x: 1.0,
-        y: 2.0,
-    };
+    let vector2 = Vector2::new(1.0, 2.0);
     let splatted = vector2.splat_y();
 
     assert_eq!(splatted.x, vector2.y);
@@ -588,10 +577,7 @@ fn splat_y_of_vector2() {
 
 #[test]
 fn splat_z_of_vector2_fills_zero() {
-    let vector2 = Vector2 {
-        x: 1.0,
-        y: 2.0,
-    };
+    let vector2 = Vector2::new(1.0, 2.0);
     let splatted = vector2.splat_z();
 
     assert_eq!(splatted.x, 0.0);
@@ -600,10 +586,7 @@ fn splat_z_of_vector2_fills_zero() {
 
 #[test]
 fn splat_w_of_vector2_fills_zero() {
-    let vector2 = Vector2 {
-        x: 1.0,
-        y: 2.0,
-    };
+    let vector2 = Vector2::new(1.0, 2.0);
     let splatted = vector2.splat_w();
 
     assert_eq!(splatted.x, 0.0);
@@ -612,11 +595,7 @@ fn splat_w_of_vector2_fills_zero() {
 
 #[test]
 fn splat_x_of_vector3() {
-    let vector3 = Vector3 {
-        x: 1.0,
-        y: 2.0,
-        z: 3.0,
-    };
+    let vector3 = Vector3::new(1.0, 2.0, 3.0);
     let splatted = vector3.splat_x();
 
     assert_eq!(splatted.x, vector3.x);
@@ -626,11 +605,7 @@ fn splat_x_of_vector3() {
 
 #[test]
 fn splat_y_of_vector3() {
-    let vector3 = Vector3 {
-        x: 1.0,
-        y: 2.0,
-        z: 3.0,
-    };
+    let vector3 = Vector3::new(1.0, 2.0, 3.0);
     let splatted = vector3.splat_y();
 
     assert_eq!(splatted.x, vector3.y);
@@ -640,11 +615,7 @@ fn splat_y_of_vector3() {
 
 #[test]
 fn splat_z_of_vector3() {
-    let vector3 = Vector3 {
-        x: 1.0,
-        y: 2.0,
-        z: 3.0,
-    };
+    let vector3 = Vector3::new(1.0, 2.0, 3.0);
     let splatted = vector3.splat_z();
 
     assert_eq!(splatted.x, vector3.z);
@@ -654,11 +625,7 @@ fn splat_z_of_vector3() {
 
 #[test]
 fn splat_w_of_vector3_fills_zero() {
-    let vector3 = Vector3 {
-        x: 1.0,
-        y: 2.0,
-        z: 3.0,
-    };
+    let vector3 = Vector3::new(1.0, 2.0, 3.0);
     let splatted = vector3.splat_w();
 
     assert_eq!(splatted.x, 0.0);
@@ -668,12 +635,7 @@ fn splat_w_of_vector3_fills_zero() {
 
 #[test]
 fn splat_x_of_vector4() {
-    let vector4 = Vector4 {
-        x: 1.0,
-        y: 2.0,
-        z: 3.0,
-        w: 4.0,
-    };
+    let vector4 = Vector4::new(1.0, 2.0, 3.0, 4.0);
     let splatted = vector4.splat_x();
 
     assert_eq!(splatted.x, vector4.x);
@@ -684,12 +646,7 @@ fn splat_x_of_vector4() {
 
 #[test]
 fn splat_y_of_vector4() {
-    let vector4 = Vector4 {
-        x: 1.0,
-        y: 2.0,
-        z: 3.0,
-        w: 4.0,
-    };
+    let vector4 = Vector4::new(1.0, 2.0, 3.0, 4.0);
     let splatted = vector4.splat_y();
 
     assert_eq!(splatted.x, vector4.y);
@@ -700,12 +657,7 @@ fn splat_y_of_vector4() {
 
 #[test]
 fn splat_z_of_vector4() {
-    let vector4 = Vector4 {
-        x: 1.0,
-        y: 2.0,
-        z: 3.0,
-        w: 4.0,
-    };
+    let vector4 = Vector4::new(1.0, 2.0, 3.0, 4.0);
     let splatted = vector4.splat_z();
 
     assert_eq!(splatted.x, vector4.z);
@@ -716,12 +668,7 @@ fn splat_z_of_vector4() {
 
 #[test]
 fn splat_w_of_vector4() {
-    let vector4 = Vector4 {
-        x: 1.0,
-        y: 2.0,
-        z: 3.0,
-        w: 4.0,
-    };
+    let vector4 = Vector4::new(1.0, 2.0, 3.0, 4.0);
     let splatted = vector4.splat_w();
 
     assert_eq!(splatted.x, vector4.w);
@@ -733,11 +680,7 @@ fn splat_w_of_vector4() {
 
 #[test]
 fn neg_for_vector2() {
-    let v1 = Vector2 {
-        x: 10.0,
-        y: 11.0,
-    };
-
+    let v1 = Vector2::new(10.0, 11.0);
     let v = -v1;
 
     assert_eq!(v.x, -v1.x);
@@ -745,11 +688,7 @@ fn neg_for_vector2() {
 }
 #[test]
 fn neg_for_vector3() {
-    let v1 = Vector3 {
-        x: 10.0,
-        y: 11.0,
-        z: 12.0,
-    };
+    let v1 = Vector3::new(10.0, 11.0, 12.0);
 
     let v = -v1;
 
@@ -759,12 +698,7 @@ fn neg_for_vector3() {
 }
 #[test]
 fn neg_for_vector4() {
-    let v1 = Vector4 {
-        x: 10.0,
-        y: 11.0,
-        z: 12.0,
-        w: 13.0,
-    };
+    let v1 = Vector4::new(10.0, 11.0, 12.0, 13.0);
 
     let v = -v1;
 
@@ -776,14 +710,8 @@ fn neg_for_vector4() {
 
 #[test]
 fn add_for_vector2() {
-    let v1 = Vector2 {
-        x: 10.0,
-        y: 11.0,
-    };
-    let v2 = Vector2 {
-        x: 100.0,
-        y: 200.0,
-    };
+    let v1 = Vector2::new(10.0, 11.0);
+    let v2 = Vector2::new(100.0, 200.0);
 
     let v = v1 + v2;
 
@@ -792,16 +720,8 @@ fn add_for_vector2() {
 }
 #[test]
 fn add_for_vector3() {
-    let v1 = Vector3 {
-        x: 10.0,
-        y: 11.0,
-        z: 12.0,
-    };
-    let v2 = Vector3 {
-        x: 100.0,
-        y: 200.0,
-        z: 300.0,
-    };
+    let v1 = Vector3::new(10.0, 11.0, 12.0);
+    let v2 = Vector3::new(100.0, 200.0, 300.0);
 
     let v = v1 + v2;
 
@@ -811,18 +731,8 @@ fn add_for_vector3() {
 }
 #[test]
 fn add_for_vector4() {
-    let v1 = Vector4 {
-        x: 10.0,
-        y: 11.0,
-        z: 12.0,
-        w: 13.0,
-    };
-    let v2 = Vector4 {
-        x: 100.0,
-        y: 200.0,
-        z: 300.0,
-        w: 400.0,
-    };
+    let v1 = Vector4::new(10.0, 11.0, 12.0, 13.0);
+    let v2 = Vector4::new(100.0, 200.0, 300.0, 400.0);
 
     let v = v1 + v2;
 
@@ -834,14 +744,8 @@ fn add_for_vector4() {
 
 #[test]
 fn sub_for_vector2() {
-    let v1 = Vector2 {
-        x: 10.0,
-        y: 11.0,
-    };
-    let v2 = Vector2 {
-        x: 100.0,
-        y: 200.0,
-    };
+    let v1 = Vector2::new(10.0, 11.0);
+    let v2 = Vector2::new(100.0, 200.0);
 
     let v = v1 - v2;
 
@@ -850,16 +754,8 @@ fn sub_for_vector2() {
 }
 #[test]
 fn sub_for_vector3() {
-    let v1 = Vector3 {
-        x: 10.0,
-        y: 11.0,
-        z: 12.0,
-    };
-    let v2 = Vector3 {
-        x: 100.0,
-        y: 200.0,
-        z: 300.0,
-    };
+    let v1 = Vector3::new(10.0, 11.0, 12.0);
+    let v2 = Vector3::new(100.0, 200.0, 300.0);
 
     let v = v1 - v2;
 
@@ -869,18 +765,8 @@ fn sub_for_vector3() {
 }
 #[test]
 fn sub_for_vector4() {
-    let v1 = Vector4 {
-        x: 10.0,
-        y: 11.0,
-        z: 12.0,
-        w: 13.0,
-    };
-    let v2 = Vector4 {
-        x: 100.0,
-        y: 200.0,
-        z: 300.0,
-        w: 400.0,
-    };
+    let v1 = Vector4::new(10.0, 11.0, 12.0, 13.0);
+    let v2 = Vector4::new(100.0, 200.0, 300.0, 400.0);
 
     let v = v1 - v2;
 
@@ -892,14 +778,8 @@ fn sub_for_vector4() {
 
 #[test]
 fn div_for_vector2() {
-    let v1 = Vector2 {
-        x: 10.0,
-        y: 11.0,
-    };
-    let v2 = Vector2 {
-        x: 100.0,
-        y: 200.0,
-    };
+    let v1 = Vector2::new(10.0, 11.0);
+    let v2 = Vector2::new(100.0, 200.0);
 
     let v = v1 / v2;
 
@@ -908,16 +788,8 @@ fn div_for_vector2() {
 }
 #[test]
 fn div_for_vector3() {
-    let v1 = Vector3 {
-        x: 10.0,
-        y: 11.0,
-        z: 12.0,
-    };
-    let v2 = Vector3 {
-        x: 100.0,
-        y: 200.0,
-        z: 300.0,
-    };
+    let v1 = Vector3::new(10.0, 11.0, 12.0);
+    let v2 = Vector3::new(100.0, 200.0, 300.0);
 
     let v = v1 / v2;
 
@@ -927,18 +799,8 @@ fn div_for_vector3() {
 }
 #[test]
 fn div_for_vector4() {
-    let v1 = Vector4 {
-        x: 10.0,
-        y: 11.0,
-        z: 12.0,
-        w: 13.0,
-    };
-    let v2 = Vector4 {
-        x: 100.0,
-        y: 200.0,
-        z: 300.0,
-        w: 400.0,
-    };
+    let v1 = Vector4::new(10.0, 11.0, 12.0, 13.0);
+    let v2 = Vector4::new(100.0, 200.0, 300.0, 400.0);
 
     let v = v1 / v2;
 
@@ -950,10 +812,7 @@ fn div_for_vector4() {
 
 #[test]
 fn scale_for_vector2() {
-    let v1 = Vector2 {
-        x: 10.0,
-        y: 11.0,
-    };
+    let v1 = Vector2::new(10.0, 11.0);
 
     let scale_factor = 5.3;
 
@@ -964,11 +823,7 @@ fn scale_for_vector2() {
 }
 #[test]
 fn scale_for_vector3() {
-    let v1 = Vector3 {
-        x: 10.0,
-        y: 11.0,
-        z: 12.0,
-    };
+    let v1 = Vector3::new(10.0, 11.0, 12.0);
 
     let scale_factor = 5.3;
 
@@ -980,12 +835,7 @@ fn scale_for_vector3() {
 }
 #[test]
 fn scale_for_vector4() {
-    let v1 = Vector4 {
-        x: 10.0,
-        y: 11.0,
-        z: 12.0,
-        w: 13.0,
-    };
+    let v1 = Vector4::new(10.0, 11.0, 12.0, 13.0);
 
     let scale_factor = 5.3;
 
@@ -999,14 +849,8 @@ fn scale_for_vector4() {
 
 #[test]
 fn mul_for_vector2() {
-    let v1 = Vector2 {
-        x: 10.0,
-        y: 11.0,
-    };
-    let v2 = Vector2 {
-        x: 100.0,
-        y: 200.0,
-    };
+    let v1 = Vector2::new(10.0, 11.0);
+    let v2 = Vector2::new(100.0, 200.0);
 
     let v = v1 * v2;
 
@@ -1015,16 +859,8 @@ fn mul_for_vector2() {
 }
 #[test]
 fn mul_for_vector3() {
-    let v1 = Vector3 {
-        x: 10.0,
-        y: 11.0,
-        z: 12.0,
-    };
-    let v2 = Vector3 {
-        x: 100.0,
-        y: 200.0,
-        z: 300.0,
-    };
+    let v1 = Vector3::new(10.0, 11.0, 12.0);
+    let v2 = Vector3::new(100.0, 200.0, 300.0);
 
     let v = v1 * v2;
 
@@ -1034,18 +870,8 @@ fn mul_for_vector3() {
 }
 #[test]
 fn mul_for_vector4() {
-    let v1 = Vector4 {
-        x: 10.0,
-        y: 11.0,
-        z: 12.0,
-        w: 13.0,
-    };
-    let v2 = Vector4 {
-        x: 100.0,
-        y: 200.0,
-        z: 300.0,
-        w: 400.0,
-    };
+    let v1 = Vector4::new(10.0, 11.0, 12.0, 13.0);
+    let v2 = Vector4::new(100.0, 200.0, 300.0, 400.0);
 
     let v = v1 * v2;
 
@@ -1057,18 +883,9 @@ fn mul_for_vector4() {
 
 #[test]
 fn multiply_add_for_vector2() {
-    let v1 = Vector2 {
-        x: 1.0,
-        y: 2.0,
-    };
-    let v2 = Vector2 {
-        x: 10.0,
-        y: 11.0,
-    };
-    let v3 = Vector2 {
-        x: 100.0,
-        y: 200.0,
-    };
+    let v1 = Vector2::new(1.0, 2.0);
+    let v2 = Vector2::new(10.0, 11.0);
+    let v3 = Vector2::new(100.0, 200.0);
 
     let v = v1.multiply_add(&v2, &v3);
 
@@ -1078,21 +895,9 @@ fn multiply_add_for_vector2() {
 
 #[test]
 fn multiply_add_for_vector3() {
-    let v1 = Vector3 {
-        x: 1.0,
-        y: 2.0,
-        z: 3.0,
-    };
-    let v2 = Vector3 {
-        x: 10.0,
-        y: 11.0,
-        z: 12.0,
-    };
-    let v3 = Vector3 {
-        x: 100.0,
-        y: 200.0,
-        z: 300.0,
-    };
+    let v1 = Vector3::new(1.0, 2.0, 3.0);
+    let v2 = Vector3::new(10.0, 11.0, 12.0);
+    let v3 = Vector3::new(100.0, 200.0, 300.0);
 
     let v = v1.multiply_add(&v2, &v3);
 
@@ -1103,24 +908,9 @@ fn multiply_add_for_vector3() {
 
 #[test]
 fn multiply_add_for_vector4() {
-    let v1 = Vector4 {
-        x: 1.0,
-        y: 2.0,
-        z: 3.0,
-        w: 4.0,
-    };
-    let v2 = Vector4 {
-        x: 10.0,
-        y: 11.0,
-        z: 12.0,
-        w: 13.0,
-    };
-    let v3 = Vector4 {
-        x: 100.0,
-        y: 200.0,
-        z: 300.0,
-        w: 400.0,
-    };
+    let v1 = Vector4::new(1.0, 2.0, 3.0, 4.0);
+    let v2 = Vector4::new(10.0, 11.0, 12.0, 13.0);
+    let v3 = Vector4::new(100.0, 200.0, 300.0, 400.0);
 
     let v = v1.multiply_add(&v2, &v3);
 
@@ -1132,165 +922,100 @@ fn multiply_add_for_vector4() {
 
 #[test]
 fn index_0_for_vector2_is_x() {
-    let v = Vector2 {
-        x: 1.32,
-        y: 23.3,
-    };
+    let v = Vector2::new(1.32, 23.3);
     assert_eq!(v.x, v[0]);
 }
 
 #[test]
 fn index_1_for_vector2_is_y() {
-    let v = Vector2 {
-        x: 1.32,
-        y: 23.3,
-    };
+    let v = Vector2::new(1.32, 23.3);
     assert_eq!(v.y, v[1]);
 }
 
 #[test]
 fn index_2_for_vector2_is_0() {
-    let v = Vector2 {
-        x: 1.32,
-        y: 23.3,
-    };
+    let v = Vector2::new(1.32, 23.3);
     assert_eq!(0.0, v[2]);
 }
 
 #[test]
 fn index_3_for_vector2_is_0() {
-    let v = Vector2 {
-        x: 1.32,
-        y: 23.3,
-    };
+    let v = Vector2::new(1.32, 23.3);
     assert_eq!(0.0, v[3]);
 }
 
 #[test]
 #[should_panic]
 fn index_4_for_vector2_should_fail() {
-    let v = Vector2 {
-        x: 1.32,
-        y: 23.3,
-    };
+    let v = Vector2::new(1.32, 23.3);
     let _ = v[4];
 }
 
 #[test]
 fn index_0_for_vector3_is_x() {
-    let v = Vector3 {
-        x: 1.32,
-        y: 23.3,
-        z: -45.4,
-    };
+    let v = Vector3::new(1.32, 23.3, -45.4);
     assert_eq!(v.x, v[0]);
 }
 
 #[test]
 fn index_1_for_vector3_is_y() {
-    let v = Vector3 {
-        x: 1.32,
-        y: 23.3,
-        z: -45.4,
-    };
+    let v = Vector3::new(1.32, 23.3, -45.4);
     assert_eq!(v.y, v[1]);
 }
 
 #[test]
 fn index_2_for_vector3_is_z() {
-    let v = Vector3 {
-        x: 1.32,
-        y: 23.3,
-        z: -45.4,
-    };
+    let v = Vector3::new(1.32, 23.3, -45.4);
     assert_eq!(v.z, v[2]);
 }
 
 #[test]
 fn index_3_for_vector3_is_0() {
-    let v = Vector3 {
-        x: 1.32,
-        y: 23.3,
-        z: -45.4,
-    };
+    let v = Vector3::new(1.32, 23.3, -45.4);
     assert_eq!(0.0, v[3]);
 }
 
 #[test]
 #[should_panic]
 fn index_4_for_vector3_should_fail() {
-    let v = Vector3 {
-        x: 1.32,
-        y: 23.3,
-        z: -45.4,
-    };
+    let v = Vector3::new(1.32, 23.3, -45.4);
     let _ = v[4];
 }
 
 #[test]
 fn index_0_for_vector4_is_x() {
-    let v = Vector4 {
-        x: 1.32,
-        y: 23.3,
-        z: -45.4,
-        w: -53.4,
-    };
+    let v = Vector4::new(1.32, 23.3, -45.4, -53.4);
     assert_eq!(v.x, v[0]);
 }
 
 #[test]
 fn index_1_for_vector4_is_y() {
-    let v = Vector4 {
-        x: 1.32,
-        y: 23.3,
-        z: -45.4,
-        w: -53.4,
-    };
+    let v = Vector4::new(1.32, 23.3, -45.4, -53.4);
     assert_eq!(v.y, v[1]);
 }
 
 #[test]
 fn index_2_for_vector4_is_z() {
-    let v = Vector4 {
-        x: 1.32,
-        y: 23.3,
-        z: -45.4,
-        w: -53.4,
-    };
+    let v = Vector4::new(1.32, 23.3, -45.4, -53.4);
     assert_eq!(v.z, v[2]);
 }
 
 #[test]
 fn index_3_for_vector4_is_w() {
-    let v = Vector4 {
-        x: 1.32,
-        y: 23.3,
-        z: -45.4,
-        w: -53.4,
-    };
+    let v = Vector4::new(1.32, 23.3, -45.4, -53.4);
     assert_eq!(v.w, v[3]);
 }
 
 #[test]
 #[should_panic]
 fn index_4_for_vector4_should_fail() {
-    let v = Vector4 {
-        x: 1.32,
-        y: 23.3,
-        z: -45.4,
-        w: -53.4,
-    };
+    let v = Vector4::new(1.32, 23.3, -45.4, -53.4);
     let _ = v[4];
 }
 
 #[test]
 fn swizzle_of_vector4() {
-    let v1 = Vector4 {
-        x: 1.32,
-        y: 23.3,
-        z: -45.4,
-        w: -53.4,
-    };
+    let v1 = Vector4::new(1.32, 23.3, -45.4, -53.4);
     let v2 = v1.swizzle(1, 3, 0, 2);
 
     assert_eq!(v2[0], v1[1]);
@@ -1302,47 +1027,27 @@ fn swizzle_of_vector4() {
 #[test]
 #[should_panic]
 fn swizzle_of_vector4_should_fail_when_e0_is_more_than_3() {
-    let v1 = Vector4 {
-        x: 1.32,
-        y: 23.3,
-        z: -45.4,
-        w: -53.4,
-    };
+    let v1 = Vector4::new(1.32, 23.3, -45.4, -53.4);
     let _ = v1.swizzle(4, 3, 0, 2);
 }
 
 #[test]
 #[should_panic]
 fn swizzle_of_vector4_should_fail_when_e1_is_more_than_3() {
-    let v1 = Vector4 {
-        x: 1.32,
-        y: 23.3,
-        z: -45.4,
-        w: -53.4,
-    };
+    let v1 = Vector4::new(1.32, 23.3, -45.4, -53.4);
     let _ = v1.swizzle(1, 4, 0, 2);
 }
 
 #[test]
 #[should_panic]
 fn swizzle_of_vector4_should_fail_when_e2_is_more_than_3() {
-    let v1 = Vector4 {
-        x: 1.32,
-        y: 23.3,
-        z: -45.4,
-        w: -53.4,
-    };
+    let v1 = Vector4::new(1.32, 23.3, -45.4, -53.4);
     let _ = v1.swizzle(1, 3, 4, 2);
 }
 
 #[test]
 #[should_panic]
 fn swizzle_of_vector4_should_fail_when_e3_is_more_than_3() {
-    let v1 = Vector4 {
-        x: 1.32,
-        y: 23.3,
-        z: -45.4,
-        w: -53.4,
-    };
+    let v1 = Vector4::new(1.32, 23.3, -45.4, -53.4);
     let _ = v1.swizzle(1, 3, 0, 4);
 }
