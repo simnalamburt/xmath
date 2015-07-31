@@ -1,7 +1,7 @@
 [package]
 name = "xmath"
 version = "0.1.1"
-authors = ["Hyeon Kim <simnalamburt@gmail.com>"]
+authors = ["Seulgi Kim <dev@seulgi.kim>", "Hyeon Kim <simnalamburt@gmail.com>"]
 
 description   = "Rust port for DirectXMath"
 homepage      = "https://github.com/simnalamburt/xmath"
