@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Vector2` struct in crate `xmath`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Vector2">
+
+    <title>xmath::Vector2 - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='index.html'>xmath</a></p><script>window.sidebarCurrent = {name: 'Vector2', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>xmath</a>::<wbr><a class='struct' href=''>Vector2</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-210' class='srclink' href='../src/xmath/src/vector.rs.html#36-41' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct Vector2 {
+    pub x: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f32.html'>f32</a>,
+    pub y: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f32.html'>f32</a>,
+    // some fields omitted
+}</pre><h2 class='fields'>Fields</h2>
+<table><tr class='stab '>
+                             <td id='structfield.x'><code>x</code></td><td></td></tr><tr class='stab '>
+                             <td id='structfield.y'><code>y</code></td><td></td></tr></table><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../xmath/struct.Vector2.html' title='xmath::Vector2'>Vector2</a></code></h3><div class='impl-items'><h4 id='method.new' class='method'><code>fn <a href='#method.new' class='fnname'>new</a>(x: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f32.html'>f32</a>, y: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f32.html'>f32</a>) -&gt; Self</code></h4>
+</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl <a class='trait' href='../xmath/trait.Vector.html' title='xmath::Vector'>Vector</a> for <a class='struct' href='../xmath/struct.Vector2.html' title='xmath::Vector2'>Vector2</a></code></h3><div class='impl-items'><h4 id='method.zero' class='method'><code>fn <a href='../xmath/trait.Vector.html#tymethod.zero' class='fnname'>zero</a>() -&gt; Self</code></h4>
+<h4 id='method.one' class='method'><code>fn <a href='../xmath/trait.Vector.html#tymethod.one' class='fnname'>one</a>() -&gt; Self</code></h4>
+<h4 id='method.infinity' class='method'><code>fn <a href='../xmath/trait.Vector.html#tymethod.infinity' class='fnname'>infinity</a>() -&gt; Self</code></h4>
+<h4 id='method.nan' class='method'><code>fn <a href='../xmath/trait.Vector.html#tymethod.nan' class='fnname'>nan</a>() -&gt; Self</code></h4>
+<h4 id='method.epsilon' class='method'><code>fn <a href='../xmath/trait.Vector.html#tymethod.epsilon' class='fnname'>epsilon</a>() -&gt; Self</code></h4>
+<h4 id='method.replicate' class='method'><code>fn <a href='../xmath/trait.Vector.html#tymethod.replicate' class='fnname'>replicate</a>(value: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f32.html'>f32</a>) -&gt; Self</code></h4>
+<h4 id='method.swizzle' class='method'><code>fn <a href='../xmath/trait.Vector.html#tymethod.swizzle' class='fnname'>swizzle</a>(&amp;self, e0: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>, e1: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>, _e2: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>, _e3: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>) -&gt; Self</code></h4>
+<h4 id='method.permute' class='method'><code>fn <a href='../xmath/trait.Vector.html#tymethod.permute' class='fnname'>permute</a>(&amp;self, other: &amp;Self, permute_x: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>, permute_y: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>, _permute_z: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>, _permute_w: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>) -&gt; Self</code></h4>
+<h4 id='method.transform' class='method'><code>fn <a href='../xmath/trait.Vector.html#tymethod.transform' class='fnname'>transform</a>(&amp;self, matrix: &amp;<a class='struct' href='../xmath/struct.Matrix.html' title='xmath::Matrix'>Matrix</a>) -&gt; Self</code></h4>
+<h4 id='method.min' class='method'><code>fn <a href='../xmath/trait.Vector.html#tymethod.min' class='fnname'>min</a>(&amp;self, other: &amp;Self) -&gt; Self</code></h4>
+<h4 id='method.max' class='method'><code>fn <a href='../xmath/trait.Vector.html#tymethod.max' class='fnname'>max</a>(&amp;self, other: &amp;Self) -&gt; Self</code></h4>
+<h4 id='method.round' class='method'><code>fn <a href='../xmath/trait.Vector.html#tymethod.round' class='fnname'>round</a>(&amp;self) -&gt; Self</code></h4>
+<h4 id='method.trunc' class='method'><code>fn <a href='../xmath/trait.Vector.html#tymethod.trunc' class='fnname'>trunc</a>(&amp;self) -&gt; Self</code></h4>
+<h4 id='method.floor' class='method'><code>fn <a href='../xmath/trait.Vector.html#tymethod.floor' class='fnname'>floor</a>(&amp;self) -&gt; Self</code></h4>
+<h4 id='method.ceil' class='method'><code>fn <a href='../xmath/trait.Vector.html#tymethod.ceil' class='fnname'>ceil</a>(&amp;self) -&gt; Self</code></h4>
+<h4 id='method.clamp' class='method'><code>fn <a href='../xmath/trait.Vector.html#tymethod.clamp' class='fnname'>clamp</a>(&amp;self, min: &amp;Self, max: &amp;Self) -&gt; Self</code></h4>
+<h4 id='method.multiply_add' class='method'><code>fn <a href='../xmath/trait.Vector.html#tymethod.multiply_add' class='fnname'>multiply_add</a>(&amp;self, mul: &amp;Self, add: &amp;Self) -&gt; Self</code></h4>
+<h4 id='method.splat_x' class='method'><code>fn <a href='../xmath/trait.Vector.html#tymethod.splat_x' class='fnname'>splat_x</a>(&amp;self) -&gt; Self</code></h4>
+<h4 id='method.splat_y' class='method'><code>fn <a href='../xmath/trait.Vector.html#tymethod.splat_y' class='fnname'>splat_y</a>(&amp;self) -&gt; Self</code></h4>
+<h4 id='method.splat_z' class='method'><code>fn <a href='../xmath/trait.Vector.html#tymethod.splat_z' class='fnname'>splat_z</a>(&amp;self) -&gt; Self</code></h4>
+<h4 id='method.splat_w' class='method'><code>fn <a href='../xmath/trait.Vector.html#tymethod.splat_w' class='fnname'>splat_w</a>(&amp;self) -&gt; Self</code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Add.html' title='core::ops::Add'>Add</a> for <a class='struct' href='../xmath/struct.Vector2.html' title='xmath::Vector2'>Vector2</a></code></h3><div class='impl-items'><h4 id='associatedtype.Output' class='type'><code>type <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Add.html#associatedtype.Output' class='type'>Output</a> = Self</code></h4>
+<h4 id='method.add' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Add.html#tymethod.add' class='fnname'>add</a>(self, rhs: <a class='struct' href='../xmath/struct.Vector2.html' title='xmath::Vector2'>Vector2</a>) -&gt; Self::<a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Add.html' title='core::ops::Add'>Output</a></code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.AddAssign.html' title='core::ops::AddAssign'>AddAssign</a> for <a class='struct' href='../xmath/struct.Vector2.html' title='xmath::Vector2'>Vector2</a></code></h3><div class='impl-items'><h4 id='method.add_assign' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/trait.AddAssign.html#tymethod.add_assign' class='fnname'>add_assign</a>(&amp;mut self, rhs: Self)</code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Sub.html' title='core::ops::Sub'>Sub</a> for <a class='struct' href='../xmath/struct.Vector2.html' title='xmath::Vector2'>Vector2</a></code></h3><div class='impl-items'><h4 id='associatedtype.Output-1' class='type'><code>type <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Sub.html#associatedtype.Output' class='type'>Output</a> = Self</code></h4>
+<h4 id='method.sub' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Sub.html#tymethod.sub' class='fnname'>sub</a>(self, rhs: <a class='struct' href='../xmath/struct.Vector2.html' title='xmath::Vector2'>Vector2</a>) -&gt; Self::<a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Sub.html' title='core::ops::Sub'>Output</a></code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.SubAssign.html' title='core::ops::SubAssign'>SubAssign</a> for <a class='struct' href='../xmath/struct.Vector2.html' title='xmath::Vector2'>Vector2</a></code></h3><div class='impl-items'><h4 id='method.sub_assign' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/trait.SubAssign.html#tymethod.sub_assign' class='fnname'>sub_assign</a>(&amp;mut self, rhs: Self)</code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Div.html' title='core::ops::Div'>Div</a> for <a class='struct' href='../xmath/struct.Vector2.html' title='xmath::Vector2'>Vector2</a></code></h3><div class='impl-items'><h4 id='associatedtype.Output-2' class='type'><code>type <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Div.html#associatedtype.Output' class='type'>Output</a> = Self</code></h4>
+<h4 id='method.div' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Div.html#tymethod.div' class='fnname'>div</a>(self, rhs: <a class='struct' href='../xmath/struct.Vector2.html' title='xmath::Vector2'>Vector2</a>) -&gt; Self::<a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Div.html' title='core::ops::Div'>Output</a></code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.DivAssign.html' title='core::ops::DivAssign'>DivAssign</a> for <a class='struct' href='../xmath/struct.Vector2.html' title='xmath::Vector2'>Vector2</a></code></h3><div class='impl-items'><h4 id='method.div_assign' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/trait.DivAssign.html#tymethod.div_assign' class='fnname'>div_assign</a>(&amp;mut self, rhs: Self)</code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Div.html' title='core::ops::Div'>Div</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f32.html'>f32</a>&gt; for <a class='struct' href='../xmath/struct.Vector2.html' title='xmath::Vector2'>Vector2</a></code></h3><div class='impl-items'><h4 id='associatedtype.Output-3' class='type'><code>type <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Div.html#associatedtype.Output' class='type'>Output</a> = Self</code></h4>
+<h4 id='method.div-1' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Div.html#tymethod.div' class='fnname'>div</a>(self, rhs: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f32.html'>f32</a>) -&gt; Self::<a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Div.html' title='core::ops::Div'>Output</a></code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.DivAssign.html' title='core::ops::DivAssign'>DivAssign</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f32.html'>f32</a>&gt; for <a class='struct' href='../xmath/struct.Vector2.html' title='xmath::Vector2'>Vector2</a></code></h3><div class='impl-items'><h4 id='method.div_assign-1' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/trait.DivAssign.html#tymethod.div_assign' class='fnname'>div_assign</a>(&amp;mut self, rhs: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f32.html'>f32</a>)</code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Mul.html' title='core::ops::Mul'>Mul</a> for <a class='struct' href='../xmath/struct.Vector2.html' title='xmath::Vector2'>Vector2</a></code></h3><div class='impl-items'><h4 id='associatedtype.Output-4' class='type'><code>type <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Mul.html#associatedtype.Output' class='type'>Output</a> = Self</code></h4>
+<h4 id='method.mul' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Mul.html#tymethod.mul' class='fnname'>mul</a>(self, rhs: <a class='struct' href='../xmath/struct.Vector2.html' title='xmath::Vector2'>Vector2</a>) -&gt; Self::<a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Mul.html' title='core::ops::Mul'>Output</a></code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.MulAssign.html' title='core::ops::MulAssign'>MulAssign</a> for <a class='struct' href='../xmath/struct.Vector2.html' title='xmath::Vector2'>Vector2</a></code></h3><div class='impl-items'><h4 id='method.mul_assign' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/trait.MulAssign.html#tymethod.mul_assign' class='fnname'>mul_assign</a>(&amp;mut self, rhs: Self)</code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Mul.html' title='core::ops::Mul'>Mul</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f32.html'>f32</a>&gt; for <a class='struct' href='../xmath/struct.Vector2.html' title='xmath::Vector2'>Vector2</a></code></h3><div class='impl-items'><h4 id='associatedtype.Output-5' class='type'><code>type <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Mul.html#associatedtype.Output' class='type'>Output</a> = Self</code></h4>
+<h4 id='method.mul-1' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Mul.html#tymethod.mul' class='fnname'>mul</a>(self, rhs: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f32.html'>f32</a>) -&gt; Self::<a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Mul.html' title='core::ops::Mul'>Output</a></code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.MulAssign.html' title='core::ops::MulAssign'>MulAssign</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f32.html'>f32</a>&gt; for <a class='struct' href='../xmath/struct.Vector2.html' title='xmath::Vector2'>Vector2</a></code></h3><div class='impl-items'><h4 id='method.mul_assign-1' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/trait.MulAssign.html#tymethod.mul_assign' class='fnname'>mul_assign</a>(&amp;mut self, rhs: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f32.html'>f32</a>)</code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Neg.html' title='core::ops::Neg'>Neg</a> for <a class='struct' href='../xmath/struct.Vector2.html' title='xmath::Vector2'>Vector2</a></code></h3><div class='impl-items'><h4 id='associatedtype.Output-6' class='type'><code>type <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Neg.html#associatedtype.Output' class='type'>Output</a> = Self</code></h4>
+<h4 id='method.neg' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Neg.html#tymethod.neg' class='fnname'>neg</a>(self) -&gt; Self::<a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Neg.html' title='core::ops::Neg'>Output</a></code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Index.html' title='core::ops::Index'>Index</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>&gt; for <a class='struct' href='../xmath/struct.Vector2.html' title='xmath::Vector2'>Vector2</a></code></h3><div class='impl-items'><h4 id='associatedtype.Output-7' class='type'><code>type <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Index.html#associatedtype.Output' class='type'>Output</a> = <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f32.html'>f32</a></code></h4>
+<h4 id='method.index' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Index.html#tymethod.index' class='fnname'>index</a>&lt;'a&gt;(&amp;'a self, index: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>) -&gt; &amp;'a Self::<a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Index.html' title='core::ops::Index'>Output</a></code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/convert/trait.From.html' title='core::convert::From'>From</a>&lt;Row&gt; for <a class='struct' href='../xmath/struct.Vector2.html' title='xmath::Vector2'>Vector2</a></code></h3><div class='impl-items'><h4 id='method.from' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/convert/trait.From.html#tymethod.from' class='fnname'>from</a>(row: Row) -&gt; Self</code></h4>
+</div><h3 id='derived_implementations'>Derived Implementations </h3><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='struct' href='../xmath/struct.Vector2.html' title='xmath::Vector2'>Vector2</a></code></h3><div class='impl-items'><h4 id='method.fmt' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html' title='core::cmp::PartialEq'>PartialEq</a> for <a class='struct' href='../xmath/struct.Vector2.html' title='xmath::Vector2'>Vector2</a></code></h3><div class='impl-items'><h4 id='method.eq' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#tymethod.eq' class='fnname'>eq</a>(&amp;self, __arg_0: &amp;<a class='struct' href='../xmath/struct.Vector2.html' title='xmath::Vector2'>Vector2</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.ne' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#method.ne' class='fnname'>ne</a>(&amp;self, __arg_0: &amp;<a class='struct' href='../xmath/struct.Vector2.html' title='xmath::Vector2'>Vector2</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Copy.html' title='core::marker::Copy'>Copy</a> for <a class='struct' href='../xmath/struct.Vector2.html' title='xmath::Vector2'>Vector2</a></code></h3><div class='impl-items'></div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> for <a class='struct' href='../xmath/struct.Vector2.html' title='xmath::Vector2'>Vector2</a></code></h3><div class='impl-items'><h4 id='method.clone' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class='struct' href='../xmath/struct.Vector2.html' title='xmath::Vector2'>Vector2</a></code></h4>
+<h4 id='method.clone_from' class='method'><span class="since">1.0.0</span><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code></h4>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "xmath";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../jquery.js"></script>
+    <script src="../main.js"></script>
+    
+    <script defer src="../search-index.js"></script>
+</body>
+</html>

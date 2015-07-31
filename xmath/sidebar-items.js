@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Matrix",""],["Vector2",""],["Vector3",""],["Vector4",""]],"trait":[["Vector",""]]});
