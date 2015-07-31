@@ -1,7 +1,7 @@
 The BSD 2-Clause License
 --------------------------------------------------------------------------------
 
-Copyright (c) 2015, Hyeon Kim
+Copyright (c) 2015, Hyeon Kim and Seulgi Kim
 
 All rights reserved.
 
