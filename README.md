@@ -8,6 +8,7 @@ xmath = "0.2"
 ```
 
 Glium support
+--------
 
 **xmath** supports [glium][] out of the box.
 
