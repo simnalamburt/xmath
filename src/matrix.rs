@@ -1,8 +1,5 @@
-extern crate glium;
-
 use std::mem::zeroed;
 use std::ops::*;
-use glium::uniforms::*;
 
 pub type Row = [f32; 4];
 
@@ -201,15 +198,22 @@ impl<'a, 'b> Mul<&'a Matrix> for &'b Matrix {
     }
 }
 
-impl AsUniformValue for Matrix {
-    fn as_uniform_value(&self) -> UniformValue<'static> {
-        UniformValue::Mat4(self.m)
-    }
-}
-
 impl Index<usize> for Matrix {
     type Output = [f32;4];
     fn index<'a>(&'a self, index: usize) -> &'a Self::Output {
         &self.m[index]
+    }
+}
+
+
+#[cfg(feature = "glium-support")]
+mod glium_support {
+    use super::Matrix;
+    use glium::uniforms::{AsUniformValue, UniformValue};
+
+    impl AsUniformValue for Matrix {
+        fn as_uniform_value(&self) -> UniformValue<'static> {
+            UniformValue::Mat4(self.m)
+        }
     }
 }

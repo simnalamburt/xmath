@@ -14,5 +14,8 @@ description   = """
 Rust port of Microsoft DirectXMath
 """
 
+[features]
+glium-support = ["glium"]
+
 [dependencies]
-glium = { version = "0.8.2", default-features = false }
+glium = { version = "0.8.2", default-features = false, optional = true }

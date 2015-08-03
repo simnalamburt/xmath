@@ -7,6 +7,13 @@ os:
   - linux
   - osx
 
+env:
+  - FLAGS=
+  - FLAGS="--features glium-support"
+script:
+  - cargo build $(echo $FLAGS)
+  - cargo test  $(echo $FLAGS)
+
 
 notifications:
   irc:
