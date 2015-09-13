@@ -205,6 +205,11 @@ impl Index<usize> for Matrix {
     }
 }
 
+/// glium_text support
+impl Into<[[f32; 4]; 4]> for Matrix {
+    fn into(self) -> [[f32; 4]; 4] { self.m }
+}
+
 
 #[cfg(feature = "glium-support")]
 mod glium_support {
