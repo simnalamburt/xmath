@@ -193,6 +193,34 @@ fn replicate_of_vector4() {
     assert_eq!(v.w, value);
 }
 
+#[test]
+fn dot_of_vector2() {
+    let v1 = Vector2::new(1.1, 2.2);
+    let v2 = Vector2::new(5.5, 6.6);
+
+    let f = v1.dot(v2);
+
+    assert_eq!(f, 1.1*5.5 + 2.2*6.6);
+}
+#[test]
+fn dot_of_vector3() {
+    let v1 = Vector3::new(1.1, 2.2, 3.3);
+    let v2 = Vector3::new(5.5, 6.6, 7.7);
+
+    let f = v1.dot(v2);
+
+    assert_eq!(f, 1.1*5.5 + 2.2*6.6 + 3.3*7.7);
+}
+#[test]
+fn dot_of_vector4() {
+    let v1 = Vector4::new(1.1, 2.2, 3.3, 4.4);
+    let v2 = Vector4::new(5.5, 6.6, 7.7, 8.8);
+
+    let f = v1.dot(v2);
+
+    assert_eq!(f, 1.1*5.5 + 2.2*6.6 + 3.3*7.7 + 4.4*8.8);
+}
+
 // TODO: Test swizzle of vector2 and vector3
 #[test]
 fn swizzle_of_vector4() {
