@@ -1,6 +1,6 @@
-use matrix::*;
 use std::f32;
 use std::ops::*;
+use matrix::{Matrix, Row};
 
 pub trait Vector {
     fn zero() -> Self;
