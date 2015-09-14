@@ -26,6 +26,18 @@ fn new_vector3() {
 }
 
 #[test]
+fn cross_product() {
+    let a = Vector3::new(1.0, 2.0, 3.0);
+    let b = Vector3::new(4.0, 5.0, 6.0);
+
+    let c = a.cross(b);
+
+    assert_eq!(c.x, -3.0);
+    assert_eq!(c.y,  6.0);
+    assert_eq!(c.z, -3.0);
+}
+
+#[test]
 fn new_vector4() {
     let x = 1.2;
     let y = 3.4;
