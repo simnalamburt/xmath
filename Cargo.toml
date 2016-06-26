@@ -18,4 +18,4 @@ Rust port of Microsoft DirectXMath
 glium-support = ["glium"]
 
 [dependencies]
-glium = { version = "0.8.2", default-features = false, optional = true }
+glium = { version = "0.14.0", default-features = false, optional = true }
