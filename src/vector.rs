@@ -699,6 +699,29 @@ impl Mul<Vector4> for f32 {
     }
 }
 
+impl MulAssign<f32> for Vector2 {
+    fn mul_assign(&mut self, rhs: f32) {
+        self.x *= rhs;
+        self.y *= rhs;
+    }
+}
+impl MulAssign<f32> for Vector3 {
+    fn mul_assign(&mut self, rhs: f32) {
+        self.x *= rhs;
+        self.y *= rhs;
+        self.z *= rhs;
+    }
+}
+impl MulAssign<f32> for Vector4 {
+    fn mul_assign(&mut self, rhs: f32) {
+        self.x *= rhs;
+        self.y *= rhs;
+        self.z *= rhs;
+        self.w *= rhs;
+    }
+}
+
+
 impl Neg for Vector2 {
     type Output = Vector2;
     fn neg(self) -> Self::Output {
