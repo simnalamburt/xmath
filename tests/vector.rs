@@ -233,6 +233,36 @@ fn dot_of_vector4() {
     assert_eq!(f, 1.1*5.5 + 2.2*6.6 + 3.3*7.7 + 4.4*8.8);
 }
 
+#[test]
+fn length_sq() {
+    let v = Vector2::new(3.0, 4.0);
+
+    let f = v.length_sq();
+
+    assert_eq!(f, 25.0);
+}
+
+#[test]
+fn length() {
+    let v = Vector2::new(3.0, 4.0);
+
+    let f = v.length();
+
+    assert_eq!(f, 5.0);
+}
+
+#[test]
+fn normalize() {
+    let v = Vector4::new(0.0, 100.0, 0.0, 0.0);
+
+    let v = v.normalize();
+
+    assert_eq!(v.x, 0.0);
+    assert_eq!(v.y, 1.0);
+    assert_eq!(v.z, 0.0);
+    assert_eq!(v.w, 0.0);
+}
+
 // TODO: Test swizzle of vector2 and vector3
 #[test]
 fn swizzle_of_vector4() {

@@ -2,7 +2,7 @@ use std::f32;
 use std::ops::*;
 use matrix::{Matrix, Row};
 
-pub trait Vector {
+pub trait Vector : Sized + Div<f32, Output = Self> {
     fn zero() -> Self;
     fn one() -> Self;
     fn infinity() -> Self;
@@ -11,6 +11,9 @@ pub trait Vector {
     fn replicate(value: f32) -> Self;
 
     fn dot(&self, other: &Self) -> f32;
+    fn length_sq(&self) -> f32 { self.dot(self) }
+    fn length(&self) -> f32 { self.length_sq().sqrt() }
+    fn normalize(self) -> Self { let len = self.length(); self / len }
 
     fn swizzle(&self, e0: usize, e1: usize, e2: usize, e3: usize) -> Self;
     fn permute(&self, other: &Self, permute_x: usize, permute_y: usize, permute_w: usize, permute_z: usize) -> Self;
