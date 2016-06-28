@@ -1,6 +1,6 @@
 [package]
 name = "xmath"
-version = "0.2.5"
+version = "0.2.6"
 authors = ["Seulgi Kim <dev@seulgi.kim>", "Hyeon Kim <simnalamburt@gmail.com>"]
 
 homepage      = "https://github.com/simnalamburt/xmath"
