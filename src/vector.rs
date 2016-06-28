@@ -596,6 +596,58 @@ impl DivAssign for Vector4 {
 }
 
 
+
+impl Div<f32> for Vector2 {
+    type Output = Self;
+    fn div(self, rhs: f32) -> Self::Output {
+        let x = self.x / rhs;
+        let y = self.y / rhs;
+        Self::new(x, y)
+    }
+}
+impl Div<f32> for Vector3 {
+    type Output = Self;
+    fn div(self, rhs: f32) -> Self::Output {
+        let x = self.x / rhs;
+        let y = self.y / rhs;
+        let z = self.z / rhs;
+        Self::new(x, y, z)
+    }
+}
+impl Div<f32> for Vector4 {
+    type Output = Self;
+    fn div(self, rhs: f32) -> Self::Output {
+        let x = self.x / rhs;
+        let y = self.y / rhs;
+        let z = self.z / rhs;
+        let w = self.w / rhs;
+        Self::new(x, y, z, w)
+    }
+}
+
+impl DivAssign<f32> for Vector2 {
+    fn div_assign(&mut self, rhs: f32) {
+        self.x /= rhs;
+        self.y /= rhs;
+    }
+}
+impl DivAssign<f32> for Vector3 {
+    fn div_assign(&mut self, rhs: f32) {
+        self.x /= rhs;
+        self.y /= rhs;
+        self.z /= rhs;
+    }
+}
+impl DivAssign<f32> for Vector4 {
+    fn div_assign(&mut self, rhs: f32) {
+        self.x /= rhs;
+        self.y /= rhs;
+        self.z /= rhs;
+        self.w /= rhs;
+    }
+}
+
+
 impl Mul for Vector2 {
     type Output = Vector2;
     fn mul(self, rhs: Vector2) -> Self::Output {
