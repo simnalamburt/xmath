@@ -810,6 +810,159 @@ fn div_for_vector4() {
     assert_eq!(v.w, v1.w / v2.w);
 }
 
+
+#[test]
+fn add_assign_for_vector2() {
+    let v1 = Vector2::new(10.0, 11.0);
+    let v2 = Vector2::new(100.0, 200.0);
+    let mut v = v1;
+
+    v += v2;
+
+    assert_eq!(v.x, v1.x + v2.x);
+    assert_eq!(v.y, v1.y + v2.y);
+}
+#[test]
+fn add_assign_for_vector3() {
+    let v1 = Vector3::new(10.0, 11.0, 12.0);
+    let v2 = Vector3::new(100.0, 200.0, 300.0);
+    let mut v = v1;
+
+    v += v2;
+
+    assert_eq!(v.x, v1.x + v2.x);
+    assert_eq!(v.y, v1.y + v2.y);
+    assert_eq!(v.z, v1.z + v2.z);
+}
+#[test]
+fn add_assign_for_vector4() {
+    let v1 = Vector4::new(10.0, 11.0, 12.0, 13.0);
+    let v2 = Vector4::new(100.0, 200.0, 300.0, 400.0);
+    let mut v = v1;
+
+    v += v2;
+
+    assert_eq!(v.x, v1.x + v2.x);
+    assert_eq!(v.y, v1.y + v2.y);
+    assert_eq!(v.z, v1.z + v2.z);
+    assert_eq!(v.w, v1.w + v2.w);
+}
+
+
+#[test]
+fn sub_assign_for_vector2() {
+    let v1 = Vector2::new(10.0, 11.0);
+    let v2 = Vector2::new(100.0, 200.0);
+    let mut v = v1;
+
+    v -= v2;
+
+    assert_eq!(v.x, v1.x - v2.x);
+    assert_eq!(v.y, v1.y - v2.y);
+}
+#[test]
+fn sub_assign_for_vector3() {
+    let v1 = Vector3::new(10.0, 11.0, 12.0);
+    let v2 = Vector3::new(100.0, 200.0, 300.0);
+    let mut v = v1;
+
+    v -= v2;
+
+    assert_eq!(v.x, v1.x - v2.x);
+    assert_eq!(v.y, v1.y - v2.y);
+    assert_eq!(v.z, v1.z - v2.z);
+}
+#[test]
+fn sub_assign_for_vector4() {
+    let v1 = Vector4::new(10.0, 11.0, 12.0, 13.0);
+    let v2 = Vector4::new(100.0, 200.0, 300.0, 400.0);
+    let mut v = v1;
+
+    v -= v2;
+
+    assert_eq!(v.x, v1.x - v2.x);
+    assert_eq!(v.y, v1.y - v2.y);
+    assert_eq!(v.z, v1.z - v2.z);
+    assert_eq!(v.w, v1.w - v2.w);
+}
+
+
+#[test]
+fn div_assign_for_vector2() {
+    let v1 = Vector2::new(10.0, 11.0);
+    let v2 = Vector2::new(100.0, 200.0);
+    let mut v = v1;
+
+    v /= v2;
+
+    assert_eq!(v.x, v1.x / v2.x);
+    assert_eq!(v.y, v1.y / v2.y);
+}
+#[test]
+fn div_assign_for_vector3() {
+    let v1 = Vector3::new(10.0, 11.0, 12.0);
+    let v2 = Vector3::new(100.0, 200.0, 300.0);
+    let mut v = v1;
+
+    v /= v2;
+
+    assert_eq!(v.x, v1.x / v2.x);
+    assert_eq!(v.y, v1.y / v2.y);
+    assert_eq!(v.z, v1.z / v2.z);
+}
+#[test]
+fn div_assign_for_vector4() {
+    let v1 = Vector4::new(10.0, 11.0, 12.0, 13.0);
+    let v2 = Vector4::new(100.0, 200.0, 300.0, 400.0);
+    let mut v = v1;
+
+    v /= v2;
+
+    assert_eq!(v.x, v1.x / v2.x);
+    assert_eq!(v.y, v1.y / v2.y);
+    assert_eq!(v.z, v1.z / v2.z);
+    assert_eq!(v.w, v1.w / v2.w);
+}
+
+
+#[test]
+fn mul_assign_for_vector2() {
+    let v1 = Vector2::new(10.0, 11.0);
+    let v2 = Vector2::new(100.0, 200.0);
+    let mut v = v1;
+
+    v *= v2;
+
+    assert_eq!(v.x, v1.x * v2.x);
+    assert_eq!(v.y, v1.y * v2.y);
+}
+#[test]
+fn mul_assign_for_vector3() {
+    let v1 = Vector3::new(10.0, 11.0, 12.0);
+    let v2 = Vector3::new(100.0, 200.0, 300.0);
+    let mut v = v1;
+
+    v *= v2;
+
+    assert_eq!(v.x, v1.x * v2.x);
+    assert_eq!(v.y, v1.y * v2.y);
+    assert_eq!(v.z, v1.z * v2.z);
+}
+#[test]
+fn mul_assign_for_vector4() {
+    let v1 = Vector4::new(10.0, 11.0, 12.0, 13.0);
+    let v2 = Vector4::new(100.0, 200.0, 300.0, 400.0);
+    let mut v = v1;
+
+    v *= v2;
+
+    assert_eq!(v.x, v1.x * v2.x);
+    assert_eq!(v.y, v1.y * v2.y);
+    assert_eq!(v.z, v1.z * v2.z);
+    assert_eq!(v.w, v1.w * v2.w);
+}
+
+
 #[test]
 fn scale_for_vector2() {
     let v1 = Vector2::new(10.0, 11.0);
