@@ -444,7 +444,7 @@ impl Vector for Vector4 {
 //
 
 impl Add for Vector2 {
-    type Output = Vector2;
+    type Output = Self;
     fn add(self, rhs: Vector2) -> Self::Output {
         let x = self.x + rhs.x;
         let y = self.y + rhs.y;
@@ -452,7 +452,7 @@ impl Add for Vector2 {
     }
 }
 impl Add for Vector3 {
-    type Output = Vector3;
+    type Output = Self;
     fn add(self, rhs: Vector3) -> Self::Output {
         let x = self.x + rhs.x;
         let y = self.y + rhs.y;
@@ -461,7 +461,7 @@ impl Add for Vector3 {
     }
 }
 impl Add for Vector4 {
-    type Output = Vector4;
+    type Output = Self;
     fn add(self, rhs: Vector4) -> Self::Output {
         let x = self.x + rhs.x;
         let y = self.y + rhs.y;
@@ -495,7 +495,7 @@ impl AddAssign for Vector4 {
 
 
 impl Sub for Vector2 {
-    type Output = Vector2;
+    type Output = Self;
     fn sub(self, rhs: Vector2) -> Self::Output {
         let x = self.x - rhs.x;
         let y = self.y - rhs.y;
@@ -503,7 +503,7 @@ impl Sub for Vector2 {
     }
 }
 impl Sub for Vector3 {
-    type Output = Vector3;
+    type Output = Self;
     fn sub(self, rhs: Vector3) -> Self::Output {
         let x = self.x - rhs.x;
         let y = self.y - rhs.y;
@@ -512,7 +512,7 @@ impl Sub for Vector3 {
     }
 }
 impl Sub for Vector4 {
-    type Output = Vector4;
+    type Output = Self;
     fn sub(self, rhs: Vector4) -> Self::Output {
         let x = self.x - rhs.x;
         let y = self.y - rhs.y;
@@ -546,7 +546,7 @@ impl SubAssign for Vector4 {
 
 
 impl Div for Vector2 {
-    type Output = Vector2;
+    type Output = Self;
     fn div(self, rhs: Vector2) -> Self::Output {
         let x = self.x / rhs.x;
         let y = self.y / rhs.y;
@@ -554,7 +554,7 @@ impl Div for Vector2 {
     }
 }
 impl Div for Vector3 {
-    type Output = Vector3;
+    type Output = Self;
     fn div(self, rhs: Vector3) -> Self::Output {
         let x = self.x / rhs.x;
         let y = self.y / rhs.y;
@@ -563,7 +563,7 @@ impl Div for Vector3 {
     }
 }
 impl Div for Vector4 {
-    type Output = Vector4;
+    type Output = Self;
     fn div(self, rhs: Vector4) -> Self::Output {
         let x = self.x / rhs.x;
         let y = self.y / rhs.y;
@@ -649,7 +649,7 @@ impl DivAssign<f32> for Vector4 {
 
 
 impl Mul for Vector2 {
-    type Output = Vector2;
+    type Output = Self;
     fn mul(self, rhs: Vector2) -> Self::Output {
         let x = self.x * rhs.x;
         let y = self.y * rhs.y;
@@ -657,7 +657,7 @@ impl Mul for Vector2 {
     }
 }
 impl Mul for Vector3 {
-    type Output = Vector3;
+    type Output = Self;
     fn mul(self, rhs: Vector3) -> Self::Output {
         let x = self.x * rhs.x;
         let y = self.y * rhs.y;
@@ -666,7 +666,7 @@ impl Mul for Vector3 {
     }
 }
 impl Mul for Vector4 {
-    type Output = Vector4;
+    type Output = Self;
     fn mul(self, rhs: Vector4) -> Self::Output {
         let x = self.x * rhs.x;
         let y = self.y * rhs.y;
@@ -700,7 +700,7 @@ impl MulAssign for Vector4 {
 
 
 impl Mul<f32> for Vector2 {
-    type Output = Vector2;
+    type Output = Self;
     fn mul(self, rhs: f32) -> Self::Output {
         let x = self.x * rhs;
         let y = self.y * rhs;
@@ -708,7 +708,7 @@ impl Mul<f32> for Vector2 {
     }
 }
 impl Mul<f32> for Vector3 {
-    type Output = Vector3;
+    type Output = Self;
     fn mul(self, rhs: f32) -> Self::Output {
         let x = self.x * rhs;
         let y = self.y * rhs;
@@ -717,7 +717,7 @@ impl Mul<f32> for Vector3 {
     }
 }
 impl Mul<f32> for Vector4 {
-    type Output = Vector4;
+    type Output = Self;
     fn mul(self, rhs: f32) -> Self::Output {
         let x = self.x * rhs;
         let y = self.y * rhs;
@@ -779,7 +779,7 @@ impl Mul<Vector4> for f32 {
 
 
 impl Neg for Vector2 {
-    type Output = Vector2;
+    type Output = Self;
     fn neg(self) -> Self::Output {
         let x = -self.x;
         let y = -self.y;
@@ -787,7 +787,7 @@ impl Neg for Vector2 {
     }
 }
 impl Neg for Vector3 {
-    type Output = Vector3;
+    type Output = Self;
     fn neg(self) -> Self::Output {
         let x = -self.x;
         let y = -self.y;
@@ -796,7 +796,7 @@ impl Neg for Vector3 {
     }
 }
 impl Neg for Vector4 {
-    type Output = Vector4;
+    type Output = Self;
     fn neg(self) -> Self::Output {
         let x = -self.x;
         let y = -self.y;
