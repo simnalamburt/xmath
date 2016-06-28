@@ -691,3 +691,14 @@ impl From<Row> for Vector4 {
         Self::new(row[0], row[1], row[2], row[3])
     }
 }
+
+
+#[cfg(feature = "glium-support")]
+mod glium_support {
+    use super::{Vector2, Vector3, Vector4};
+    use glium::vertex::{Attribute, AttributeType};
+
+    unsafe impl Attribute for Vector2 { fn get_type() -> AttributeType { AttributeType::F32F32 } }
+    unsafe impl Attribute for Vector3 { fn get_type() -> AttributeType { AttributeType::F32F32F32 } }
+    unsafe impl Attribute for Vector4 { fn get_type() -> AttributeType { AttributeType::F32F32F32F32 } }
+}
