@@ -10,7 +10,7 @@ pub trait Vector {
     fn epsilon() -> Self;
     fn replicate(value: f32) -> Self;
 
-    fn dot(self, other: Self) -> f32;
+    fn dot(&self, other: &Self) -> f32;
 
     fn swizzle(&self, e0: usize, e1: usize, e2: usize, e3: usize) -> Self;
     fn permute(&self, other: &Self, permute_x: usize, permute_y: usize, permute_w: usize, permute_z: usize) -> Self;
@@ -79,7 +79,7 @@ impl Vector3 {
         }
     }
 
-    pub fn cross(self, other: Self) -> Self {
+    pub fn cross(&self, other: &Self) -> Self {
         Vector3::new(
             self.y*other.z - self.z*other.y,
             self.z*other.x - self.x*other.z,
@@ -124,7 +124,7 @@ impl Vector for Vector2 {
         Self::new(value, value)
     }
 
-    fn dot(self, other: Self) -> f32 {
+    fn dot(&self, other: &Self) -> f32 {
         self.x * other.x + self.y * other.y
     }
 
@@ -232,7 +232,7 @@ impl Vector for Vector3 {
         Self::new(value, value, value)
     }
 
-    fn dot(self, other: Self) -> f32 {
+    fn dot(&self, other: &Self) -> f32 {
         self.x * other.x + self.y * other.y + self.z * other.z
     }
 
@@ -352,7 +352,7 @@ impl Vector for Vector4 {
         Self::new(value, value, value, value)
     }
 
-    fn dot(self, other: Self) -> f32 {
+    fn dot(&self, other: &Self) -> f32 {
         self.x * other.x + self.y * other.y + self.z * other.z + self.w * other.w
     }
 

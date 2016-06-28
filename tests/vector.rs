@@ -30,7 +30,7 @@ fn cross_product() {
     let a = Vector3::new(1.0, 2.0, 3.0);
     let b = Vector3::new(4.0, 5.0, 6.0);
 
-    let c = a.cross(b);
+    let c = a.cross(&b);
 
     assert_eq!(c.x, -3.0);
     assert_eq!(c.y,  6.0);
@@ -210,7 +210,7 @@ fn dot_of_vector2() {
     let v1 = Vector2::new(1.1, 2.2);
     let v2 = Vector2::new(5.5, 6.6);
 
-    let f = v1.dot(v2);
+    let f = v1.dot(&v2);
 
     assert_eq!(f, 1.1*5.5 + 2.2*6.6);
 }
@@ -219,7 +219,7 @@ fn dot_of_vector3() {
     let v1 = Vector3::new(1.1, 2.2, 3.3);
     let v2 = Vector3::new(5.5, 6.6, 7.7);
 
-    let f = v1.dot(v2);
+    let f = v1.dot(&v2);
 
     assert_eq!(f, 1.1*5.5 + 2.2*6.6 + 3.3*7.7);
 }
@@ -228,7 +228,7 @@ fn dot_of_vector4() {
     let v1 = Vector4::new(1.1, 2.2, 3.3, 4.4);
     let v2 = Vector4::new(5.5, 6.6, 7.7, 8.8);
 
-    let f = v1.dot(v2);
+    let f = v1.dot(&v2);
 
     assert_eq!(f, 1.1*5.5 + 2.2*6.6 + 3.3*7.7 + 4.4*8.8);
 }
