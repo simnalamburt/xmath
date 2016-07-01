@@ -1,5 +1,6 @@
 use std::mem::zeroed;
 use std::ops::*;
+use vector::{Vector, Vector3};
 
 pub type Row = [f32; 4];
 
@@ -103,6 +104,37 @@ impl Matrix {
                 [0.0, r_height + r_height, 0.0, 0.0],
                 [0.0, 0.0, range, 0.0],
                 [-(view_left + view_right)*r_width, -(view_top + view_bottom)*r_height, range*near_z, 1.0],
+            ]
+        }
+    }
+
+    pub fn look_at(eye: Vector3, focus: Vector3, up: Vector3) -> Self {
+        Self::look_to(eye, focus - eye, up)
+    }
+
+    pub fn look_to(eye: Vector3, dir: Vector3, up: Vector3) -> Self {
+        assert!(dir != Vector3::zero());
+        assert!(!dir.is_infinite());
+        assert!(up != Vector3::zero());
+        assert!(!up.is_infinite());
+
+        let neg_eye = -eye;
+        let neg_dir = -dir;
+
+        let r2 = neg_dir.normalize();
+        let r0 = up.cross(&r2).normalize();
+        let r1 = r2.cross(&r0);
+
+        let d0 = r0.dot(&neg_eye);
+        let d1 = r1.dot(&neg_eye);
+        let d2 = r2.dot(&neg_eye);
+
+        Matrix {
+            m: [
+                [r0.x, r1.x, r2.x, 0.0],
+                [r0.y, r1.y, r2.y, 0.0],
+                [r0.z, r1.z, r2.z, 0.0],
+                [d0,   d1,   d2,   1.0],
             ]
         }
     }
