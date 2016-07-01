@@ -11,10 +11,3 @@ cache:
   directories:
     - ~/.cargo
     - target
-
-notifications:
-  irc:
-    nick: xmath
-    channels: 'ircs://irc.uriirc.org:16664#hyeon'
-    template: '#%{build_number} %{result}, %{build_url}'
-    skip_join: true
