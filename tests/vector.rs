@@ -206,6 +206,117 @@ fn replicate_of_vector4() {
 }
 
 #[test]
+fn is_nan_of_vector2() {
+    let v0 = Vector2::new(0.0, 1.0);
+    let v1 = Vector2::new(f32::NAN, 1.0);
+    let v2 = Vector2::new(0.0, f32::NAN);
+
+    assert!(!v0.is_nan());
+    assert!(v1.is_nan());
+    assert!(v2.is_nan());
+}
+#[test]
+fn is_nan_of_vector3() {
+    let v0 = Vector3::new(0.0, 1.0, 2.0);
+    let v1 = Vector3::new(f32::NAN, 1.0, 2.0);
+    let v2 = Vector3::new(0.0, f32::NAN, 2.0);
+    let v3 = Vector3::new(0.0, 1.0, f32::NAN);
+
+    assert!(!v0.is_nan());
+    assert!(v1.is_nan());
+    assert!(v2.is_nan());
+    assert!(v3.is_nan());
+}
+#[test]
+fn is_nan_of_vector4() {
+    let v0 = Vector4::new(0.0, 1.0, 2.0, 3.0);
+    let v1 = Vector4::new(f32::NAN, 1.0, 2.0, 3.0);
+    let v2 = Vector4::new(0.0, f32::NAN, 2.0, 3.0);
+    let v3 = Vector4::new(0.0, 1.0, f32::NAN, 3.0);
+    let v4 = Vector4::new(0.0, 1.0, 4.0, f32::NAN);
+
+    assert!(!v0.is_nan());
+    assert!(v1.is_nan());
+    assert!(v2.is_nan());
+    assert!(v3.is_nan());
+    assert!(v4.is_nan());
+}
+
+#[test]
+fn is_infinite_of_vector2() {
+    let v0 = Vector2::new(0.0, 1.0);
+    let v1 = Vector2::new(f32::INFINITY, 1.0);
+    let v2 = Vector2::new(0.0, f32::INFINITY);
+
+    assert!(!v0.is_infinite());
+    assert!(v1.is_infinite());
+    assert!(v2.is_infinite());
+}
+#[test]
+fn is_infinite_of_vector3() {
+    let v0 = Vector3::new(0.0, 1.0, 2.0);
+    let v1 = Vector3::new(f32::INFINITY, 1.0, 2.0);
+    let v2 = Vector3::new(0.0, f32::INFINITY, 2.0);
+    let v3 = Vector3::new(0.0, 1.0, f32::INFINITY);
+
+    assert!(!v0.is_infinite());
+    assert!(v1.is_infinite());
+    assert!(v2.is_infinite());
+    assert!(v3.is_infinite());
+}
+#[test]
+fn is_infinite_of_vector4() {
+    let v0 = Vector4::new(0.0, 1.0, 2.0, 3.0);
+    let v1 = Vector4::new(f32::INFINITY, 1.0, 2.0, 3.0);
+    let v2 = Vector4::new(0.0, f32::INFINITY, 2.0, 3.0);
+    let v3 = Vector4::new(0.0, 1.0, f32::INFINITY, 3.0);
+    let v4 = Vector4::new(0.0, 1.0, 4.0, f32::INFINITY);
+
+    assert!(!v0.is_infinite());
+    assert!(v1.is_infinite());
+    assert!(v2.is_infinite());
+    assert!(v3.is_infinite());
+    assert!(v4.is_infinite());
+}
+
+#[test]
+fn is_finite_of_vector2() {
+    let v0 = Vector2::new(0.0, 1.0);
+    let v1 = Vector2::new(f32::INFINITY, 1.0);
+    let v2 = Vector2::new(0.0, f32::INFINITY);
+
+    assert!(v0.is_finite());
+    assert!(!v1.is_finite());
+    assert!(!v2.is_finite());
+}
+#[test]
+fn is_finite_of_vector3() {
+    let v0 = Vector3::new(0.0, 1.0, 2.0);
+    let v1 = Vector3::new(f32::INFINITY, 1.0, 2.0);
+    let v2 = Vector3::new(0.0, f32::INFINITY, 2.0);
+    let v3 = Vector3::new(0.0, 1.0, f32::INFINITY);
+
+    assert!(v0.is_finite());
+    assert!(!v1.is_finite());
+    assert!(!v2.is_finite());
+    assert!(!v3.is_finite());
+}
+#[test]
+fn is_finite_of_vector4() {
+    let v0 = Vector4::new(0.0, 1.0, 2.0, 3.0);
+    let v1 = Vector4::new(f32::INFINITY, 1.0, 2.0, 3.0);
+    let v2 = Vector4::new(0.0, f32::INFINITY, 2.0, 3.0);
+    let v3 = Vector4::new(0.0, 1.0, f32::INFINITY, 3.0);
+    let v4 = Vector4::new(0.0, 1.0, 4.0, f32::INFINITY);
+
+    assert!(v0.is_finite());
+    assert!(!v1.is_finite());
+    assert!(!v2.is_finite());
+    assert!(!v3.is_finite());
+    assert!(!v4.is_finite());
+}
+
+#[test]
 fn dot_of_vector2() {
     let v1 = Vector2::new(1.1, 2.2);
     let v2 = Vector2::new(5.5, 6.6);

@@ -10,6 +10,16 @@ pub trait Vector : Sized + Div<f32, Output = Self> {
     fn epsilon() -> Self;
     fn replicate(value: f32) -> Self;
 
+    //
+    // Comparison operations
+    //
+    fn is_nan(&self) -> bool;
+    fn is_infinite(&self) -> bool;
+    fn is_finite(&self) -> bool { !self.is_infinite() }
+
+    //
+    // Computation operations
+    //
     fn dot(&self, other: &Self) -> f32;
     fn length_sq(&self) -> f32 { self.dot(self) }
     fn length(&self) -> f32 { self.length_sq().sqrt() }
@@ -127,6 +137,14 @@ impl Vector for Vector2 {
         Self::new(value, value)
     }
 
+    fn is_nan(&self) -> bool {
+        self.x.is_nan() || self.y.is_nan()
+    }
+
+    fn is_infinite(&self) -> bool {
+        self.x.is_infinite() || self.y.is_infinite()
+    }
+
     fn dot(&self, other: &Self) -> f32 {
         self.x * other.x + self.y * other.y
     }
@@ -233,6 +251,14 @@ impl Vector for Vector3 {
 
     fn replicate(value: f32) -> Self {
         Self::new(value, value, value)
+    }
+
+    fn is_nan(&self) -> bool {
+        self.x.is_nan() || self.y.is_nan() || self.z.is_nan()
+    }
+
+    fn is_infinite(&self) -> bool {
+        self.x.is_infinite() || self.y.is_infinite() || self.z.is_infinite()
     }
 
     fn dot(&self, other: &Self) -> f32 {
@@ -353,6 +379,14 @@ impl Vector for Vector4 {
 
     fn replicate(value: f32) -> Self {
         Self::new(value, value, value, value)
+    }
+
+    fn is_nan(&self) -> bool {
+        self.x.is_nan() || self.y.is_nan() || self.z.is_nan() || self.w.is_nan()
+    }
+
+    fn is_infinite(&self) -> bool {
+        self.x.is_infinite() || self.y.is_infinite() || self.z.is_infinite() || self.w.is_infinite()
     }
 
     fn dot(&self, other: &Self) -> f32 {
