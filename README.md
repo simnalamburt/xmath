@@ -1,4 +1,4 @@
-xmath [![crates-i][]][crates-a] [![travis-i][]][travis-a]
+xmath [![crates-i][]][crates-a]
 ========
 [Rust][] port of Microsoft [DirectXMath][]. [Documentation][doc]
 
@@ -41,5 +41,3 @@ target.draw(&unit.vb, &unit.ib, program, uniforms, &draw_parameters);
 
 [crates-i]: https://img.shields.io/crates/v/xmath.svg
 [crates-a]: https://crates.io/crates/xmath
-[travis-i]: https://travis-ci.org/simnalamburt/xmath.svg?branch=master
-[travis-a]: https://travis-ci.org/simnalamburt/xmath
