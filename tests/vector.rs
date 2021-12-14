@@ -1,7 +1,7 @@
 extern crate xmath;
 
 use std::f32;
-use xmath::{Vector, Vector2, Vector3, Vector4, Matrix};
+use xmath::{Matrix, Vector, Vector2, Vector3, Vector4};
 
 #[test]
 fn new_vector2() {
@@ -33,7 +33,7 @@ fn cross_product() {
     let c = a.cross(&b);
 
     assert_eq!(c.x, -3.0);
-    assert_eq!(c.y,  6.0);
+    assert_eq!(c.y, 6.0);
     assert_eq!(c.z, -3.0);
 }
 
@@ -50,7 +50,6 @@ fn new_vector4() {
     assert_eq!(v.z, z);
     assert_eq!(v.w, w);
 }
-
 
 #[test]
 fn zero_of_vector2() {
@@ -323,7 +322,7 @@ fn dot_of_vector2() {
 
     let f = v1.dot(&v2);
 
-    assert_eq!(f, 1.1*5.5 + 2.2*6.6);
+    assert_eq!(f, 1.1 * 5.5 + 2.2 * 6.6);
 }
 #[test]
 fn dot_of_vector3() {
@@ -332,7 +331,7 @@ fn dot_of_vector3() {
 
     let f = v1.dot(&v2);
 
-    assert_eq!(f, 1.1*5.5 + 2.2*6.6 + 3.3*7.7);
+    assert_eq!(f, 1.1 * 5.5 + 2.2 * 6.6 + 3.3 * 7.7);
 }
 #[test]
 fn dot_of_vector4() {
@@ -341,7 +340,7 @@ fn dot_of_vector4() {
 
     let f = v1.dot(&v2);
 
-    assert_eq!(f, 1.1*5.5 + 2.2*6.6 + 3.3*7.7 + 4.4*8.8);
+    assert_eq!(f, 1.1 * 5.5 + 2.2 * 6.6 + 3.3 * 7.7 + 4.4 * 8.8);
 }
 
 #[test]
@@ -412,6 +411,7 @@ fn swizzle_of_vector4_should_fail_when_e3_is_more_than_3() {
 
 #[test]
 fn from_matrix_to_vector2() {
+    #[rustfmt::skip]
     let matrix = Matrix::new(
         2.0, 3.0, 5.0, 7.0,
         11.0, 13.0, 17.0, 19.0,
@@ -442,6 +442,7 @@ fn from_matrix_to_vector2() {
 
 #[test]
 fn from_matrix_to_vector3() {
+    #[rustfmt::skip]
     let matrix = Matrix::new(
         2.0, 3.0, 5.0, 7.0,
         11.0, 13.0, 17.0, 19.0,
@@ -476,6 +477,7 @@ fn from_matrix_to_vector3() {
 
 #[test]
 fn from_matrix_to_vector4() {
+    #[rustfmt::skip]
     let matrix = Matrix::new(
         2.0, 3.0, 5.0, 7.0,
         11.0, 13.0, 17.0, 19.0,
@@ -514,6 +516,7 @@ fn from_matrix_to_vector4() {
 
 #[test]
 fn transform_vector2() {
+    #[rustfmt::skip]
     let matrix = Matrix::new(
         2.0, 3.0, 5.0, 7.0,
         11.0, 13.0, 17.0, 19.0,
@@ -531,6 +534,7 @@ fn transform_vector2() {
 
 #[test]
 fn transform_vector3() {
+    #[rustfmt::skip]
     let matrix = Matrix::new(
         2.0, 3.0, 5.0, 7.0,
         11.0, 13.0, 17.0, 19.0,
@@ -549,6 +553,7 @@ fn transform_vector3() {
 
 #[test]
 fn transform_vector4() {
+    #[rustfmt::skip]
     let matrix = Matrix::new(
         2.0, 3.0, 5.0, 7.0,
         11.0, 13.0, 17.0, 19.0,
@@ -894,7 +899,6 @@ fn splat_w_of_vector4() {
     assert_eq!(splatted.w, vector4.w);
 }
 
-
 //
 // Operator overloadings
 //
@@ -970,7 +974,6 @@ fn add_assign_for_vector4() {
     assert_eq!(v.w, v1.w + v2.w);
 }
 
-
 #[test]
 fn sub_for_vector2() {
     let v1 = Vector2::new(10.0, 11.0);
@@ -1041,7 +1044,6 @@ fn sub_assign_for_vector4() {
     assert_eq!(v.z, v1.z - v2.z);
     assert_eq!(v.w, v1.w - v2.w);
 }
-
 
 #[test]
 fn div_for_vector2() {
@@ -1114,7 +1116,6 @@ fn div_assign_for_vector4() {
     assert_eq!(v.w, v1.w / v2.w);
 }
 
-
 #[test]
 fn scaledown_for_vector2() {
     let v1 = Vector2::new(10.0, 11.0);
@@ -1186,7 +1187,6 @@ fn scaledown_assign_for_vector4() {
     assert_eq!(v.w, v1.w / scale_factor);
 }
 
-
 #[test]
 fn mul_for_vector2() {
     let v1 = Vector2::new(10.0, 11.0);
@@ -1257,7 +1257,6 @@ fn mul_assign_for_vector4() {
     assert_eq!(v.z, v1.z * v2.z);
     assert_eq!(v.w, v1.w * v2.w);
 }
-
 
 #[test]
 fn scaleup_for_vector2() {
@@ -1373,7 +1372,6 @@ fn scaleup_lhs_for_vector4() {
     assert_eq!(v.w, v1.w * scale_factor);
 }
 
-
 #[test]
 fn neg_for_vector2() {
     let v1 = Vector2::new(10.0, 11.0);
@@ -1403,7 +1401,6 @@ fn neg_for_vector4() {
     assert_eq!(v.z, -v1.z);
     assert_eq!(v.w, -v1.w);
 }
-
 
 #[test]
 fn multiply_add_for_vector2() {

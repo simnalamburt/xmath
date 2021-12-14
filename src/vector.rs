@@ -1,8 +1,8 @@
+use crate::matrix::{Matrix, Row};
 use std::f32;
 use std::ops::*;
-use crate::matrix::{Matrix, Row};
 
-pub trait Vector : Sized + Div<f32, Output = Self> {
+pub trait Vector: Sized + Div<f32, Output = Self> {
     fn zero() -> Self;
     fn one() -> Self;
     fn infinity() -> Self;
@@ -15,18 +15,34 @@ pub trait Vector : Sized + Div<f32, Output = Self> {
     //
     fn is_nan(&self) -> bool;
     fn is_infinite(&self) -> bool;
-    fn is_finite(&self) -> bool { !self.is_infinite() }
+    fn is_finite(&self) -> bool {
+        !self.is_infinite()
+    }
 
     //
     // Computation operations
     //
     fn dot(&self, other: &Self) -> f32;
-    fn length_sq(&self) -> f32 { self.dot(self) }
-    fn length(&self) -> f32 { self.length_sq().sqrt() }
-    fn normalize(self) -> Self { let len = self.length(); self / len }
+    fn length_sq(&self) -> f32 {
+        self.dot(self)
+    }
+    fn length(&self) -> f32 {
+        self.length_sq().sqrt()
+    }
+    fn normalize(self) -> Self {
+        let len = self.length();
+        self / len
+    }
 
     fn swizzle(&self, e0: usize, e1: usize, e2: usize, e3: usize) -> Self;
-    fn permute(&self, other: &Self, permute_x: usize, permute_y: usize, permute_w: usize, permute_z: usize) -> Self;
+    fn permute(
+        &self,
+        other: &Self,
+        permute_x: usize,
+        permute_y: usize,
+        permute_w: usize,
+        permute_z: usize,
+    ) -> Self;
 
     fn transform(&self, matrix: &Matrix) -> Self;
 
@@ -84,31 +100,21 @@ impl Vector2 {
 
 impl Vector3 {
     pub fn new(x: f32, y: f32, z: f32) -> Self {
-        Vector3 {
-            x,
-            y,
-            z,
-            w: 0.0,
-        }
+        Vector3 { x, y, z, w: 0.0 }
     }
 
     pub fn cross(&self, other: &Self) -> Self {
         Vector3::new(
-            self.y*other.z - self.z*other.y,
-            self.z*other.x - self.x*other.z,
-            self.x*other.y - self.y*other.x,
+            self.y * other.z - self.z * other.y,
+            self.z * other.x - self.x * other.z,
+            self.x * other.y - self.y * other.x,
         )
     }
 }
 
 impl Vector4 {
     pub fn new(x: f32, y: f32, z: f32, w: f32) -> Self {
-        Vector4 {
-            x,
-            y,
-            z,
-            w,
-        }
+        Vector4 { x, y, z, w }
     }
 }
 
@@ -155,11 +161,26 @@ impl Vector for Vector2 {
         Self::new(self[e0], self[e1])
     }
 
-    fn permute(&self, other: &Self, permute_x: usize, permute_y: usize, _permute_z: usize, _permute_w: usize) -> Self {
+    fn permute(
+        &self,
+        other: &Self,
+        permute_x: usize,
+        permute_y: usize,
+        _permute_z: usize,
+        _permute_w: usize,
+    ) -> Self {
         assert!(permute_x < 8);
         assert!(permute_y < 8);
-        let x = if permute_x < 4 { self[permute_x] } else { other[permute_x - 4] };
-        let y = if permute_y < 4 { self[permute_y] } else { other[permute_y - 4] };
+        let x = if permute_x < 4 {
+            self[permute_x]
+        } else {
+            other[permute_x - 4]
+        };
+        let y = if permute_y < 4 {
+            self[permute_y]
+        } else {
+            other[permute_y - 4]
+        };
         Self::new(x, y)
     }
 
@@ -272,13 +293,32 @@ impl Vector for Vector3 {
         Self::new(self[e0], self[e1], self[e2])
     }
 
-    fn permute(&self, other: &Self, permute_x: usize, permute_y: usize, permute_z: usize, _permute_w: usize) -> Self {
+    fn permute(
+        &self,
+        other: &Self,
+        permute_x: usize,
+        permute_y: usize,
+        permute_z: usize,
+        _permute_w: usize,
+    ) -> Self {
         assert!(permute_x < 8);
         assert!(permute_y < 8);
         assert!(permute_z < 8);
-        let x = if permute_x < 4 { self[permute_x] } else { other[permute_x - 4] };
-        let y = if permute_y < 4 { self[permute_y] } else { other[permute_y - 4] };
-        let z = if permute_z < 4 { self[permute_z] } else { other[permute_z - 4] };
+        let x = if permute_x < 4 {
+            self[permute_x]
+        } else {
+            other[permute_x - 4]
+        };
+        let y = if permute_y < 4 {
+            self[permute_y]
+        } else {
+            other[permute_y - 4]
+        };
+        let z = if permute_z < 4 {
+            self[permute_z]
+        } else {
+            other[permute_z - 4]
+        };
         Self::new(x, y, z)
     }
 
@@ -401,15 +441,38 @@ impl Vector for Vector4 {
         Self::new(self[e0], self[e1], self[e2], self[e3])
     }
 
-    fn permute(&self, other: &Self, permute_x: usize, permute_y: usize, permute_z: usize, permute_w: usize) -> Self {
+    fn permute(
+        &self,
+        other: &Self,
+        permute_x: usize,
+        permute_y: usize,
+        permute_z: usize,
+        permute_w: usize,
+    ) -> Self {
         assert!(permute_x < 8);
         assert!(permute_y < 8);
         assert!(permute_z < 8);
         assert!(permute_w < 8);
-        let x = if permute_x < 4 { self[permute_x] } else { other[permute_x - 4] };
-        let y = if permute_y < 4 { self[permute_y] } else { other[permute_y - 4] };
-        let z = if permute_z < 4 { self[permute_z] } else { other[permute_z - 4] };
-        let w = if permute_w < 4 { self[permute_w] } else { other[permute_w - 4] };
+        let x = if permute_x < 4 {
+            self[permute_x]
+        } else {
+            other[permute_x - 4]
+        };
+        let y = if permute_y < 4 {
+            self[permute_y]
+        } else {
+            other[permute_y - 4]
+        };
+        let z = if permute_z < 4 {
+            self[permute_z]
+        } else {
+            other[permute_z - 4]
+        };
+        let w = if permute_w < 4 {
+            self[permute_w]
+        } else {
+            other[permute_w - 4]
+        };
         Self::new(x, y, z, w)
     }
 
@@ -478,7 +541,6 @@ impl Vector for Vector4 {
         self.max(min).min(max)
     }
 
-
     fn multiply_add(&self, mul: &Self, add: &Self) -> Self {
         *self * *mul + *add
     }
@@ -496,7 +558,6 @@ impl Vector for Vector4 {
         Self::replicate(self.w)
     }
 }
-
 
 //
 // Operator overloadings
@@ -552,7 +613,6 @@ impl AddAssign for Vector4 {
     }
 }
 
-
 impl Sub for Vector2 {
     type Output = Self;
     fn sub(self, rhs: Vector2) -> Self::Output {
@@ -602,7 +662,6 @@ impl SubAssign for Vector4 {
         self.w -= rhs.w;
     }
 }
-
 
 impl Div for Vector2 {
     type Output = Self;
@@ -654,8 +713,6 @@ impl DivAssign for Vector4 {
     }
 }
 
-
-
 impl Div<f32> for Vector2 {
     type Output = Self;
     fn div(self, rhs: f32) -> Self::Output {
@@ -706,7 +763,6 @@ impl DivAssign<f32> for Vector4 {
     }
 }
 
-
 impl Mul for Vector2 {
     type Output = Self;
     fn mul(self, rhs: Vector2) -> Self::Output {
@@ -756,7 +812,6 @@ impl MulAssign for Vector4 {
         self.w *= rhs.w;
     }
 }
-
 
 impl Mul<f32> for Vector2 {
     type Output = Self;
@@ -836,7 +891,6 @@ impl Mul<Vector4> for f32 {
     }
 }
 
-
 impl Neg for Vector2 {
     type Output = Self;
     fn neg(self) -> Self::Output {
@@ -904,7 +958,6 @@ impl Index<usize> for Vector4 {
     }
 }
 
-
 impl From<Row> for Vector2 {
     fn from(row: Row) -> Self {
         Self::new(row[0], row[1])
@@ -923,13 +976,24 @@ impl From<Row> for Vector4 {
     }
 }
 
-
 #[cfg(feature = "glium-support")]
 mod glium_support {
     use super::{Vector2, Vector3, Vector4};
     use glium::vertex::{Attribute, AttributeType};
 
-    unsafe impl Attribute for Vector2 { fn get_type() -> AttributeType { AttributeType::F32F32 } }
-    unsafe impl Attribute for Vector3 { fn get_type() -> AttributeType { AttributeType::F32F32F32 } }
-    unsafe impl Attribute for Vector4 { fn get_type() -> AttributeType { AttributeType::F32F32F32F32 } }
+    unsafe impl Attribute for Vector2 {
+        fn get_type() -> AttributeType {
+            AttributeType::F32F32
+        }
+    }
+    unsafe impl Attribute for Vector3 {
+        fn get_type() -> AttributeType {
+            AttributeType::F32F32F32
+        }
+    }
+    unsafe impl Attribute for Vector4 {
+        fn get_type() -> AttributeType {
+            AttributeType::F32F32F32F32
+        }
+    }
 }

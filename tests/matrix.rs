@@ -26,6 +26,7 @@ fn create_zero_filled_matrix() {
 
 #[test]
 fn new_matrix() {
+    #[rustfmt::skip]
     let m = Matrix::new(
         1.0, 2.0, 3.0, 4.0,
         5.0, 6.0, 7.0, 8.0,
@@ -53,6 +54,7 @@ fn new_matrix() {
 
 #[test]
 fn indexing() {
+    #[rustfmt::skip]
     let matrix = Matrix::new(
         2.0, 3.0, 5.0, 7.0,
         11.0, 13.0, 17.0, 19.0,
@@ -61,14 +63,14 @@ fn indexing() {
     );
 
     let row0 = matrix[0];
-    assert_eq!(row0, [ 2.0, 3.0, 5.0, 7.0 ]);
+    assert_eq!(row0, [2.0, 3.0, 5.0, 7.0]);
 
     let row1 = matrix[1];
-    assert_eq!(row1, [ 11.0, 13.0, 17.0, 19.0 ]);
+    assert_eq!(row1, [11.0, 13.0, 17.0, 19.0]);
 
     let row2 = matrix[2];
-    assert_eq!(row2, [ 23.0, 29.0, 31.0, 37.0 ]);
+    assert_eq!(row2, [23.0, 29.0, 31.0, 37.0]);
 
     let row3 = matrix[3];
-    assert_eq!(row3, [ 41.0, 43.0, 47.0, 53.0 ]);
+    assert_eq!(row3, [41.0, 43.0, 47.0, 53.0]);
 }
