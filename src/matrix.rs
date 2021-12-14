@@ -10,6 +10,7 @@ pub struct Matrix { m: [Row; 4] }
 impl Matrix {
     pub fn zero() -> Self { unsafe { zeroed() } }
 
+    #[allow(clippy::too_many_arguments)]
     pub fn new(
         m00: f32, m01: f32, m02: f32, m03: f32,
         m10: f32, m11: f32, m12: f32, m13: f32,
@@ -232,14 +233,14 @@ impl<'a, 'b> Mul<&'a Matrix> for &'b Matrix {
 
 impl Index<usize> for Matrix {
     type Output = [f32;4];
-    fn index<'a>(&'a self, index: usize) -> &'a Self::Output {
+    fn index(&self, index: usize) -> &Self::Output {
         &self.m[index]
     }
 }
 
 /// glium_text support
-impl Into<[[f32; 4]; 4]> for Matrix {
-    fn into(self) -> [[f32; 4]; 4] { self.m }
+impl From<Matrix> for [[f32; 4]; 4] {
+    fn from(matrix: Matrix) -> Self { matrix.m }
 }
 
 

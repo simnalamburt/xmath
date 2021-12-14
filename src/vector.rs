@@ -74,8 +74,8 @@ pub struct Vector4 {
 impl Vector2 {
     pub fn new(x: f32, y: f32) -> Self {
         Vector2 {
-            x: x,
-            y: y,
+            x,
+            y,
             z: 0.0,
             w: 0.0,
         }
@@ -85,9 +85,9 @@ impl Vector2 {
 impl Vector3 {
     pub fn new(x: f32, y: f32, z: f32) -> Self {
         Vector3 {
-            x: x,
-            y: y,
-            z: z,
+            x,
+            y,
+            z,
             w: 0.0,
         }
     }
@@ -104,10 +104,10 @@ impl Vector3 {
 impl Vector4 {
     pub fn new(x: f32, y: f32, z: f32, w: f32) -> Self {
         Vector4 {
-            x: x,
-            y: y,
-            z: z,
-            w: w,
+            x,
+            y,
+            z,
+            w,
         }
     }
 }
@@ -865,11 +865,11 @@ impl Neg for Vector4 {
     }
 }
 
-const ZERO: &'static f32 = &0.0;
+const ZERO: &f32 = &0.0;
 
 impl Index<usize> for Vector2 {
     type Output = f32;
-    fn index<'a>(&'a self, index: usize) -> &'a Self::Output {
+    fn index(&self, index: usize) -> &Self::Output {
         match index {
             0 => &self.x,
             1 => &self.y,
@@ -881,7 +881,7 @@ impl Index<usize> for Vector2 {
 }
 impl Index<usize> for Vector3 {
     type Output = f32;
-    fn index<'a>(&'a self, index: usize) -> &'a Self::Output {
+    fn index(&self, index: usize) -> &Self::Output {
         match index {
             0 => &self.x,
             1 => &self.y,
@@ -893,7 +893,7 @@ impl Index<usize> for Vector3 {
 }
 impl Index<usize> for Vector4 {
     type Output = f32;
-    fn index<'a>(&'a self, index: usize) -> &'a Self::Output {
+    fn index(&self, index: usize) -> &Self::Output {
         match index {
             0 => &self.x,
             1 => &self.y,
