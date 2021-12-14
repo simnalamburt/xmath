@@ -1,5 +1,3 @@
-#[cfg(feature = "glium-support")] extern crate glium;
-
 mod matrix;
 mod vector;
 

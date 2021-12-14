@@ -1,6 +1,6 @@
 use std::mem::zeroed;
 use std::ops::*;
-use vector::{Vector, Vector3};
+use crate::vector::{Vector, Vector3};
 
 pub type Row = [f32; 4];
 

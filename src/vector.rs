@@ -1,6 +1,6 @@
 use std::f32;
 use std::ops::*;
-use matrix::{Matrix, Row};
+use crate::matrix::{Matrix, Row};
 
 pub trait Vector : Sized + Div<f32, Output = Self> {
     fn zero() -> Self;
