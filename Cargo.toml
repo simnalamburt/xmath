@@ -1,6 +1,6 @@
 [package]
 name = "xmath"
-version = "0.2.8"
+version = "0.2.9"
 edition = "2021"
 authors = ["Seulgi Kim <dev@seulgi.kim>", "Hyeon Kim <simnalamburt@gmail.com>"]
 
