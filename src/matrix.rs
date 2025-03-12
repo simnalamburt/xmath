@@ -216,7 +216,7 @@ impl Mul for Matrix {
     }
 }
 
-impl<'a> Mul<Matrix> for &'a Matrix {
+impl Mul<Matrix> for &Matrix {
     type Output = Matrix;
     fn mul(self, rhs: Matrix) -> Matrix {
         self * &rhs
@@ -230,7 +230,7 @@ impl<'a> Mul<&'a Matrix> for Matrix {
     }
 }
 
-impl<'a, 'b> Mul<&'a Matrix> for &'b Matrix {
+impl<'a> Mul<&'a Matrix> for &Matrix {
     type Output = Matrix;
 
     fn mul(self, rhs: &'a Matrix) -> Matrix {
